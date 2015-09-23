@@ -8,6 +8,8 @@
  *
  * @author Nicholas Grant
  */
+
+import javax.swing.*;
 public class GameFrame extends javax.swing.JFrame {
 
     /**
@@ -34,12 +36,11 @@ public class GameFrame extends javax.swing.JFrame {
         DrawCard = new javax.swing.JButton();
         MoveListWindow = new javax.swing.JScrollPane();
         MoveList = new javax.swing.JList();
-        Card = new javax.swing.JLabel();
         PlayerInterface = new javax.swing.JTextField();
         Player = new javax.swing.JTextField();
+        Card = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 1024));
 
         BoardPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -77,9 +78,6 @@ public class GameFrame extends javax.swing.JFrame {
         });
         MoveListWindow.setViewportView(MoveList);
 
-        Card.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/card.PNG"))); // NOI18N
-
         PlayerInterface.setText("jTextField1");
         PlayerInterface.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +86,13 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         Player.setText("jTextField2");
+
+        Card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/card.PNG"))); // NOI18N
+        Card.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BoardPanelLayout = new javax.swing.GroupLayout(BoardPanel);
         BoardPanel.setLayout(BoardPanelLayout);
@@ -103,33 +108,34 @@ public class GameFrame extends javax.swing.JFrame {
                         .addComponent(DrawCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                     .addComponent(MoveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(Card)
-                .addGap(59, 59, 59)
-                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Player)
-                    .addComponent(PlayerInterface))
+                .addComponent(Card, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PlayerInterface, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(Player))
                 .addContainerGap())
         );
         BoardPanelLayout.setVerticalGroup(
             BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BoardPanelLayout.createSequentialGroup()
-                .addComponent(BoardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+                .addComponent(BoardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Card, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(BoardPanelLayout.createSequentialGroup()
-                        .addComponent(DrawCard, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Move)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PlayCard)
-                        .addGap(18, 18, 18)
-                        .addComponent(MoveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BoardPanelLayout.createSequentialGroup()
-                        .addComponent(PlayerInterface)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Player, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(BoardPanelLayout.createSequentialGroup()
+                            .addComponent(DrawCard, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Move)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(PlayCard)
+                            .addGap(18, 18, 18)
+                            .addComponent(MoveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(BoardPanelLayout.createSequentialGroup()
+                            .addComponent(PlayerInterface)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Player, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Card, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,6 +167,13 @@ public class GameFrame extends javax.swing.JFrame {
     private void PlayerInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerInterfaceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PlayerInterfaceActionPerformed
+
+    private void CardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardActionPerformed
+        if (((ImageIcon) Card.getIcon()).getDescription().equals("card.PNG"))
+            Card.setIcon(new ImageIcon("card2.PNG"));
+        else
+            Card.setIcon(new ImageIcon("card.PNG"));
+    }//GEN-LAST:event_CardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,7 +214,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Board;
     private javax.swing.JPanel BoardPanel;
     private javax.swing.JScrollPane BoardWindow;
-    private javax.swing.JLabel Card;
+    private javax.swing.JButton Card;
     private javax.swing.JButton DrawCard;
     private javax.swing.JButton Move;
     private javax.swing.JList MoveList;
