@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.awt.Rectangle;
 
 public class GameModel {
     
@@ -36,6 +37,7 @@ public class GameModel {
         private String name;
         private int locationNumber;
         private int[] adjacentRooms;
+        private Rectangle boardBounds;
         
         public Room(String name, int locationNumber, 
          int[] adjacentRooms) {
@@ -48,6 +50,10 @@ public class GameModel {
         public int[] getAdjacentRooms() {
             return adjacentRooms;
         }
+        
+        public void setBoardBounds(Rectangle bounds) {
+            boardBounds = bounds;
+        }
     }
     
     public GameModel() {
@@ -56,7 +62,7 @@ public class GameModel {
     }
     
     private void initializeRooms() {
-        rooms = new Room[20];
+        rooms = new Room[21];
         rooms[0] = new Room("George Allen Field", 0, new int[]{1, 3, 4, 5});
         rooms[1] = new Room("Japanese Garden", 0, new int[]{0, 2, 3});
         rooms[2] = new Room("Student Parking", 0, new int[]{1, 3, 5, 6});
