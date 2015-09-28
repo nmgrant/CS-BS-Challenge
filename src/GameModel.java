@@ -1,18 +1,21 @@
 import java.util.Random;
 import java.awt.Rectangle;
+import javax.swing.JLabel;
+import java.awt.Point;
 
 public class GameModel {
     
     private Room[] rooms;
     private Player[] players;
     
-    public class Player {
+    public class Player extends JLabel {
         
         private final int STARTING_ROOM = 17;
         private String name;
         private int[] skillPoints;
         private int qualityPoints;
         private int room;
+        private Point playerLoc;
         private boolean human;
         
         public Player(String name, int[] skillPoints) {
@@ -23,12 +26,19 @@ public class GameModel {
             human = false;
         }
         
+        public Point getLoc() {
+            return playerLoc;
+        }
         public void setHuman() {
             this.human = true;
         }
         
         public void setRoom(int room) {
             this.room = room;
+        }
+        
+        public void setLoc(int x, int y) {
+            playerLoc = new Point(x, y);
         }
     }
     
@@ -37,7 +47,6 @@ public class GameModel {
         private String name;
         private int locationNumber;
         private int[] adjacentRooms;
-        private Rectangle boardBounds;
         
         public Room(String name, int locationNumber, 
          int[] adjacentRooms) {
@@ -49,10 +58,6 @@ public class GameModel {
         
         public int[] getAdjacentRooms() {
             return adjacentRooms;
-        }
-        
-        public void setBoardBounds(Rectangle bounds) {
-            boardBounds = bounds;
         }
     }
     
@@ -92,11 +97,19 @@ public class GameModel {
         players[1] = new Player("Nick", new int[]{3, 1, 2});
         players[2] = new Player("Evnick", new int[]{0, 3, 3});
         
+        players[0].setLoc(840, 1400);
+        players[1].setLoc(840, 1450);
+        players[2].setLoc(840, 1500);
+        
         Random rand = new Random();
         players[rand.nextInt(3)].setHuman();
     }
     
     public Room getRoom(int room) {
         return rooms[room];
+    }
+    
+    public Player[] getPlayers() {
+        return players;
     }
 }
