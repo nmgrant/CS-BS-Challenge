@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Nicholas Grant
- */
 
 import javax.swing.*;
+
 public class GameFrame extends javax.swing.JFrame {
     
     private GameModel model;
     /**
      * Creates new form GameFrame
      */
+    
     public GameFrame() {
         initComponents();
         model = new GameModel();
+        (model.getPlayers())[0].getLoc();
     }
 
     /**
@@ -30,22 +23,22 @@ public class GameFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BoardPanel = new javax.swing.JPanel();
+        GamePanel = new javax.swing.JPanel();
         Move = new javax.swing.JButton();
         BoardWindow = new javax.swing.JScrollPane();
+        BoardWindowPanel = new javax.swing.JPanel();
         Board = new javax.swing.JLabel();
         PlayCard = new javax.swing.JButton();
         DrawCard = new javax.swing.JButton();
         MoveListWindow = new javax.swing.JScrollPane();
         MoveList = new javax.swing.JList();
-        PlayerInterface = new javax.swing.JTextField();
+        GameInfo = new javax.swing.JTextField();
         Player = new javax.swing.JTextField();
         Card = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BoardPanel.setBackground(new java.awt.Color(204, 204, 204));
+        GamePanel.setBackground(new java.awt.Color(204, 204, 204));
 
         Move.setText("Move");
         Move.addActionListener(new java.awt.event.ActionListener() {
@@ -56,14 +49,30 @@ public class GameFrame extends javax.swing.JFrame {
 
         BoardWindow.setAutoscrolls(true);
 
-        Board.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boardMap.png"))); // NOI18N
-        Board.setText("jLabel1");
-        Board.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        BoardWindow.setViewportView(Board);
-        BoardWindow.getVerticalScrollBar().setUnitIncrement(25);
 
-        BoardWindow.getHorizontalScrollBar().setUnitIncrement(25);
+        javax.swing.GroupLayout BoardWindowPanelLayout = new javax.swing.GroupLayout(BoardWindowPanel);
+        BoardWindowPanel.setLayout(BoardWindowPanelLayout);
+        BoardWindowPanelLayout.setHorizontalGroup(
+            BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1670, Short.MAX_VALUE)
+            .addGroup(BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BoardWindowPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Board)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        BoardWindowPanelLayout.setVerticalGroup(
+            BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2000, Short.MAX_VALUE)
+            .addGroup(BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BoardWindowPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Board)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        BoardWindow.setViewportView(BoardWindowPanel);
 
         PlayCard.setText("Play Card");
         PlayCard.addActionListener(new java.awt.event.ActionListener() {
@@ -81,10 +90,10 @@ public class GameFrame extends javax.swing.JFrame {
         });
         MoveListWindow.setViewportView(MoveList);
 
-        PlayerInterface.setText("jTextField1");
-        PlayerInterface.addActionListener(new java.awt.event.ActionListener() {
+        GameInfo.setText("jTextField1");
+        GameInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlayerInterfaceActionPerformed(evt);
+                GameInfoActionPerformed(evt);
             }
         });
 
@@ -97,17 +106,15 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout BoardPanelLayout = new javax.swing.GroupLayout(BoardPanel);
-        BoardPanel.setLayout(BoardPanelLayout);
-        BoardPanelLayout.setHorizontalGroup(
-            BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BoardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addGroup(BoardPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
+        GamePanel.setLayout(GamePanelLayout);
+        GamePanelLayout.setHorizontalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BoardWindow)
+            .addGroup(GamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(PlayCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Move, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(DrawCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
@@ -115,24 +122,19 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(Card, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PlayerInterface, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(GameInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addComponent(Player))
                 .addContainerGap())
-            .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BoardPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        BoardPanelLayout.setVerticalGroup(
-            BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BoardPanelLayout.createSequentialGroup()
-                .addComponent(BoardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+        GamePanelLayout.setVerticalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GamePanelLayout.createSequentialGroup()
+                .addComponent(BoardWindow)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(BoardPanelLayout.createSequentialGroup()
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(GamePanelLayout.createSequentialGroup()
                             .addComponent(DrawCard, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Move)
@@ -140,32 +142,29 @@ public class GameFrame extends javax.swing.JFrame {
                             .addComponent(PlayCard)
                             .addGap(18, 18, 18)
                             .addComponent(MoveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(BoardPanelLayout.createSequentialGroup()
-                            .addComponent(PlayerInterface)
+                        .addGroup(GamePanelLayout.createSequentialGroup()
+                            .addComponent(GameInfo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Player, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Card, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(BoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BoardPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        BoardWindow.getVerticalScrollBar().setUnitIncrement(25);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 1674, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(BoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(GamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGap(0, 2317, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(BoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(GamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,16 +178,16 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MoveActionPerformed
 
-    private void PlayerInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerInterfaceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PlayerInterfaceActionPerformed
-
     private void CardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardActionPerformed
         if (((ImageIcon) Card.getIcon()).getDescription().equals("card.PNG"))
             Card.setIcon(new ImageIcon("card2.PNG"));
         else
             Card.setIcon(new ImageIcon("card.PNG"));
     }//GEN-LAST:event_CardActionPerformed
+
+    private void GameInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GameInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,16 +226,16 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Board;
-    private javax.swing.JPanel BoardPanel;
     private javax.swing.JScrollPane BoardWindow;
+    private javax.swing.JPanel BoardWindowPanel;
     private javax.swing.JButton Card;
     private javax.swing.JButton DrawCard;
+    private javax.swing.JTextField GameInfo;
+    private javax.swing.JPanel GamePanel;
     private javax.swing.JButton Move;
     private javax.swing.JList MoveList;
     private javax.swing.JScrollPane MoveListWindow;
     private javax.swing.JButton PlayCard;
     private javax.swing.JTextField Player;
-    private javax.swing.JTextField PlayerInterface;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
