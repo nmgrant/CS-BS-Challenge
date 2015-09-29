@@ -1,17 +1,28 @@
 
 import javax.swing.*;
+import java.awt.Point;
 
 public class GameFrame extends javax.swing.JFrame {
     
     private GameModel model;
+  
     /**
      * Creates new form GameFrame
      */
     
     public GameFrame() {
-        initComponents();
         model = new GameModel();
-        (model.getPlayers())[0].getLoc();
+        initComponents();
+        BoardWindowPanel.remove(Player1);
+        java.awt.Point player1 = Player1.getLocation();
+        System.out.println(player1);
+        System.out.println(Player1.getLocation());
+        Player1.setLocation(new Point(800, 1400));
+        System.out.println(Player1.getLocation());
+        BoardWindowPanel.add(Player1);
+        System.out.println(Player1.getLocation());
+        BoardWindowPanel.repaint();
+        System.out.println(Player1.getLocation());
     }
 
     /**
@@ -26,8 +37,9 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanel = new javax.swing.JPanel();
         Move = new javax.swing.JButton();
         BoardWindow = new javax.swing.JScrollPane();
-        BoardWindowPanel = new javax.swing.JPanel();
-        Board = new javax.swing.JLabel();
+        BoardWindowPanel = new javax.swing.JLayeredPane();
+        Player1 = model.getPlayer(1);
+        jLabel1 = new javax.swing.JLabel();
         PlayCard = new javax.swing.JButton();
         DrawCard = new javax.swing.JButton();
         MoveListWindow = new javax.swing.JScrollPane();
@@ -49,28 +61,41 @@ public class GameFrame extends javax.swing.JFrame {
 
         BoardWindow.setAutoscrolls(true);
 
-        Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boardMap.png"))); // NOI18N
+        Player1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        Player1.setForeground(new java.awt.Color(0, 153, 0));
+        Player1.setText(Player1.getName()
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boardMap.png"))); // NOI18N
 
         javax.swing.GroupLayout BoardWindowPanelLayout = new javax.swing.GroupLayout(BoardWindowPanel);
         BoardWindowPanel.setLayout(BoardWindowPanelLayout);
         BoardWindowPanelLayout.setHorizontalGroup(
             BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1670, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BoardWindowPanelLayout.createSequentialGroup()
+                .addContainerGap(758, Short.MAX_VALUE)
+                .addComponent(Player1)
+                .addGap(626, 626, 626))
             .addGroup(BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(BoardWindowPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Board)
+                    .addComponent(jLabel1)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         BoardWindowPanelLayout.setVerticalGroup(
             BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BoardWindowPanelLayout.createSequentialGroup()
+                .addContainerGap(1224, Short.MAX_VALUE)
+                .addComponent(Player1)
+                .addGap(718, 718, 718))
             .addGroup(BoardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(BoardWindowPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Board)
+                    .addComponent(jLabel1)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+        BoardWindowPanel.setLayer(Player1, javax.swing.JLayeredPane.DRAG_LAYER);
+        BoardWindowPanel.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         BoardWindow.setViewportView(BoardWindowPanel);
 
@@ -130,7 +155,7 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanelLayout.setVerticalGroup(
             GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GamePanelLayout.createSequentialGroup()
-                .addComponent(BoardWindow)
+                .addComponent(BoardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 2003, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -175,7 +200,10 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PlayCardActionPerformed
 
     private void MoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoveActionPerformed
-        // TODO add your handling code here:
+        BoardWindowPanel.remove(Player1);
+        Player1.setLocation(Player1.getLocation());
+        BoardWindowPanel.add(Player1);
+        
     }//GEN-LAST:event_MoveActionPerformed
 
     private void CardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardActionPerformed
@@ -220,14 +248,14 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameFrame().setVisible(true);
-            }
+            }  
         });
     }
-
+                
+                
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Board;
     private javax.swing.JScrollPane BoardWindow;
-    private javax.swing.JPanel BoardWindowPanel;
+    private javax.swing.JLayeredPane BoardWindowPanel;
     private javax.swing.JButton Card;
     private javax.swing.JButton DrawCard;
     private javax.swing.JTextField GameInfo;
@@ -237,5 +265,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane MoveListWindow;
     private javax.swing.JButton PlayCard;
     private javax.swing.JTextField Player;
+    private javax.swing.JLabel Player1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

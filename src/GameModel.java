@@ -7,7 +7,7 @@ public class GameModel {
     
     private Room[] rooms;
     private Player[] players;
-
+    
     public class Room {
         
         private String name;
@@ -61,14 +61,11 @@ public class GameModel {
         players = new Player[3];
         players[0] = new Player("Evan", new int[]{2, 2, 2});
         players[1] = new Player("Nick", new int[]{3, 1, 2});
-        players[2] = new Player("Evnick", new int[]{0, 3, 3});
+        players[2] = new Player("Steven", new int[]{0, 3, 3});
         
-        players[0].setLoc(840, 2000);
-        players[1].setLoc(840, 1450);
-        players[2].setLoc(840, 1500);
-        
-        for (Player p : players)
-            p.setLocation(p.getLoc());
+        players[0].setLocation(new Point(840, 1400));
+        players[1].setLocation(new Point(840, 1450));
+        players[2].setLocation(new Point(840, 1500));
         
         Random rand = new Random();
         players[rand.nextInt(3)].setHuman();
