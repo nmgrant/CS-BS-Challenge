@@ -6,13 +6,13 @@ public class GameFrame extends javax.swing.JFrame {
     
     private GameModel model;
     private GameModel.Player humanPlayer;
-  
+    private GameModel.Player currentPlayer;
     /**
      * Creates new form GameFrame
      */
     
-    public GameFrame() {
-        model = new GameModel();
+    public GameFrame(GameModel model) {
+        this.model = model;
         humanPlayer = findHumanPlayer();
         initComponents();
         updatePlayer(player1Label);
@@ -70,7 +70,7 @@ public class GameFrame extends javax.swing.JFrame {
         player3Label.setForeground(new java.awt.Color(255, 51, 0));
         player3Label.setText(player3Label.getName());
 
-        Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boardMap.png"))); // NOI18N
+        Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/boardMap.png"))); // NOI18N
 
         javax.swing.GroupLayout BoardWindowPanelLayout = new javax.swing.GroupLayout(BoardWindowPanel);
         BoardWindowPanel.setLayout(BoardWindowPanelLayout);
@@ -160,7 +160,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         Player.setText("jTextField2");
 
-        Card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/card.PNG"))); // NOI18N
+        Card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/card.PNG"))); // NOI18N
         Card.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CardActionPerformed(evt);
@@ -262,13 +262,13 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+/*        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -287,12 +287,12 @@ public class GameFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GameFrame().setVisible(true);
             }  
         });
-    }
+    }*/
                 
     public void updatePlayer(JLabel player) {
         int playerRoomNumber = ((GameModel.Player)player).getRoomNumber();

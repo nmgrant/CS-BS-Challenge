@@ -151,7 +151,7 @@ public class GameModel {
         rooms[4].setRoomSpaces(25, 660);
         
         
-        rooms[5] = new Room("Health Center", 5);
+        rooms[5] = new Room("Rec Center", 5);
         rooms[5].setRoomSpaces(470, 600);
         
         
@@ -226,10 +226,10 @@ public class GameModel {
         rooms[9].setAdjacentRooms(new Room[]{rooms[10]});
         rooms[10].setAdjacentRooms(new Room[]{rooms[6], rooms[9], rooms[15]});
         rooms[11].setAdjacentRooms(new Room[]{rooms[12]});
-        rooms[12].setAdjacentRooms(new Room[]{rooms[4], rooms[11], rooms[13], rooms[14], rooms[16]});
+        rooms[12].setAdjacentRooms(new Room[]{rooms[4], rooms[11], rooms[13], rooms[14], rooms[15], rooms[16]});
         rooms[13].setAdjacentRooms(new Room[]{rooms[12]});
         rooms[14].setAdjacentRooms(new Room[]{rooms[12], rooms[15]});
-        rooms[15].setAdjacentRooms(new Room[]{rooms[10], rooms[14], rooms[17], rooms[18], rooms[19], rooms[20]});
+        rooms[15].setAdjacentRooms(new Room[]{rooms[10], rooms[12], rooms[14], rooms[17], rooms[18], rooms[19], rooms[20]});
         rooms[16].setAdjacentRooms(new Room[]{rooms[8], rooms[12]});
         rooms[17].setAdjacentRooms(new Room[]{rooms[15]});
         rooms[18].setAdjacentRooms(new Room[]{rooms[15]});
