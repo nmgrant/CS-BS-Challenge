@@ -331,6 +331,10 @@ public class GameFrame extends javax.swing.JFrame {
             GameModel.Room[] rooms = initializeList();
         });
     }
+    
+    public JButton getMove() {
+        return Move;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Board;
     private javax.swing.JScrollPane BoardWindow;

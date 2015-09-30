@@ -9,6 +9,8 @@ public class GameModel {
     
     private Room[] rooms;
     private Player[] players;
+    private Player humanPlayer;
+    private Player currentPlayer;
     
     public GameModel() {
         initializeRooms();
@@ -23,7 +25,7 @@ public class GameModel {
         private int[] skillPoints;
         private int qualityPoints;
         private int room;
-        private boolean human;
+        private boolean human, current;
         private int maxMoves, moves;
 
         public Player(String name, int[] skillPoints) {
@@ -34,6 +36,7 @@ public class GameModel {
             human = false;
             setText(name);
             moves = maxMoves = 3;
+            current = false;
         }
 
         public String getName() {
@@ -52,6 +55,10 @@ public class GameModel {
             return human;
         }
         
+        public boolean isCurrent() {
+            return current;
+        }
+        
         public void decreaseMoves() {
             moves--;
         }
@@ -67,6 +74,9 @@ public class GameModel {
             this.room = room;
         }
         
+        public void changeCurrentPlayer() {
+            current = !current;
+        }
     }
     
     public class Room {
@@ -245,7 +255,10 @@ public class GameModel {
         players[2] = new Player("Steven", new int[]{0, 3, 3});
         
         Random rand = new Random();
-        players[rand.nextInt(3)].setHuman();
+        int human = rand.nextInt(3);
+        players[human].setHuman();
+        
+        humanPlayer = players[human];
     }
     
     public Room getRoom(int room) {
@@ -254,5 +267,17 @@ public class GameModel {
     
     public Player[] getPlayers() {
         return players;
+    }
+    
+    public Player getHumanPlayer() {
+        return humanPlayer;
+    }
+    
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    
+    public void setCurrentPlayer(Player next) {
+        currentPlayer = next;
     }
 }
