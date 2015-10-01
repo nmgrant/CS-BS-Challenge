@@ -1,6 +1,7 @@
 
 import javax.swing.*;
-import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameFrame extends javax.swing.JFrame {
     
@@ -126,11 +127,6 @@ public class GameFrame extends javax.swing.JFrame {
         BoardWindow.setViewportView(BoardWindowPanel);
 
         PlayCard.setText("Play Card");
-        PlayCard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlayCardActionPerformed(evt);
-            }
-        });
 
         DrawCard.setText("Draw Card");
 
@@ -231,11 +227,6 @@ public class GameFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PlayCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayCardActionPerformed
-        humanPlayer.resetMoves();
-        Move.setEnabled(true);
-    }//GEN-LAST:event_PlayCardActionPerformed
-
     private void MoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoveActionPerformed
         if (humanPlayer.getMoves() > 0) {
             GameModel.Room selectedRoom = (GameModel.Room)MoveList.getSelectedValue();
@@ -330,6 +321,10 @@ public class GameFrame extends javax.swing.JFrame {
             public Object getElementAt(int i) { return rooms[i]; }
             GameModel.Room[] rooms = initializeList();
         });
+    }
+    
+    public void addPlayCardActionPerformed(ActionListener l) {
+        PlayCard.addActionListener(l);
     }
     
     public JButton getMove() {

@@ -12,6 +12,7 @@ public class GameController {
         this.frame = frame;
         currentPlayer = model.getCurrentPlayer();
         players = model.getPlayers();
+        frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
     }
     
     public class PlayCardActionPerformed implements ActionListener {

@@ -244,7 +244,7 @@ public class GameModel {
         rooms[17].setAdjacentRooms(new Room[]{rooms[15]});
         rooms[18].setAdjacentRooms(new Room[]{rooms[15]});
         rooms[19].setAdjacentRooms(new Room[]{rooms[15]});
-        rooms[20].setAdjacentRooms(new Room[]{rooms[20]});
+        rooms[20].setAdjacentRooms(new Room[]{rooms[15]});
         
     }
     
@@ -259,6 +259,7 @@ public class GameModel {
         players[human].setHuman();
         
         humanPlayer = players[human];
+        currentPlayer = humanPlayer;
     }
     
     public Room getRoom(int room) {
