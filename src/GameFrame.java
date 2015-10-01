@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class GameFrame extends javax.swing.JFrame {
     
     private GameModel model;
-    private GameModel.Player humanPlayer;
     private GameModel.Player currentPlayer;
     /**
      * Creates new form GameFrame
@@ -14,11 +13,11 @@ public class GameFrame extends javax.swing.JFrame {
     
     public GameFrame(GameModel model) {
         this.model = model;
-        humanPlayer = findHumanPlayer();
+        currentPlayer = model.getCurrentPlayer();
         initComponents();
-        updatePlayer(player1Label);
-        updatePlayer(player2Label);
-        updatePlayer(player3Label);
+        initPlayerPosition(player1Label);
+        initPlayerPosition(player2Label);
+        initPlayerPosition(player3Label);
     }
 
     /**
@@ -51,11 +50,6 @@ public class GameFrame extends javax.swing.JFrame {
         GamePanel.setBackground(new java.awt.Color(204, 204, 204));
 
         Move.setText("Move");
-        Move.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MoveActionPerformed(evt);
-            }
-        });
 
         BoardWindow.setAutoscrolls(true);
 
@@ -130,7 +124,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         DrawCard.setText("Draw Card");
 
-        int playerRoom = humanPlayer.getRoomNumber();
+        int playerRoom = currentPlayer.getRoomNumber();
         GameModel.Room currentRoom = model.getRoom(playerRoom);
         MoveList.setModel(new javax.swing.AbstractListModel() {
             public GameModel.Room[] initializeList() {
@@ -226,19 +220,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void MoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoveActionPerformed
-        if (humanPlayer.getMoves() > 0) {
-            GameModel.Room selectedRoom = (GameModel.Room)MoveList.getSelectedValue();
-            humanPlayer.setRoom(selectedRoom.getRoomNumber());
-            updatePlayer(humanPlayer);
-            updateList();
-            humanPlayer.decreaseMoves();
-            if (humanPlayer.getMoves() == 0)
-                Move.setEnabled(false);
-        }
-    }//GEN-LAST:event_MoveActionPerformed
-
+/**/
     private void CardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CardActionPerformed
         if (((ImageIcon) Card.getIcon()).getDescription().equals("card.PNG"))
             Card.setIcon(new ImageIcon("card2.PNG"));
@@ -284,10 +266,16 @@ public class GameFrame extends javax.swing.JFrame {
             }  
         });
     }*/
-                
-    public void updatePlayer(JLabel player) {
-        int playerRoomNumber = ((GameModel.Player)player).getRoomNumber();
-        GameModel.Room playerRoom = model.getRoom(playerRoomNumber);
+    public void initPlayerPosition(JLabel player) {
+        BoardWindowPanel.remove(player);
+        player.setLocation(((GameModel.Player)player).getSpace());
+        BoardWindowPanel.add(player);
+        BoardWindowPanel.repaint();
+        
+        updateList();
+    }
+    public void updatePlayerPosition(JLabel player) {
+        GameModel.Room playerRoom = model.getRoom(((GameModel.Player)player).getRoomNumber());
         int space = playerRoom.findAvailableSpace();
         
         BoardWindowPanel.remove(player);
@@ -295,7 +283,7 @@ public class GameFrame extends javax.swing.JFrame {
         BoardWindowPanel.add(player);
         BoardWindowPanel.repaint();
         
-        playerRoom.setSpaceAvailability(space);
+        updateList();
     }
     
     public GameModel.Player findHumanPlayer() {
@@ -307,7 +295,8 @@ public class GameFrame extends javax.swing.JFrame {
     }
     
     public void updateList() {
-        int playerRoom = humanPlayer.getRoomNumber();
+        currentPlayer = model.getCurrentPlayer();
+        int playerRoom = currentPlayer.getRoomNumber();
         GameModel.Room currentRoom = model.getRoom(playerRoom);
         MoveList.setModel(new javax.swing.AbstractListModel() {
             public GameModel.Room[] initializeList() {
@@ -327,8 +316,24 @@ public class GameFrame extends javax.swing.JFrame {
         PlayCard.addActionListener(l);
     }
     
+    public void addMoveActionPerformed(ActionListener l) {
+        Move.addActionListener(l);
+    }
+    
     public JButton getMove() {
         return Move;
+    }
+    
+    public JList getMoveList() {
+        return MoveList;
+    }
+    
+    public JLayeredPane getBoardWindow() {
+        return BoardWindowPanel;
+    }
+    
+    public void setCurrentPlayer(GameModel.Player player) {
+        currentPlayer = player;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Board;

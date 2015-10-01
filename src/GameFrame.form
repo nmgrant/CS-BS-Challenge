@@ -105,9 +105,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Move"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MoveActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="BoardWindow">
           <Properties>
@@ -271,7 +268,7 @@
                 <Property name="selectionMode" type="int" value="1"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int playerRoom = humanPlayer.getRoomNumber();&#xa;GameModel.Room currentRoom = model.getRoom(playerRoom);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="int playerRoom = currentPlayer.getRoomNumber();&#xa;GameModel.Room currentRoom = model.getRoom(playerRoom);"/>
               </AuxValues>
             </Component>
           </SubComponents>

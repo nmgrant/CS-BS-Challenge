@@ -20,13 +20,13 @@ public class GameModel {
     public class Player extends JLabel {
 
         private final int STARTING_ROOM = 17;
-        private final Point DEFAULT_LOCATION = new Point(840, 1400);
         private String name;
         private int[] skillPoints;
         private int qualityPoints;
         private int room;
         private boolean human, current;
         private int maxMoves, moves;
+        private Point space;
 
         public Player(String name, int[] skillPoints) {
             this.name = name;
@@ -49,6 +49,10 @@ public class GameModel {
         
         public int getMoves() {
             return moves;
+        }
+        
+        public Point getSpace() {
+            return space;
         }
         
         public boolean isHuman() {
@@ -74,7 +78,11 @@ public class GameModel {
             this.room = room;
         }
         
-        public void changeCurrentPlayer() {
+        public void setSpace(Point space) {
+            this.space = space;
+        }
+        
+        public void changeCurrent() {
             current = !current;
         }
     }
@@ -121,8 +129,11 @@ public class GameModel {
             return 0;
         }
         
-        public void setSpaceAvailability(int space) {
-            isSpaceAvailable[space] = !isSpaceAvailable[space];
+        public void setSpaceAvailability(Point space) {
+            for (int i = 0; i < roomSpaces.length; i++) {
+                if (roomSpaces[i] == space)
+                    isSpaceAvailable[i] = !isSpaceAvailable[i];
+            }
         }
         
         public void setRoomSpaces(int x, int y) {
@@ -254,12 +265,22 @@ public class GameModel {
         players[1] = new Player("Nick", new int[]{3, 1, 2});
         players[2] = new Player("Steven", new int[]{0, 3, 3});
         
+        players[0].setSpace(this.getRoom(17).getRoomSpace(0));
+        getRoom(players[0].getRoomNumber()).setSpaceAvailability(players[0].getSpace());
+        
+        players[1].setSpace(this.getRoom(17).getRoomSpace(1));
+        getRoom(players[1].getRoomNumber()).setSpaceAvailability(players[1].getSpace());
+        
+        players[2].setSpace(this.getRoom(17).getRoomSpace(2));
+        getRoom(players[2].getRoomNumber()).setSpaceAvailability(players[2].getSpace());
+        
         Random rand = new Random();
         int human = rand.nextInt(3);
         players[human].setHuman();
         
         humanPlayer = players[human];
         currentPlayer = humanPlayer;
+        currentPlayer.changeCurrent();
     }
     
     public Room getRoom(int room) {
