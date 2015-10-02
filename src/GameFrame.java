@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -148,7 +149,7 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        Player.setText("jTextField2");
+        Player.setText("Current player is " + model.getCurrentPlayer().getName());
 
         Card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/card.PNG"))); // NOI18N
         Card.addActionListener(new java.awt.event.ActionListener() {
@@ -275,11 +276,9 @@ public class GameFrame extends javax.swing.JFrame {
         updateList();
     }
     public void updatePlayerPosition(JLabel player) {
-        GameModel.Room playerRoom = model.getRoom(((GameModel.Player)player).getRoomNumber());
-        int space = playerRoom.findAvailableSpace();
         
         BoardWindowPanel.remove(player);
-        player.setLocation(playerRoom.getRoomSpace(space));
+        player.setLocation(model.getCurrentPlayer().getSpace());
         BoardWindowPanel.add(player);
         BoardWindowPanel.repaint();
         

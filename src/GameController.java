@@ -8,21 +8,17 @@ public class GameController {
     
     private GameModel model;
     private GameFrame frame;
-    GameModel.Player currentPlayer;
-    GameModel.Player[] players;
     
     public GameController(GameModel model, GameFrame frame) {
         this.model = model;
         this.frame = frame;
-        currentPlayer = model.getCurrentPlayer();
-        players = model.getPlayers();
         frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
         frame.addMoveActionPerformed(new MoveActionPerformed());
     }
     
     public class PlayCardActionPerformed implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
-            currentPlayer.resetMoves();
+            model.getCurrentPlayer().resetMoves();
             nextPlayer();
             
             frame.getMove().setEnabled(true);
@@ -32,22 +28,23 @@ public class GameController {
     public class MoveActionPerformed implements ActionListener {
         public void actionPerformed(ActionEvent evt) {
              
-            if (currentPlayer.getMoves() > 0) {
+            if (model.getCurrentPlayer().getMoves() > 0) {
                 
-                GameModel.Room currentPlayerRoom = model.getRoom(currentPlayer.getRoomNumber());
-                Point currentPlayerSpace = currentPlayer.getSpace();
+                GameModel.Room currentPlayerRoom = model.getRoom(model.getCurrentPlayer().getRoomNumber());
+                Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
                 currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
 
                 GameModel.Room selectedRoom = (GameModel.Room)frame.getMoveList().getSelectedValue();
 
-                currentPlayer.setRoom(selectedRoom.getRoomNumber());
-                selectedRoom.setSpaceAvailability(currentPlayer.getSpace());
-                frame.updatePlayerPosition((JLabel)currentPlayer);
+                model.getCurrentPlayer().setRoom(selectedRoom.getRoomNumber());
+                model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
+                selectedRoom.setSpaceAvailability(model.getCurrentPlayer().getSpace());
+                frame.updatePlayerPosition((JLabel)model.getCurrentPlayer());
                 frame.updateList();
 
-                currentPlayer.decreaseMoves();
+                model.getCurrentPlayer().decreaseMoves();
 
-                if (currentPlayer.getMoves() == 0) {
+                if (model.getCurrentPlayer().getMoves() == 0) {
                     frame.getMove().setEnabled(false);
                     nextPlayer();
                 }
@@ -56,33 +53,20 @@ public class GameController {
     }
     
     public void nextPlayer() {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].isCurrent()) {
+        for (int i = 0; i < model.getPlayers().length; i++) {
+            if (model.getPlayers()[i].isCurrent()) {
+                model.getCurrentPlayer().changeCurrent();
                 if (i == 2) {
-                    model.getCurrentPlayer().changeCurrent();
-                    model.setCurrentPlayer(players[i - 2]);
+                    GameModel. Player nextPlayer = (model.getPlayers())[i - 2];
+                    model.setCurrentPlayer(nextPlayer);
                 }
                 else {
-                    model.getCurrentPlayer().changeCurrent();
-                    model.setCurrentPlayer(players[i + 1]);
+                    GameModel. Player nextPlayer = (model.getPlayers())[i + 1];
+                    model.setCurrentPlayer(nextPlayer);
                 }
-                model.getCurrentPlayer().changeCurrent();
             }
         }
-        currentPlayer = model.getCurrentPlayer();
+        model.getCurrentPlayer().changeCurrent();
         frame.updateList();
     }
-    /*
-    private void MoveActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        if (humanPlayer.getMoves() > 0) {
-            GameModel.Room selectedRoom = (GameModel.Room)MoveList.getSelectedValue();
-            humanPlayer.setRoom(selectedRoom.getRoomNumber());
-            updatePlayer(humanPlayer);
-            updateList();
-            humanPlayer.decreaseMoves();
-            if (humanPlayer.getMoves() == 0)
-                Move.setEnabled(false);
-        }
-    } 
-    */
 }

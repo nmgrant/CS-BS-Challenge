@@ -121,12 +121,12 @@ public class GameModel {
             this.adjacentRooms = adjacentRooms;
         }
         
-        public int findAvailableSpace() {
+        public Point findAvailableSpace() {
             for (int i = 0; i < isSpaceAvailable.length; i++) {
                 if (isSpaceAvailable[i])
-                    return i;
+                    return roomSpaces[i];
             }
-            return 0;
+            return null;
         }
         
         public void setSpaceAvailability(Point space) {
