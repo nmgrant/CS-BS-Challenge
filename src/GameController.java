@@ -46,7 +46,6 @@ public class GameController {
 
                 if (model.getCurrentPlayer().getMoves() == 0) {
                     frame.getMove().setEnabled(false);
-                    nextPlayer();
                 }
             } 
         }

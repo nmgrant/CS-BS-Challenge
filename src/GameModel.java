@@ -241,7 +241,7 @@ public class GameModel {
         rooms[3].setAdjacentRooms(new Room[]{rooms[0], rooms[1], rooms[2], rooms[5]});
         rooms[4].setAdjacentRooms(new Room[]{rooms[5], rooms[7], rooms[12]});
         rooms[5].setAdjacentRooms(new Room[]{rooms[0], rooms[2], rooms[3], rooms[4], rooms[6]});
-        rooms[6].setAdjacentRooms(new Room[]{rooms[2], rooms[10]});
+        rooms[6].setAdjacentRooms(new Room[]{rooms[2], rooms[5], rooms[10]});
         rooms[7].setAdjacentRooms(new Room[]{rooms[4], rooms[8]});
         rooms[8].setAdjacentRooms(new Room[]{rooms[7], rooms[9], rooms[16]});
         rooms[9].setAdjacentRooms(new Room[]{rooms[10]});
