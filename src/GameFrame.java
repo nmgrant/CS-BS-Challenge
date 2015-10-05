@@ -285,14 +285,6 @@ public class GameFrame extends javax.swing.JFrame {
         updateList();
     }
     
-    public GameModel.Player findHumanPlayer() {
-        for (GameModel.Player player : model.getPlayers()) {
-            if (player.isHuman())
-                return player;
-        }
-        return null;
-    }
-    
     public void updateList() {
         currentPlayer = model.getCurrentPlayer();
         int playerRoom = currentPlayer.getRoomNumber();
@@ -311,6 +303,10 @@ public class GameFrame extends javax.swing.JFrame {
         });
     }
     
+    public void updateCurrent() {
+        Player.setText("Current player is " + model.getCurrentPlayer().getName());
+    }
+    
     public void addPlayCardActionPerformed(ActionListener l) {
         PlayCard.addActionListener(l);
     }
@@ -321,6 +317,10 @@ public class GameFrame extends javax.swing.JFrame {
     
     public JButton getMove() {
         return Move;
+    }
+    
+    public JButton getPlayCard() {
+        return PlayCard;
     }
     
     public JList getMoveList() {
