@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="1674" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="GamePanel" alignment="0" max="32767" attributes="0"/>
+              <Component id="gamePanel" alignment="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -33,13 +33,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="2317" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="GamePanel" alignment="0" max="32767" attributes="0"/>
+              <Component id="gamePanel" alignment="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="GamePanel">
+    <Container class="javax.swing.JPanel" name="gamePanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -49,51 +49,49 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="BoardWindow" max="32767" attributes="0"/>
+              <Component id="boardWindow" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="PlayCard" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Move" alignment="0" max="32767" attributes="0"/>
-                          <Component id="DrawCard" alignment="0" pref="103" max="32767" attributes="0"/>
+                          <Component id="playCardButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="moveButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="drawCardButton" alignment="0" pref="103" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="MoveListWindow" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="moveListWindow" min="-2" pref="158" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Component id="Card" min="-2" pref="224" max="-2" attributes="0"/>
+                  <Component id="cardButton" min="-2" pref="224" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Player" max="32767" attributes="0"/>
-                      <Component id="GameInfo" max="32767" attributes="0"/>
+                      <Component id="humanInfoScrollPane" max="32767" attributes="0"/>
+                      <Component id="gameInfoScrollPane" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="BoardWindow" pref="2003" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Component id="boardWindow" pref="2003" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="DrawCard" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Move" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="PlayCard" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="MoveListWindow" min="-2" pref="191" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="GameInfo" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Player" min="-2" pref="48" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="drawCardButton" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="moveButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="playCardButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="moveListWindow" min="-2" pref="191" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="Card" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
+                      <Component id="cardButton" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="gameInfoScrollPane" min="-2" pref="220" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="humanInfoScrollPane" min="-2" pref="63" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
@@ -101,22 +99,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="Move">
+        <Component class="javax.swing.JButton" name="moveButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="BoardWindow">
+        <Container class="javax.swing.JScrollPane" name="boardWindow">
           <Properties>
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="BoardWindow.getVerticalScrollBar().setUnitIncrement(25);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="boardWindow.getVerticalScrollBar().setUnitIncrement(25);"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JLayeredPane" name="BoardWindowPanel">
+            <Container class="javax.swing.JLayeredPane" name="boardWindowPanel">
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -129,7 +127,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="Board" min="-2" max="-2" attributes="0"/>
+                              <Component id="boardLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -159,7 +157,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="Board" min="-2" max="-2" attributes="0"/>
+                              <Component id="boardLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -232,7 +230,7 @@
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(model.getPlayers())[2]"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JLabel" name="Board">
+                <Component class="javax.swing.JLabel" name="boardLabel">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Images/boardMap.png"/>
@@ -243,24 +241,24 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="PlayCard">
+        <Component class="javax.swing.JButton" name="playCardButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Play Card"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="DrawCard">
+        <Component class="javax.swing.JButton" name="drawCardButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Draw Card"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="MoveListWindow">
+        <Container class="javax.swing.JScrollPane" name="moveListWindow">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="MoveList">
+            <Component class="javax.swing.JList" name="moveList">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.AbstractListModel() {&#xa;    public GameModel.Room[] initializeList() {&#xa;        GameModel.Room[] rooms = new GameModel.Room[currentRoom.getAdjacentRooms().length];&#xa;        for (int i = 0; i &lt; rooms.length; i++) {&#xa;            rooms[i] = currentRoom.getAdjacentRooms()[i];&#xa;        }&#xa;        return rooms;&#xa;    }&#xa;    public int getSize() { return rooms.length; }&#xa;    public Object getElementAt(int i) { return rooms[i]; }&#xa;    GameModel.Room[] rooms = initializeList();&#xa;}" type="code"/>
@@ -273,31 +271,48 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="GameInfo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GameInfoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="Player">
-          <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Current player is &quot; + model.getCurrentPlayer().getName()" type="code"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="Card">
+        <Component class="javax.swing.JButton" name="cardButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/card.PNG"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CardActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cardButtonActionPerformed"/>
           </Events>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="humanInfoScrollPane">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="humanInfo">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="&quot;Human player is &quot; + model.getHumanPlayer().getName()" type="code"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="gameInfoScrollPane">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="gameInfo">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
