@@ -86,7 +86,7 @@ public class GameController {
         int numberOfMoves = rand.nextInt(4);
         
         for (int i = 0; i < numberOfMoves; i++) {
-            int roomChoice = rand.nextInt(frame.getMoveList().getMaxSelectionIndex());
+            int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
             frame.getMoveList().setSelectedIndex(roomChoice);
             frame.getMove().doClick();
         }
