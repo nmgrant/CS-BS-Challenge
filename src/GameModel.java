@@ -237,7 +237,7 @@ public class GameModel {
         rooms[20] = new Room("Lactation Lounge", 20);
         rooms[20].setRoomSpaces(1230, 1420);
         
-        rooms[0].setAdjacentRooms(new Room[]{rooms[1], rooms[3], rooms[4], rooms[5]});
+        rooms[0].setAdjacentRooms(new Room[]{rooms[1], rooms[3]});
         rooms[1].setAdjacentRooms(new Room[]{rooms[0], rooms[2], rooms[3]});
         rooms[2].setAdjacentRooms(new Room[]{rooms[1], rooms[3], rooms[5], rooms[6]});
         rooms[3].setAdjacentRooms(new Room[]{rooms[0], rooms[1], rooms[2], rooms[5]});
