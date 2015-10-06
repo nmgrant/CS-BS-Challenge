@@ -15,17 +15,27 @@ public class GameController {
         this.frame = frame;
         frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
         frame.addMoveActionPerformed(new MoveActionPerformed());
+        frame.addCardButtonActionPerformed(new CardButtonActionPerformed());
     }
     
     public class PlayCardActionPerformed implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent evt) {
             playCard();
         }
     }
     
     public class MoveActionPerformed implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent evt) {
             movePlayer();
+        }
+    }
+    
+    public class CardButtonActionPerformed implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            nextCard();
         }
     }
     
@@ -58,6 +68,11 @@ public class GameController {
             }
         }
     }
+    
+    public void nextCard() {
+        
+    }
+    
     public void nextPlayer() {
         for (int i = 0; i < model.getPlayers().length; i++) {
             if (model.getPlayers()[i].isCurrent()) {
