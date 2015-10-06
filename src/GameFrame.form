@@ -60,9 +60,9 @@
                       </Group>
                       <Component id="moveListWindow" min="-2" pref="158" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Component id="cardButton" min="-2" pref="224" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="cardButton" min="-2" pref="209" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="humanInfoScrollPane" max="32767" attributes="0"/>
                       <Component id="gameInfoScrollPane" max="32767" attributes="0"/>
@@ -90,10 +90,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="gameInfoScrollPane" min="-2" pref="220" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="humanInfoScrollPane" min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="humanInfoScrollPane" min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -277,9 +277,6 @@
               <Image iconType="3" name="/Images/card.PNG"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cardButtonActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="humanInfoScrollPane">
 

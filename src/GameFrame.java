@@ -145,11 +145,6 @@ public class GameFrame extends javax.swing.JFrame {
         moveListWindow.setViewportView(moveList);
 
         cardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/card.PNG"))); // NOI18N
-        cardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButtonActionPerformed(evt);
-            }
-        });
 
         humanInfo.setEditable(false);
         humanInfo.setColumns(20);
@@ -175,9 +170,9 @@ public class GameFrame extends javax.swing.JFrame {
                         .addComponent(moveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(drawCardButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                     .addComponent(moveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
+                .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(humanInfoScrollPane)
                     .addComponent(gameInfoScrollPane))
@@ -201,8 +196,8 @@ public class GameFrame extends javax.swing.JFrame {
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addComponent(gameInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         boardWindow.getVerticalScrollBar().setUnitIncrement(25);
@@ -224,48 +219,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**/
-    private void cardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardButtonActionPerformed
-        if (((ImageIcon) cardButton.getIcon()).getDescription().equals("card.PNG"))
-            cardButton.setIcon(new ImageIcon("card2.PNG"));
-        else
-            cardButton.setIcon(new ImageIcon("card.PNG"));
-    }//GEN-LAST:event_cardButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-/*        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameFrame().setVisible(true);
-            }  
-        });
-    }*/
     public void initPlayerPosition(JLabel player) {
         boardWindowPanel.remove(player);
         player.setLocation(((GameModel.Player)player).getSpace());
@@ -289,16 +243,11 @@ public class GameFrame extends javax.swing.JFrame {
         int playerRoom = currentPlayer.getRoomNumber();
         GameModel.Room currentRoom = model.getRoom(playerRoom);
         moveList.setModel(new javax.swing.AbstractListModel() {
-            public GameModel.Room[] initializeList() {
-                GameModel.Room[] rooms = new GameModel.Room[currentRoom.getAdjacentRooms().length];
-                for (int i = 0; i < rooms.length; i++) {
-                    rooms[i] = currentRoom.getAdjacentRooms()[i];
-                }
-                return rooms;
-            }
+            @Override
             public int getSize() { return rooms.length; }
+            @Override
             public Object getElementAt(int i) { return rooms[i]; }
-            GameModel.Room[] rooms = initializeList();
+            GameModel.Room[] rooms = currentRoom.getAdjacentRooms();
         });
     }
     
@@ -312,6 +261,10 @@ public class GameFrame extends javax.swing.JFrame {
     
     public void addMoveActionPerformed(ActionListener l) {
         moveButton.addActionListener(l);
+    }
+    
+    public void addCardButtonActionPerformed(ActionListener l) {
+        cardButton.addActionListener(l);
     }
     
     public JButton getMove() {
