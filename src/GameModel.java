@@ -11,21 +11,24 @@ public class GameModel {
     private Player[] players;
     private Player humanPlayer;
     private Player currentPlayer;
+    private String[] cardImages;
     
     public GameModel() {
         initializeRooms();
         initializePlayers();
+        initializeCardImages();
     }
 
     public class Player extends JLabel {
 
         private final int STARTING_ROOM = 17;
+        private final int MAX_MOVES = 3;
         private String name;
         private int[] skillPoints;
         private int qualityPoints;
         private int room;
         private boolean human, current;
-        private int maxMoves, moves;
+        private int moves;
         private Point space;
 
         public Player(String name, int[] skillPoints) {
@@ -34,8 +37,7 @@ public class GameModel {
             qualityPoints = 0;
             room = STARTING_ROOM;
             human = false;
-            setText(name);
-            moves = maxMoves = 3;
+            moves = MAX_MOVES;
             current = false;
         }
 
@@ -68,7 +70,7 @@ public class GameModel {
         }
         
         public void resetMoves() {
-            moves = maxMoves;
+            moves = MAX_MOVES;
         }
         public void setHuman() {
             this.human = true;
@@ -281,6 +283,10 @@ public class GameModel {
         humanPlayer = players[human];
         currentPlayer = humanPlayer;
         currentPlayer.changeCurrent();
+    }
+    
+    public void initializeCardImages() {
+        
     }
     
     public Room getRoom(int room) {
