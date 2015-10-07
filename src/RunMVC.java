@@ -6,6 +6,7 @@ public class RunMVC {
       GameFrame frame = new GameFrame(model);
       GameController controller = new GameController(model, frame);
 
+      frame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
       frame.setVisible(true);
    }
 }

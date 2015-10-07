@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class GameFrame extends javax.swing.JFrame {
 
    private GameModel model;
@@ -62,12 +63,14 @@ public class GameFrame extends javax.swing.JFrame {
       player1Label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
       player1Label.setText(player1Label.getName());
       player1Label.setAlignmentX(0.5F);
+      player1Label.setAutoscrolls(true);
       player1Label.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
       player2Label.setFont(new java.awt.Font("Imprint MT Shadow", 0, 48)); // NOI18N
       player2Label.setForeground(new java.awt.Color(0, 0, 255));
       player2Label.setText(player2Label.getName());
       player2Label.setAlignmentX(0.5F);
+      player2Label.setAutoscrolls(true);
       player2Label.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
       player3Label.setFont(new java.awt.Font("Imprint MT Shadow", 0, 48)); // NOI18N
@@ -147,7 +150,7 @@ public class GameFrame extends javax.swing.JFrame {
       playerInfo.setEditable(false);
       playerInfo.setColumns(20);
       playerInfo.setRows(5);
-      playerInfo.setText("Human player is " + model.getHumanPlayer().getName());
+      playerInfo.setText("You are " +model.getHumanPlayer().getName() +"\n");
       humanInfoScrollPane.setViewportView(playerInfo);
 
       gameInfo.setEditable(false);
@@ -192,9 +195,9 @@ public class GameFrame extends javax.swing.JFrame {
                   .addComponent(moveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addGroup(gamePanelLayout.createSequentialGroup()
-                  .addComponent(gameInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(gameInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
 
@@ -257,8 +260,9 @@ public class GameFrame extends javax.swing.JFrame {
    }
 
    public void updateCurrent() {
-      playerInfo.setText("Current player is " + 
-         model.getCurrentPlayer().getName());
+      playerInfo.append("Current player is " + 
+         model.getCurrentPlayer().getName() + "\n");
+      playerInfo.setCaretPosition(playerInfo.getDocument().getLength());
    }
 
    public void addPlayCardActionPerformed(ActionListener l) {

@@ -255,7 +255,7 @@ public class GameModel {
       players = new Player[3];
       players[0] = new Player("Evan", new int[]{2, 2, 2});
       players[1] = new Player("Nick", new int[]{3, 1, 2});
-      players[2] = new Player("Steven", new int[]{0, 3, 3});
+      players[2] = new Player("BlAdam", new int[]{0, 3, 3});
 
       players[0].setSpace(this.getRoom(17).getRoomSpace(0));
       getRoom(players[0].getRoomNumber()).setSpaceAvailability(players[0].getSpace());
