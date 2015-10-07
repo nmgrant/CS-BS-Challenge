@@ -49,11 +49,13 @@ public class GameController {
     public void movePlayer() {
         if (model.getCurrentPlayer().getMoves() > 0) {
             
-            GameModel.Room currentPlayerRoom = model.getRoom(model.getCurrentPlayer().getRoomNumber());
+            GameModel.Room currentPlayerRoom = 
+                model.getRoom(model.getCurrentPlayer().getRoomNumber());
             Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
             currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
 
-            GameModel.Room selectedRoom = (GameModel.Room)frame.getMoveList().getSelectedValue();
+            GameModel.Room selectedRoom = 
+                (GameModel.Room)frame.getMoveList().getSelectedValue();
 
             model.getCurrentPlayer().setRoom(selectedRoom.getRoomNumber());
             model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
