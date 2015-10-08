@@ -38,7 +38,7 @@ public class Sounds {
    public void play() {
       clip.start();
    }
-   
+
    public void stop() {
       clip.stop();
    }

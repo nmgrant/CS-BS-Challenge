@@ -46,6 +46,11 @@ public class GameModel {
          return name;
       }
 
+      @Override
+      public String toString() {
+         return name;
+      }
+
       public int getRoomNumber() {
          return room;
       }

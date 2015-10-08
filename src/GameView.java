@@ -20,7 +20,7 @@ public class GameView extends javax.swing.JFrame {
       initPlayerPosition(player1Label);
       initPlayerPosition(player2Label);
       initPlayerPosition(player3Label);
-      boardWindow.getViewport().setViewPosition(currentPlayer.getLocation());
+      snapToCurrentPlayer();
       Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
       backgroundMusic.loop();
    }
@@ -239,7 +239,7 @@ public class GameView extends javax.swing.JFrame {
       boardWindowPanel.add(player);
       boardWindowPanel.repaint();
 
-      boardWindow.getViewport().setViewPosition(currentPlayer.getLocation());
+      snapToCurrentPlayer();
       updateList();
    }
 
@@ -261,10 +261,13 @@ public class GameView extends javax.swing.JFrame {
       });
    }
 
-   public void updateCurrent() {
-      playerInfo.append(" Current player is "
-      + model.getCurrentPlayer().getName() + "\n");
+   public void updateConsole(String message) {
+      playerInfo.append(message);
       playerInfo.setCaretPosition(playerInfo.getDocument().getLength());
+   }
+
+   public void snapToCurrentPlayer() {
+      boardWindow.getViewport().setViewPosition(currentPlayer.getLocation());
    }
 
    public void addPlayCardActionPerformed(ActionListener l) {

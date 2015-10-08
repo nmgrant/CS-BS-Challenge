@@ -51,6 +51,11 @@ public class GameController {
    }
 
    public void movePlayer() {
+      if (frame.getMoveList().getSelectedValue() == null) {
+         frame.updateConsole(" Move not selected. \n");
+         return;
+      }
+
       if (model.getCurrentPlayer().getMoves() > 0) {
 
          GameModel.Room currentPlayerRoom
@@ -66,6 +71,9 @@ public class GameController {
          selectedRoom.setSpaceAvailability(model.getCurrentPlayer().getSpace());
          frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
          frame.updateList();
+
+         frame.updateConsole(" " + model.getCurrentPlayer() + " has moved to "
+         + selectedRoom + "\n");
 
          model.getCurrentPlayer().decreaseMoves();
 
@@ -94,11 +102,14 @@ public class GameController {
       }
       model.getCurrentPlayer().changeCurrent();
       frame.updateList();
-      frame.updateCurrent();
+      frame.updateConsole(" Current player is "
+      + model.getCurrentPlayer().getName() + "\n");
 
       if (!(model.getCurrentPlayer().isHuman())) {
          computerTurn();
       }
+
+      frame.snapToCurrentPlayer();
    }
 
    public void computerTurn() {
@@ -106,9 +117,17 @@ public class GameController {
       int numberOfMoves = rand.nextInt(4) + 1;
 
       for (int i = 0; i < numberOfMoves; i++) {
+
          int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
          frame.getMoveList().setSelectedIndex(roomChoice);
          frame.getMove().doClick();
+
+         try {
+            Thread.sleep(1000);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+
       }
       frame.getPlayCard().doClick();
    }
