@@ -16,10 +16,6 @@ public class Sounds {
          clip = AudioSystem.getClip();
          clip.open(sound);
 
-      } catch (MalformedURLException e) {
-         e.printStackTrace();
-         throw new RuntimeException("Sound: Malformed URL: " + e);
-
       } catch (UnsupportedAudioFileException e) {
          e.printStackTrace();
          throw new RuntimeException("Sound: Unsupported Audio File: " + e);
@@ -39,4 +35,11 @@ public class Sounds {
       clip.loop(Clip.LOOP_CONTINUOUSLY);
    }
 
+   public void play() {
+      clip.start();
+   }
+   
+   public void stop() {
+      clip.stop();
+   }
 }

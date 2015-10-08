@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class GameFrame extends javax.swing.JFrame {
+public class GameView extends javax.swing.JFrame {
 
    private GameModel model;
    private GameModel.Player currentPlayer;
@@ -13,7 +13,7 @@ public class GameFrame extends javax.swing.JFrame {
    /**
     * Creates new form GameFrame
     */
-   public GameFrame(GameModel model) {
+   public GameView(GameModel model) {
       this.model = model;
       currentPlayer = model.getCurrentPlayer();
       initComponents();
@@ -147,7 +147,7 @@ public class GameFrame extends javax.swing.JFrame {
       moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
       moveListWindow.setViewportView(moveList);
 
-      cardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/card.PNG"))); // NOI18N
+      cardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CardImages/card.PNG"))); // NOI18N
 
       playerInfo.setEditable(false);
       playerInfo.setColumns(20);

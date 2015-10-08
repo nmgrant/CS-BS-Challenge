@@ -9,9 +9,9 @@ import javax.swing.JLayeredPane;
 public class GameController {
 
    private GameModel model;
-   private GameFrame frame;
+   private GameView frame;
 
-   public GameController(GameModel model, GameFrame frame) {
+   public GameController(GameModel model, GameView frame) {
       this.model = model;
       this.frame = frame;
       frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
@@ -103,7 +103,7 @@ public class GameController {
 
    public void computerTurn() {
       Random rand = new Random();
-      int numberOfMoves = rand.nextInt(4);
+      int numberOfMoves = rand.nextInt(4) + 1;
 
       for (int i = 0; i < numberOfMoves; i++) {
          int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
