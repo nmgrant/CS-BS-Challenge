@@ -160,19 +160,19 @@ public class GameModel {
       rooms = new Room[21];
 
       rooms[0] = new Room("George Allen Field", 0);
-      rooms[0].setRoomSpaces(40, 90);
+      rooms[0].setRoomSpaces(70, 90);
 
       rooms[1] = new Room("Japanese Garden", 1);
-      rooms[1].setRoomSpaces(450, 50);
+      rooms[1].setRoomSpaces(450, 35);
 
       rooms[2] = new Room("Student Parking", 2);
-      rooms[2].setRoomSpaces(1050, 110);
+      rooms[2].setRoomSpaces(1050, 90);
 
       rooms[3] = new Room("The Pyramid", 3);
-      rooms[3].setRoomSpaces(450, 300);
+      rooms[3].setRoomSpaces(450, 280);
 
       rooms[4] = new Room("West Walkway", 4);
-      rooms[4].setRoomSpaces(25, 660);
+      rooms[4].setRoomSpaces(70, 660);
 
       rooms[5] = new Room("Rec Center", 5);
       rooms[5].setRoomSpaces(470, 570);
@@ -181,12 +181,12 @@ public class GameModel {
       rooms[6].setRoomSpaces(1040, 570);
 
       rooms[7] = new Room("Library", 7);
-      rooms[7].setRoomSpaces(50, 1740);
+      rooms[7].setRoomSpaces(70, 1740);
 
       rooms[8] = new Room("LA 5", 8);
       rooms[8].setRoomSpaces(500, 1800);
 
-      rooms[9] = new Room("Brotman Hall", 9);
+      rooms[9] = new Room("Bratwurst Hall", 9);
       rooms[9].setRoomSpaces(1180, 1700);
 
       rooms[10] = new Room("East Walkway", 10);

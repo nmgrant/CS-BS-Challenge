@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.File;
 
 public class GameFrame extends javax.swing.JFrame {
 
@@ -21,6 +21,8 @@ public class GameFrame extends javax.swing.JFrame {
       initPlayerPosition(player2Label);
       initPlayerPosition(player3Label);
       boardWindow.getViewport().setViewPosition(currentPlayer.getLocation());
+      Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
+      backgroundMusic.loop();
    }
 
    /**
@@ -150,7 +152,7 @@ public class GameFrame extends javax.swing.JFrame {
       playerInfo.setEditable(false);
       playerInfo.setColumns(20);
       playerInfo.setRows(5);
-      playerInfo.setText("You are " +model.getHumanPlayer().getName() +"\n");
+      playerInfo.setText(" You are " +model.getHumanPlayer().getName() +"\n");
       humanInfoScrollPane.setViewportView(playerInfo);
 
       gameInfo.setEditable(false);
@@ -195,9 +197,9 @@ public class GameFrame extends javax.swing.JFrame {
                   .addComponent(moveListWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addGroup(gamePanelLayout.createSequentialGroup()
-                  .addComponent(gameInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(gameInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
 
@@ -260,8 +262,8 @@ public class GameFrame extends javax.swing.JFrame {
    }
 
    public void updateCurrent() {
-      playerInfo.append("Current player is " + 
-         model.getCurrentPlayer().getName() + "\n");
+      playerInfo.append(" Current player is "
+      + model.getCurrentPlayer().getName() + "\n");
       playerInfo.setCaretPosition(playerInfo.getDocument().getLength());
    }
 
