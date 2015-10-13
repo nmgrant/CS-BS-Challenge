@@ -247,18 +247,36 @@ public class GameView extends javax.swing.JFrame {
       currentPlayer = model.getCurrentPlayer();
       int playerRoom = currentPlayer.getRoomNumber();
       GameModel.Room currentRoom = model.getRoom(playerRoom);
-      moveList.setModel(new javax.swing.AbstractListModel() {
-         @Override
-         public int getSize() {
-            return rooms.length;
-         }
+      if (currentPlayer.getMoves() > 0) {
+        moveList.setModel(new javax.swing.AbstractListModel() {
+           GameModel.Room[] rooms = currentRoom.getAdjacentRooms();
+           
+           @Override
+           public int getSize() {
+              return rooms.length;
+           }
 
-         @Override
-         public Object getElementAt(int i) {
-            return rooms[i];
-         }
-         GameModel.Room[] rooms = currentRoom.getAdjacentRooms();
-      });
+           @Override
+           public Object getElementAt(int i) {
+              return rooms[i];
+           }
+        });
+      }
+      else {
+         moveList.setModel(new javax.swing.AbstractListModel() {
+           GameModel.Room[] rooms = new GameModel.Room[0];
+             
+           @Override
+           public int getSize() {
+              return rooms.length;
+           }
+
+           @Override
+           public Object getElementAt(int i) {
+              return rooms[i];
+           }
+        }); 
+      }
    }
 
    public void updateConsole(String message) {

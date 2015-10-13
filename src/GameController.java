@@ -69,13 +69,13 @@ public class GameController {
          model.getCurrentPlayer().setRoom(selectedRoom.getRoomNumber());
          model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
          selectedRoom.setSpaceAvailability(model.getCurrentPlayer().getSpace());
+         model.getCurrentPlayer().decreaseMoves();
+         
          frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
          frame.updateList();
 
          frame.updateConsole(" " + model.getCurrentPlayer() + " has moved to "
          + selectedRoom + "\n");
-
-         model.getCurrentPlayer().decreaseMoves();
 
          if (model.getCurrentPlayer().getMoves() == 0) {
             frame.getMove().setEnabled(false);
