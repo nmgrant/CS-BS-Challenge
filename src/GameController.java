@@ -3,8 +3,6 @@ import java.awt.event.*;
 import java.util.Random;
 import java.awt.Point;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JLayeredPane;
 
 public class GameController {
 
@@ -114,21 +112,15 @@ public class GameController {
 
    public void computerTurn() {
       Random rand = new Random();
-      int numberOfMoves = rand.nextInt(4) + 1;
+      int numberOfMoves = rand.nextInt(3) + 1;
 
       for (int i = 0; i < numberOfMoves; i++) {
 
          int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
          frame.getMoveList().setSelectedIndex(roomChoice);
-         frame.getMove().doClick();
-
-         try {
-            Thread.sleep(1000);
-         } catch (InterruptedException e) {
-            e.printStackTrace();
-         }
+         movePlayer();
 
       }
-      frame.getPlayCard().doClick();
+      playCard();
    }
 }
