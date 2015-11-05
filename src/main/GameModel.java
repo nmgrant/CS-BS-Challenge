@@ -1,3 +1,5 @@
+package main;
+
 
 import java.util.Random;
 import java.awt.Rectangle;
@@ -18,147 +20,6 @@ public class GameModel {
       initializeRooms();
       initializePlayers();
       initializeCardImages();
-   }
-
-   public class Player extends JLabel {
-
-      private final int STARTING_ROOM = 17;
-      private final int MAX_MOVES = 3;
-      private String name;
-      private int[] skillPoints;
-      private int qualityPoints;
-      private int room;
-      private boolean human, current;
-      private int moves;
-      private Point space;
-
-      public Player(String name, int[] skillPoints) {
-         this.name = name;
-         this.skillPoints = skillPoints;
-         qualityPoints = 0;
-         room = STARTING_ROOM;
-         human = false;
-         moves = MAX_MOVES;
-         current = false;
-      }
-
-      public String getName() {
-         return name;
-      }
-
-      @Override
-      public String toString() {
-         return name;
-      }
-
-      public int getRoomNumber() {
-         return room;
-      }
-
-      public int getMoves() {
-         return moves;
-      }
-
-      public Point getSpace() {
-         return space;
-      }
-
-      public boolean isHuman() {
-         return human;
-      }
-
-      public boolean isCurrent() {
-         return current;
-      }
-
-      public void decreaseMoves() {
-         moves--;
-      }
-
-      public void resetMoves() {
-         moves = MAX_MOVES;
-      }
-
-      public void setHuman() {
-         this.human = true;
-      }
-
-      public void setRoom(int room) {
-         this.room = room;
-      }
-
-      public void setSpace(Point space) {
-         this.space = space;
-      }
-
-      public void changeCurrent() {
-         current = !current;
-      }
-   }
-
-   public class Room {
-
-      private final int PIXEL_HEIGHT_MULTIPLIER = 50;
-      private String name;
-      private int locationNumber;
-      private Room[] adjacentRooms;
-      private Point[] roomSpaces;
-      private boolean[] isSpaceAvailable = new boolean[3];
-
-      public Room(String name, int locationNumber) {
-         this.name = name;
-         this.locationNumber = locationNumber;
-      }
-
-      public String getRoomName() {
-         return name;
-      }
-
-      public int getRoomNumber() {
-         return locationNumber;
-      }
-
-      public Room[] getAdjacentRooms() {
-         return adjacentRooms;
-      }
-
-      public Point getRoomSpace(int space) {
-         return roomSpaces[space];
-      }
-
-      public void setAdjacentRooms(Room[] adjacentRooms) {
-         this.adjacentRooms = adjacentRooms;
-      }
-
-      public Point findAvailableSpace() {
-         for (int i = 0; i < isSpaceAvailable.length; i++) {
-            if (isSpaceAvailable[i]) {
-               return roomSpaces[i];
-            }
-         }
-         return null;
-      }
-
-      public void setSpaceAvailability(Point space) {
-         for (int i = 0; i < roomSpaces.length; i++) {
-            if (roomSpaces[i] == space) {
-               isSpaceAvailable[i] = !isSpaceAvailable[i];
-            }
-         }
-      }
-
-      public void setRoomSpaces(int x, int y) {
-         roomSpaces = new Point[3];
-         for (int i = 0; i < roomSpaces.length; i++) {
-            roomSpaces[i] = new Point(x, y + PIXEL_HEIGHT_MULTIPLIER * (i));
-            isSpaceAvailable[i] = true;
-         }
-      }
-
-      @Override
-      public String toString() {
-         return name;
-      }
    }
 
    private void initializeRooms() {
@@ -258,18 +119,12 @@ public class GameModel {
 
    private void initializePlayers() {
       players = new Player[3];
-      players[0] = new Player("Evan", new int[]{2, 2, 2});
-      players[1] = new Player("Nick", new int[]{3, 1, 2});
-      players[2] = new Player("BlAdam", new int[]{0, 3, 3});
-
-      players[0].setSpace(this.getRoom(17).getRoomSpace(0));
-      getRoom(players[0].getRoomNumber()).setSpaceAvailability(players[0].getSpace());
-
-      players[1].setSpace(this.getRoom(17).getRoomSpace(1));
-      getRoom(players[1].getRoomNumber()).setSpaceAvailability(players[1].getSpace());
-
-      players[2].setSpace(this.getRoom(17).getRoomSpace(2));
-      getRoom(players[2].getRoomNumber()).setSpaceAvailability(players[2].getSpace());
+      players[0] = new Player("Evan", new int[]{2, 2, 2}, rooms[17]);
+      players[1] = new Player("Nick", new int[]{3, 1, 2}, rooms[17]);
+      players[2] = new Player("BlAdam", new int[]{0, 3, 3}, rooms[17]);
+      
+      for (int i = 0; i < 3; i++)
+          players[i].setSpace(players[i].getRoom().getRoomSpace(i));
 
       Random rand = new Random();
       int human = rand.nextInt(3);
