@@ -1,3 +1,4 @@
+
 package main;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class GameView extends javax.swing.JFrame {
 
    private GameModel model;
    private Player currentPlayer;
+   private Card currentCard;
 
    /**
     * Creates new form GameFrame
@@ -149,11 +151,7 @@ public class GameView extends javax.swing.JFrame {
         moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         moveListWindow.setViewportView(moveList);
 
-        Card card = new Card0();
-        Icon cardImage = card.getImage();
-        cardButton.setIcon((Icon)card.getImage());
-        Dimension image = new Dimension(cardButton.getIcon().getIconWidth(),
-            cardButton.getIcon().getIconHeight());
+        cardButton.setIcon(model.getCurrentPlayer().getHand().getFirst().getImage());
 
         playerInfo.setEditable(false);
         playerInfo.setColumns(20);
@@ -288,6 +286,11 @@ public class GameView extends javax.swing.JFrame {
         }); 
       }
    }
+   
+   public void updateCardButton(Card card) {
+       cardButton.setIcon(card.getImage());
+       currentCard = card;
+   }
 
    public void updateConsole(String message) {
       playerInfo.append(message);
@@ -309,6 +312,10 @@ public class GameView extends javax.swing.JFrame {
    public void addCardButtonActionPerformed(ActionListener l) {
       cardButton.addActionListener(l);
    }
+   
+   public void addDrawButtonActionPerformed(ActionListener l) {
+       drawCardButton.addActionListener(l);
+   }
 
    public JButton getMove() {
       return moveButton;
@@ -324,6 +331,10 @@ public class GameView extends javax.swing.JFrame {
 
    public JLayeredPane getBoardWindow() {
       return boardWindowPanel;
+   }
+   
+   public Card getCurrentCard() {
+       return currentCard;
    }
 
    public void setCurrentPlayer(Player player) {

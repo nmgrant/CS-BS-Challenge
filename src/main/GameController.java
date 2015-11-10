@@ -3,8 +3,10 @@ package main;
 
 import java.awt.event.*;
 import java.util.Random;
+import java.util.LinkedList;
 import java.awt.Point;
 import javax.swing.JLabel;
+import Cards.*;
 
 public class GameController {
 
@@ -40,6 +42,13 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent evt) {
             nextCard();
+        }
+    }
+    
+    public class DrawButtonActionPerformed implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            drawCard();
         }
     }
 
@@ -83,7 +92,18 @@ public class GameController {
     }
 
     public void nextCard() {
-
+        LinkedList<Card> hand = model.getCurrentPlayer().getHand();
+        for (int i = 0; i < hand.size(); i++) {
+            if (frame.getCurrentCard() == hand.get(i)) {
+                frame.updateCardButton(hand.get(i + 1));
+            }
+        }
+    }
+    
+    public void drawCard() {
+        Card drawnCard = model.getTopCard();
+        model.getCurrentPlayer().addCard(drawnCard);
+        frame.updateCardButton(drawnCard);
     }
 
     public void nextPlayer() {

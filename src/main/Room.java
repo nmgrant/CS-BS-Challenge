@@ -7,22 +7,16 @@ public class Room {
 
       private final int PIXEL_HEIGHT_MULTIPLIER = 50;
       private String name;
-      private int locationNumber;
       private Room[] adjacentRooms;
       private Point[] roomSpaces;
       private boolean[] isSpaceAvailable = new boolean[3];
 
-      public Room(String name, int locationNumber) {
+      public Room(String name) {
          this.name = name;
-         this.locationNumber = locationNumber;
       }
 
       public String getRoomName() {
          return name;
-      }
-
-      public int getRoomNumber() {
-         return locationNumber;
       }
 
       public Room[] getAdjacentRooms() {

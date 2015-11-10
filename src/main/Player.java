@@ -3,6 +3,8 @@ package main;
 
 import java.awt.Point;
 import javax.swing.JLabel;
+import java.util.LinkedList;
+import Cards.*;
 
 public class Player extends JLabel {
 
@@ -10,8 +12,10 @@ public class Player extends JLabel {
     private String name;
     private int[] skillPoints;
     private int qualityPoints;
+    private LinkedList<Card> handOfCards;
     private Room room;
     private boolean human, current;
+    private boolean handIsFull;
     private int moves;
     private Point space;
 
@@ -23,6 +27,7 @@ public class Player extends JLabel {
         human = false;
         moves = MAX_MOVES;
         current = false;
+        handOfCards = new LinkedList<>();
     }
 
     public String getName() {
@@ -73,6 +78,21 @@ public class Player extends JLabel {
     public void setSpace(Point space) {
         this.space = space;
         room.setSpaceAvailability(space);
+    }
+    
+    public void addCard(Card card) {
+        if (handOfCards.size() >= 7)
+            handIsFull = true;
+        else
+            handOfCards.add(card);
+    }
+    
+    public LinkedList<Card> getHand() {
+        return handOfCards;
+    }
+    
+    public boolean handIsFull() {
+        return handIsFull;
     }
 
     public void changeCurrent() {

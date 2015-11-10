@@ -280,13 +280,9 @@
         <Component class="javax.swing.JButton" name="cardButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="(Icon)card.getImage()" type="code"/>
+              <Connection code="model.getCurrentPlayer().getHand().getFirst().getImage()" type="code"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Dimension image = new Dimension(cardButton.getIcon().getIconWidth(),&#xa;cardButton.getIcon().getIconHeight());"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Card card = new Card0();&#xa;Icon cardImage = card.getImage();"/>
-          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="humanInfoScrollPane">
 
