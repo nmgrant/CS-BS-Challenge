@@ -1,8 +1,8 @@
 package Cards;
 
+import main.Room;
 import main.SkillPoints;
 import javax.swing.ImageIcon;
-import main.Room;
 
 public class Card02 extends Card {
 
@@ -11,6 +11,7 @@ public class Card02 extends Card {
 
       name = "CECS 100";
       locations.add(new Room("ECS 308"));
+      skillPointsPreReq = new SkillPoints(0, 0, 0);
       skillRewardChoices = null;
       skillReward = new SkillPoints(0, 1, 0);
       skillPenalty = new SkillPoints(0, 0, 0);

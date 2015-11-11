@@ -1,8 +1,8 @@
 package Cards;
 
+import main.Room;
 import main.SkillPoints;
 import javax.swing.ImageIcon;
-import main.Room;
 
 public class Card00 extends Card {
 

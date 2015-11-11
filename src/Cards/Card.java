@@ -1,8 +1,8 @@
 package Cards;
 
+import main.Room;
 import main.SkillPoints;
 import javax.swing.ImageIcon;
-import main.Room;
 import java.util.ArrayList;
 
 public abstract class Card {
@@ -11,6 +11,7 @@ public abstract class Card {
    protected String name;
    protected ArrayList<Room> locations = new ArrayList<> ();
    protected final int ROOM_REQ_PENALTY = -2;
+   protected SkillPoints skillPointsPreReq;
    protected SkillPoints[] skillRewardChoices;
    protected SkillPoints skillReward;
    protected SkillPoints skillPenalty;
