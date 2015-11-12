@@ -39,6 +39,10 @@ public class GameView extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
+      chooseSkillPoints = new javax.swing.JDialog();
+      learningChip = new javax.swing.JButton();
+      craftChip = new javax.swing.JButton();
+      integrityChip = new javax.swing.JButton();
       gamePanel = new javax.swing.JPanel();
       moveButton = new javax.swing.JButton();
       boardWindow = new javax.swing.JScrollPane();
@@ -56,6 +60,53 @@ public class GameView extends javax.swing.JFrame {
       playerInfo = new javax.swing.JTextArea();
       gameInfoScrollPane = new javax.swing.JScrollPane();
       gameInfo = new javax.swing.JTextArea();
+
+      learningChip.setText("jButton1");
+
+      craftChip.setText("jButton1");
+
+      integrityChip.setText("jButton2");
+
+      javax.swing.GroupLayout chooseSkillPointsLayout = new javax.swing.GroupLayout(chooseSkillPoints.getContentPane());
+      chooseSkillPoints.getContentPane().setLayout(chooseSkillPointsLayout);
+      chooseSkillPointsLayout.setHorizontalGroup(
+         chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGap(0, 400, Short.MAX_VALUE)
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(learningChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(craftChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(integrityChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+      );
+      chooseSkillPointsLayout.setVerticalGroup(
+         chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGap(0, 300, Short.MAX_VALUE)
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(learningChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(craftChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+         .addGroup(chooseSkillPointsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chooseSkillPointsLayout.createSequentialGroup()
+               .addGap(0, 0, Short.MAX_VALUE)
+               .addComponent(integrityChip)
+               .addGap(0, 0, Short.MAX_VALUE)))
+      );
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,11 +138,6 @@ public class GameView extends javax.swing.JFrame {
       player3Label.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
       boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/boardMap.png"))); // NOI18N
-
-      boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
-      boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
-      boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
-      boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
       javax.swing.GroupLayout boardWindowPanelLayout = new javax.swing.GroupLayout(boardWindowPanel);
       boardWindowPanel.setLayout(boardWindowPanelLayout);
@@ -129,6 +175,10 @@ public class GameView extends javax.swing.JFrame {
                .addComponent(boardLabel)
                .addGap(0, 0, Short.MAX_VALUE)))
       );
+      boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
+      boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
+      boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
+      boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
       boardWindow.setViewportView(boardWindowPanel);
 
@@ -346,11 +396,15 @@ public class GameView extends javax.swing.JFrame {
    private javax.swing.JScrollPane boardWindow;
    private javax.swing.JLayeredPane boardWindowPanel;
    private javax.swing.JButton cardButton;
+   private javax.swing.JDialog chooseSkillPoints;
+   private javax.swing.JButton craftChip;
    private javax.swing.JButton drawCardButton;
    private javax.swing.JTextArea gameInfo;
    private javax.swing.JScrollPane gameInfoScrollPane;
    private javax.swing.JPanel gamePanel;
    private javax.swing.JScrollPane humanInfoScrollPane;
+   private javax.swing.JButton integrityChip;
+   private javax.swing.JButton learningChip;
    private javax.swing.JButton moveButton;
    private javax.swing.JList moveList;
    private javax.swing.JScrollPane moveListWindow;

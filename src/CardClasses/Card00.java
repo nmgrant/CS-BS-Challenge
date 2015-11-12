@@ -1,5 +1,6 @@
 package CardClasses;
 
+import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
@@ -22,7 +23,17 @@ public class Card00 extends Card {
       cardPenalty = -1;
    }
 
-   public void playCard() {
-
+   @Override
+   public void playCard(Player cPlayer) {
+      if (cPlayer.getRoom().equals(locations.get(0))) {
+         if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
+            cPlayer.setQualityPoints(qualityPointsReward);
+            cPlayer.setSkillRewardChoices(skillRewardChoices);
+         } else {
+            
+         }
+      } else {
+         cPlayer.setQualityPoints(ROOM_REQ_PENALTY);
+      }
    }
 }

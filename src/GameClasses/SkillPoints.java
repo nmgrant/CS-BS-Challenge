@@ -1,38 +1,38 @@
 package GameClasses;
 
-
 public class SkillPoints {
-    private int learningChips;
-    private int craftChips;
-    private int integrityChips;
-    
-    public SkillPoints(int learningChips, int craftChips, int integrityChips) {
-        this.learningChips = learningChips;
-        this.craftChips = craftChips;
-        this.integrityChips = integrityChips;
-    }
 
-    public int getLearningChips() {
-        return learningChips;
-    }
+   private int learningChips;
+   private int craftChips;
+   private int integrityChips;
 
-    public void setLearningChips(int learningChips) {
-        this.learningChips = learningChips;
-    }
+   public SkillPoints(int learningChips, int craftChips, int integrityChips) {
+      this.learningChips = learningChips;
+      this.craftChips = craftChips;
+      this.integrityChips = integrityChips;
+   }
 
-    public int getCraftChips() {
-        return craftChips;
-    }
+   public int getLearningChips() {
+      return learningChips;
+   }
 
-    public void setCraftChips(int craftChips) {
-        this.craftChips = craftChips;
-    }
+   public void setLearningChips(int learningChips) {
+      this.learningChips = learningChips;
+   }
 
-    public int getIntegrityChips() {
-        return integrityChips;
-    }
+   public int getCraftChips() {
+      return craftChips;
+   }
 
-    public void setIntegrityChips(int integrityChips) {
-        this.integrityChips = integrityChips;
-    }
+   public void setCraftChips(int craftChips) {
+      this.craftChips = craftChips;
+   }
+
+   public int getIntegrityChips() {
+      return integrityChips;
+   }
+
+   public void setIntegrityChips(int integrityChips) {
+      this.integrityChips = integrityChips;
+   }
 }

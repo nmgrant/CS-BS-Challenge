@@ -58,6 +58,10 @@ public class GameController {
         frame.getMove().setEnabled(true);
     }
 
+    public void chooseSkillPoints() {
+       
+    }
+    
     public void movePlayer() {
         if (frame.getMoveList().getSelectedValue() == null) {
             frame.updateConsole(" Move not selected. \n");
