@@ -3,7 +3,7 @@ package GameClasses;
 import CardClasses.Card;
 import java.awt.Point;
 import javax.swing.JLabel;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Player extends JLabel {
 
@@ -12,7 +12,7 @@ public class Player extends JLabel {
    private SkillPoints skillPoints;
    private SkillPoints[] skillRewardChoices;
    private int qualityPoints;
-   private LinkedList<Card> handOfCards;
+   private ArrayList<Card> handOfCards;
    private Room room;
    private boolean human, current;
    private boolean handIsFull;
@@ -27,7 +27,7 @@ public class Player extends JLabel {
       human = false;
       moves = MAX_MOVES;
       current = false;
-      handOfCards = new LinkedList<>();
+      handOfCards = new ArrayList<>();
    }
 
    public String getName() {
@@ -100,7 +100,7 @@ public class Player extends JLabel {
       room.setSpaceAvailability(space);
    }
 
-   public void addCard(Card card) {
+   public void pickUpCard(Card card) {
       if (handOfCards.size() >= 7) {
          handIsFull = true;
       } else {
@@ -108,11 +108,11 @@ public class Player extends JLabel {
       }
    }
 
-   public void setDiscardCard (Card discardCard) {
+   public void setDiscardCard (Card card) {
       
    }
    
-   public LinkedList<Card> getHand() {
+   public ArrayList<Card> getHand() {
       return handOfCards;
    }
 

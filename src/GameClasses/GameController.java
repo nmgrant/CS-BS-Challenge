@@ -1,9 +1,10 @@
 package GameClasses;
 
 import CardClasses.Card;
+import CardClasses.Deck;
 import java.awt.event.*;
 import java.util.Random;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.JLabel;
 
@@ -11,6 +12,7 @@ public class GameController {
 
     private GameModel model;
     private GameView frame;
+    private Deck deck;
 
     public GameController(GameModel model, GameView frame) {
         this.model = model;
@@ -64,7 +66,7 @@ public class GameController {
     
     public void movePlayer() {
         if (frame.getMoveList().getSelectedValue() == null) {
-            frame.updateConsole(" Move not selected. \n");
+            frame.updateBottomConsole(" Move not selected. \n");
             return;
         }
 
@@ -85,7 +87,7 @@ public class GameController {
             frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
             frame.updateList();
 
-            frame.updateConsole(" " + model.getCurrentPlayer() + " has moved to "
+            frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has moved to "
                     + selectedRoom + "\n");
 
             if (model.getCurrentPlayer().getMoves() == 0) {
@@ -95,7 +97,7 @@ public class GameController {
     }
 
     public void nextCard() {
-        LinkedList<Card> hand = model.getCurrentPlayer().getHand();
+        ArrayList<Card> hand = model.getCurrentPlayer().getHand();
         for (int i = 0; i < hand.size(); i++) {
             if (frame.getCurrentCard() == hand.get(i)) {
                 frame.updateCardButton(hand.get(i + 1));
@@ -104,8 +106,8 @@ public class GameController {
     }
     
     public void drawCard() {
-        Card drawnCard = model.getTopCard();
-        model.getCurrentPlayer().addCard(drawnCard);
+        Card drawnCard = deck.getTopCard();
+        model.getCurrentPlayer().pickUpCard(drawnCard);
         frame.updateCardButton(drawnCard);
     }
 
@@ -124,7 +126,7 @@ public class GameController {
         }
         model.getCurrentPlayer().changeCurrent();
         frame.updateList();
-        frame.updateConsole(" Current player is "
+        frame.updateBottomConsole(" Current player is "
                 + model.getCurrentPlayer().getName() + "\n");
 
         if (!(model.getCurrentPlayer().isHuman())) {

@@ -1,7 +1,7 @@
 package GameClasses;
 
-import CardClasses.Card;
-import CardClasses.Card00;
+import CardClasses.*;
+import CardClasses.Deck;
 import java.util.Random;
 import java.util.ArrayList;
 import java.awt.Rectangle;
@@ -17,6 +17,7 @@ public class GameModel {
    private Player[] players;
    private Player humanPlayer;
    private Player currentPlayer;
+   private Deck deckOfCards;
 
    public GameModel() {
       initializeRooms();
@@ -129,18 +130,18 @@ public class GameModel {
       }
 
       for (int i = 0; i < 5; i++) {
-         players[0].addCard(deckOfCards.get(i));
-         deckOfCards.remove(i);
+         players[0].pickUpCard(deckOfCards.getCard(i));
+         deckOfCards.removeCard(i);
       }
 
       for (int i = 0; i < 5; i++) {
-         players[1].addCard(deckOfCards.get(i));
-         deckOfCards.remove(i);
+         players[1].pickUpCard(deckOfCards.getCard(i));
+         deckOfCards.removeCard(i);
       }
 
       for (int i = 0; i < 5; i++) {
-         players[2].addCard(deckOfCards.get(i));
-         deckOfCards.remove(i);
+         players[2].pickUpCard(deckOfCards.getCard(i));
+         deckOfCards.removeCard(i);
       }
 
       Random rand = new Random();

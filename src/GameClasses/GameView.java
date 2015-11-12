@@ -343,7 +343,7 @@ public class GameView extends javax.swing.JFrame {
        currentCard = card;
    }
 
-   public void updateConsole(String message) {
+   public void updateBottomConsole(String message) {
       playerInfo.append(message);
       playerInfo.setCaretPosition(playerInfo.getDocument().getLength());
    }
