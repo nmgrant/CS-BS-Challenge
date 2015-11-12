@@ -1,7 +1,7 @@
 package GameClasses;
 
 
-import CardClasses.Year1.Card;
+import CardClasses.Card;
 import java.awt.event.*;
 import java.util.Random;
 import java.util.LinkedList;

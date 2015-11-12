@@ -1,7 +1,7 @@
 package GameClasses;
 
 
-import CardClasses.Year1.Card;
+import CardClasses.Card;
 import java.awt.Point;
 import javax.swing.JLabel;
 import java.util.LinkedList;

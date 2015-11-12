@@ -1,7 +1,7 @@
 
 package GameClasses;
 
-import CardClasses.Year1.Card;
+import CardClasses.Card;
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Point;

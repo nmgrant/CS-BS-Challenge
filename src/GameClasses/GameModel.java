@@ -1,7 +1,7 @@
 package GameClasses;
 
-import CardClasses.Year1.Card;
-import CardClasses.Year1.Card00;
+import CardClasses.Card;
+import CardClasses.Card00;
 import java.util.Random;
 import java.util.ArrayList;
 import java.awt.Rectangle;
