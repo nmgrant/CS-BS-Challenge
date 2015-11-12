@@ -202,7 +202,7 @@ public class GameView extends javax.swing.JFrame {
       moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
       moveListWindow.setViewportView(moveList);
 
-      cardButton.setIcon(model.getCurrentPlayer().getHand().getFirst().getImage());
+      cardButton.setIcon(model.getCurrentPlayer().getHand().get(0).getImage());
 
       playerInfo.setEditable(false);
       playerInfo.setColumns(20);

@@ -12,6 +12,7 @@ public class Player extends JLabel {
    private SkillPoints skillPoints;
    private SkillPoints[] skillRewardChoices;
    private int qualityPoints;
+   private int numOfRemovedCards;
    private ArrayList<Card> handOfCards;
    private Room room;
    private boolean human, current;
@@ -23,6 +24,7 @@ public class Player extends JLabel {
       this.name = name;
       this.skillPoints = skillPoints;
       qualityPoints = 0;
+      numOfRemovedCards = 0;
       this.room = room;
       human = false;
       moves = MAX_MOVES;
@@ -108,7 +110,7 @@ public class Player extends JLabel {
       }
    }
 
-   public void setDiscardCard (Card card) {
+   public void setDiscardCard (int numOfRemovedCards) {
       
    }
    
