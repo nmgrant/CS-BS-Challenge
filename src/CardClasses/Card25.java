@@ -1,8 +1,8 @@
 package CardClasses;
 
-import GameClasses.Player;
-import GameClasses.Room;
-import GameClasses.SkillPoints;
+import GameClass.Player;
+import GameClass.Room;
+import GameClass.SkillPoints;
 import javax.swing.ImageIcon;
 
 public class Card25 extends Card {

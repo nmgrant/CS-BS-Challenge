@@ -1,4 +1,4 @@
-package GameClasses;
+package GameClass;
 
 
 public class RunMVC {

@@ -1,4 +1,4 @@
-package GameClasses;
+package GameClass;
 
 import CardClasses.*;
 import CardClasses.Deck;

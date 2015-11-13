@@ -1,4 +1,4 @@
-package GameClasses;
+package GameClass;
 
 import CardClasses.Card;
 import java.awt.Point;
