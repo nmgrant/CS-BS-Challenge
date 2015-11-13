@@ -1,5 +1,6 @@
 package CardClasses;
 
+import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
@@ -30,7 +31,8 @@ public class Card14 extends Card {
       cardPenalty = 0;
    }
 
-   public void playCard() {
-
-   }
+    @Override
+    void playCard(Player cPlayer) {
+        
+    }
 }
