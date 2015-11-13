@@ -1,5 +1,5 @@
 
-package GameClass;
+package GameClasses;
 
 import CardClasses.Card;
 import javax.swing.*;

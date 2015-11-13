@@ -1,4 +1,4 @@
-package GameClass;
+package GameClasses;
 
 import java.awt.Point;
 

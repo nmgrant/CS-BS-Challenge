@@ -1,5 +1,5 @@
 
-package GameClass;
+package GameClasses;
 
 public class CardChoiceDialog {
     
