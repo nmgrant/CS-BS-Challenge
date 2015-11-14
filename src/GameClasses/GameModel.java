@@ -20,6 +20,7 @@ public class GameModel {
    private Deck deckOfCards;
 
    public GameModel() {
+      deckOfCards = new Deck();
       initializeRooms();
       initializePlayers();
    }
@@ -163,6 +164,10 @@ public class GameModel {
 
    public Player getHumanPlayer() {
       return humanPlayer;
+   }
+   
+   public Deck getDeckOfCards() {
+       return deckOfCards;
    }
 
    public Player getCurrentPlayer() {
