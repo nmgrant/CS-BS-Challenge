@@ -12,7 +12,6 @@ public class GameController {
 
     private GameModel model;
     private GameView frame;
-    private Deck deck;
 
     public GameController(GameModel model, GameView frame) {
         this.model = model;
@@ -55,14 +54,8 @@ public class GameController {
     }
 
     public void playCard() {
-        model.getCurrentPlayer().resetMoves();
-        nextPlayer();
-
-        frame.getMove().setEnabled(true);
-    }
-
-    public void chooseSkillPoints() {
-       
+        Card currentCard = frame.getCardButton().getCurrentCard();
+        currentCard.playCard(model.getCurrentPlayer());
     }
     
     public void movePlayer() {
