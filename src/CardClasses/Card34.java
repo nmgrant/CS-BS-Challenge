@@ -7,23 +7,23 @@ import javax.swing.ImageIcon;
 
 public class Card34 extends Card {
 
-   public Card34() {
-      image = new ImageIcon(("src/CardImagesYear1/ScoreAGoal.png"));
+    public Card34() {
+        image = new ImageIcon(("src/CardImagesYear1/ScoreAGoal.png"));
 
-      name = "Score a Goal!";
-      locations.add(new Room("George Allen Field"));
-      skillPointsPreReq = new SkillPoints(0, 3, 0); // LCI
-      skillRewardChoices = null;
-      skillReward = new SkillPoints(0, 0, 1);
-      skillPenalty = new SkillPoints(0, 0, 0);
-      qualityPointsReward = 5;
-      qualityPointsPenalty = 0;
-      cardReward = 0;
-      cardPenalty = 0;
-   }
+        name = "Score a Goal!";
+        locations.add(new Room("George Allen Field"));
+        skillPointsPreReq = new SkillPoints(0, 3, 0); // LCI
+        skillRewardChoices = null;
+        skillReward = new SkillPoints(0, 0, 1);
+        skillPenalty = new SkillPoints(0, 0, 0);
+        qualityPointsReward = 5;
+        qualityPointsPenalty = 0;
+        cardReward = 0;
+        cardPenalty = 0;
+    }
 
-   @Override
-    void playCard(Player cPlayer) {
-        
+    @Override
+    public void playCard(Player cPlayer) {
+
     }
 }
