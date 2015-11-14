@@ -4,6 +4,7 @@ import CardClasses.Card;
 import java.awt.Point;
 import javax.swing.JLabel;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player extends JLabel {
 
@@ -13,7 +14,7 @@ public class Player extends JLabel {
    private SkillPoints[] skillRewardChoices;
    private int qualityPoints;
    private int numOfRemovedCards;
-   private ArrayList<Card> handOfCards;
+   private LinkedList<Card> handOfCards;
    private Room room;
    private boolean human, current;
    private boolean handIsFull;
@@ -29,7 +30,7 @@ public class Player extends JLabel {
       human = false;
       moves = MAX_MOVES;
       current = false;
-      handOfCards = new ArrayList<>();
+      handOfCards = new LinkedList<>();
    }
 
    public String getName() {
@@ -106,7 +107,7 @@ public class Player extends JLabel {
       if (handOfCards.size() >= 7) {
          handIsFull = true;
       } else {
-         handOfCards.add(card);
+         handOfCards.addFirst(card);
       }
    }
 
@@ -114,7 +115,7 @@ public class Player extends JLabel {
       
    }
    
-   public ArrayList<Card> getHand() {
+   public LinkedList<Card> getHand() {
       return handOfCards;
    }
 
