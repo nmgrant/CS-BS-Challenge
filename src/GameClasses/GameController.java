@@ -19,7 +19,8 @@ public class GameController {
         this.frame = frame;
         frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
         frame.addMoveActionPerformed(new MoveActionPerformed());
-        frame.addCardButtonActionPerformed(new CardButtonActionPerformed());
+        frame.addCardButtonActionPerformed(new CardActionPerformed());
+        frame.addDrawCardButtonActionPerformed(new DrawCardButtonActionPerformed());
     }
 
     public class PlayCardActionPerformed implements ActionListener {
@@ -37,19 +38,19 @@ public class GameController {
             movePlayer();
         }
     }
-
-    public class CardButtonActionPerformed implements ActionListener {
+    
+    public class DrawCardButtonActionPerformed implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            drawCard();
+        }
+    }
+    
+    public class CardActionPerformed implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
             nextCard();
-        }
-    }
-    
-    public class DrawButtonActionPerformed implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            drawCard();
         }
     }
 
@@ -96,19 +97,14 @@ public class GameController {
         }
     }
 
-    public void nextCard() {
-        ArrayList<Card> hand = model.getCurrentPlayer().getHand();
-        for (int i = 0; i < hand.size(); i++) {
-            if (frame.getCurrentCard() == hand.get(i)) {
-                frame.updateCardButton(hand.get(i + 1));
-            }
-        }
+    public void drawCard() {
+        Card drawnCard = model.getDeckOfCards().getTopCard();
+        model.getCurrentPlayer().pickUpCard(drawnCard);
+        frame.updateCardButton();
     }
     
-    public void drawCard() {
-        Card drawnCard = deck.getTopCard();
-        model.getCurrentPlayer().pickUpCard(drawnCard);
-        frame.updateCardButton(drawnCard);
+    public void nextCard() {
+        frame.getCardButton().nextCard();
     }
 
     public void nextPlayer() {
