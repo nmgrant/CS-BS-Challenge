@@ -55,7 +55,7 @@ public class GameView extends javax.swing.JFrame {
         drawCardButton = new javax.swing.JButton();
         moveListWindow = new javax.swing.JScrollPane();
         moveList = new javax.swing.JList();
-        cardButton = new javax.swing.JButton();
+        cardButton = new HandButton(currentPlayer.getHand());
         humanInfoScrollPane = new javax.swing.JScrollPane();
         playerInfo = new javax.swing.JTextArea();
         gameInfoScrollPane = new javax.swing.JScrollPane();
@@ -202,8 +202,6 @@ public class GameView extends javax.swing.JFrame {
         moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         moveListWindow.setViewportView(moveList);
 
-        cardButton.setIcon(model.getCurrentPlayer().getHand().get(0).getImage());
-
         playerInfo.setEditable(false);
         playerInfo.setColumns(20);
         playerInfo.setRows(5);
@@ -338,9 +336,10 @@ public class GameView extends javax.swing.JFrame {
       }
    }
    
-   public void updateCardButton(Card card) {
-       cardButton.setIcon(card.getImage());
-       currentCard = card;
+   public void updateCardButton() {
+       currentPlayer = model.getCurrentPlayer();
+       cardButton = new HandButton(currentPlayer.getHand());
+       gamePanel.repaint();
    }
 
    public void updateBottomConsole(String message) {
@@ -364,7 +363,7 @@ public class GameView extends javax.swing.JFrame {
       cardButton.addActionListener(l);
    }
    
-   public void addDrawButtonActionPerformed(ActionListener l) {
+   public void addDrawCardButtonActionPerformed(ActionListener l) {
        drawCardButton.addActionListener(l);
    }
 
@@ -386,6 +385,14 @@ public class GameView extends javax.swing.JFrame {
    
    public Card getCurrentCard() {
        return currentCard;
+   }
+   
+   public HandButton getCardButton() {
+       return (HandButton)cardButton;
+   }
+   
+   public JButton getDrawCardButton() {
+       return drawCardButton;
    }
 
    public void setCurrentPlayer(Player player) {

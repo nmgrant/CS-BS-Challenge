@@ -354,11 +354,9 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="cardButton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="model.getCurrentPlayer().getHand().get(0).getImage()" type="code"/>
-            </Property>
-          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new HandButton(currentPlayer.getHand())"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="humanInfoScrollPane">
 
