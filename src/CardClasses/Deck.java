@@ -8,7 +8,10 @@ public class Deck {
 
    private ArrayList<Card> deckOfCards = new ArrayList<>();
    private ArrayList<Card> discardDeck = new ArrayList<>();
-
+   
+   public Deck() {
+       initializeCards();
+   }
    public void initializeCards() {
       deckOfCards.add(new Card00());
       deckOfCards.add(new Card01());

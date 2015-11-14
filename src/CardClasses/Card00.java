@@ -21,6 +21,7 @@ public class Card00 extends Card {
         qualityPointsPenalty = 0;
         cardReward = 0;
         cardPenalty = -1;
+        rewardChoiceDialog = new RewardChoiceDialog(skillRewardChoices);
     }
 
     @Override
@@ -28,9 +29,9 @@ public class Card00 extends Card {
         if (cPlayer.getRoom().equals(locations.get(0))) {
             if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
                 cPlayer.setQualityPoints(qualityPointsReward);
-                cPlayer.setSkillRewardChoices(skillRewardChoices);
+                rewardChoiceDialog.setVisible(true);
             } else {
-
+                
             }
         } else {
             cPlayer.setQualityPoints(ROOM_REQ_PENALTY);
