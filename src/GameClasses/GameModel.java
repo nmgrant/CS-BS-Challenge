@@ -122,14 +122,14 @@ public class GameModel {
 
    private void initializePlayers() {
       players = new Player[3];
-      players[0] = new Player("Evan", new SkillPoints(2, 2, 2), rooms[17]);
-      players[1] = new Player("Nick", new SkillPoints(3, 1, 2), rooms[17]);
-      players[2] = new Player("BlAdam", new SkillPoints(0, 3, 3), rooms[17]);
+      players[0] = new Player("Evan", new SkillPoints(2, 2, 4), rooms[17]);
+      players[1] = new Player("Nick", new SkillPoints(3, 1, 4), rooms[17]);
+      players[2] = new Player("BlAdam", new SkillPoints(0, 3, 4), rooms[17]);
 
       for (int i = 0; i < 3; i++) {
          players[i].setSpace(players[i].getRoom().getRoomSpace(i));
       }
-
+      
       for (int i = 0; i < 5; i++) {
          players[0].pickUpCard(deckOfCards.getCard(i));
          deckOfCards.removeCard(i);
@@ -152,6 +152,7 @@ public class GameModel {
       humanPlayer = players[human];
       currentPlayer = humanPlayer;
       currentPlayer.changeCurrent();
+      currentPlayer.pickUpCard(new Card00());
    }
 
    public Room getRoom(int room) {
