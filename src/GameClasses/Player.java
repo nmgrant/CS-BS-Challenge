@@ -49,23 +49,23 @@ public class Player extends JLabel {
    public SkillPoints getSkillPoints() {
       return skillPoints;
    }
-   
+
    public void setSkillPoints(SkillPoints skillPoints) {
       this.skillPoints = skillPoints;
    }
-   
+
    public void setQualityPoints(int qualityPoints) {
       this.qualityPoints += qualityPoints;
    }
-   
+
    public SkillPoints[] getSkillPointsRewardChoices() {
       return skillRewardChoices;
    }
-   
+
    public void setSkillRewardChoices(SkillPoints[] skillRewardChoices) {
       this.skillRewardChoices = skillRewardChoices;
    }
-   
+
    public int getMoves() {
       return moves;
    }
@@ -111,10 +111,10 @@ public class Player extends JLabel {
       }
    }
 
-   public void setDiscardCard (int numOfRemovedCards) {
-      
+   public void setDiscardCard(int numOfRemovedCards) {
+
    }
-   
+
    public LinkedList<Card> getHand() {
       return handOfCards;
    }

@@ -129,7 +129,7 @@ public class GameModel {
       for (int i = 0; i < 3; i++) {
          players[i].setSpace(players[i].getRoom().getRoomSpace(i));
       }
-      
+
       for (int i = 0; i < 5; i++) {
          players[0].pickUpCard(deckOfCards.getCard(i));
          deckOfCards.removeCard(i);
@@ -166,9 +166,9 @@ public class GameModel {
    public Player getHumanPlayer() {
       return humanPlayer;
    }
-   
+
    public Deck getDeckOfCards() {
-       return deckOfCards;
+      return deckOfCards;
    }
 
    public Player getCurrentPlayer() {

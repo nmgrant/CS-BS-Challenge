@@ -1,4 +1,3 @@
-
 package GameClasses;
 
 import CardClasses.Card;
@@ -236,7 +235,7 @@ public class GameView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardButtonActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_cardButtonActionPerformed
 
    public void initPlayerPosition(JLabel player) {
@@ -261,42 +260,41 @@ public class GameView extends javax.swing.JFrame {
 
    public void updateList() {
       currentPlayer = model.getCurrentPlayer();
-      
+
       Room currentRoom = currentPlayer.getRoom();
       if (currentPlayer.getMoves() > 0) {
-        moveList.setModel(new javax.swing.AbstractListModel() {
-           Room[] rooms = currentRoom.getAdjacentRooms();
-           
-           @Override
-           public int getSize() {
-              return rooms.length;
-           }
-
-           @Override
-           public Object getElementAt(int i) {
-              return rooms[i];
-           }
-        });
-      }
-      else {
          moveList.setModel(new javax.swing.AbstractListModel() {
-           Room[] rooms = new Room[0];
-             
-           @Override
-           public int getSize() {
-              return rooms.length;
-           }
+            Room[] rooms = currentRoom.getAdjacentRooms();
 
-           @Override
-           public Object getElementAt(int i) {
-              return rooms[i];
-           }
-        }); 
+            @Override
+            public int getSize() {
+               return rooms.length;
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+               return rooms[i];
+            }
+         });
+      } else {
+         moveList.setModel(new javax.swing.AbstractListModel() {
+            Room[] rooms = new Room[0];
+
+            @Override
+            public int getSize() {
+               return rooms.length;
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+               return rooms[i];
+            }
+         });
       }
    }
-   
+
    public void updateCardButton() {
-       gamePanel.updateUI();
+      gamePanel.updateUI();
    }
 
    public void updateBottomConsole(String message) {
@@ -319,9 +317,9 @@ public class GameView extends javax.swing.JFrame {
    public void addCardButtonActionPerformed(ActionListener l) {
       cardButton.addActionListener(l);
    }
-   
+
    public void addDrawCardButtonActionPerformed(ActionListener l) {
-       drawCardButton.addActionListener(l);
+      drawCardButton.addActionListener(l);
    }
 
    public JButton getMove() {
@@ -339,17 +337,17 @@ public class GameView extends javax.swing.JFrame {
    public JLayeredPane getBoardWindow() {
       return boardWindowPanel;
    }
-   
+
    public Card getCurrentCard() {
-       return currentCard;
+      return currentCard;
    }
-   
+
    public HandButton getCardButton() {
-       return (HandButton)cardButton;
+      return (HandButton) cardButton;
    }
-   
+
    public JButton getDrawCardButton() {
-       return drawCardButton;
+      return drawCardButton;
    }
 
    public void setCurrentPlayer(Player player) {

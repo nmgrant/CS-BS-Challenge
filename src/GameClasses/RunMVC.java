@@ -1,6 +1,5 @@
 package GameClasses;
 
-
 public class RunMVC {
 
    public static void main(String[] args) {
