@@ -16,7 +16,7 @@ public class SkillPoints {
             this.craftChips = 0;
             this.integrityChips = 0;
         }
-        else if (chipType == 0) {
+        else if (chipType == 1) {
             this.learningChips = 0;
             this.craftChips = 1;
             this.integrityChips = 0;
@@ -76,13 +76,13 @@ public class SkillPoints {
             return false;
         }
         final SkillPoints other = (SkillPoints) obj;
-        if (this.learningChips != other.learningChips) {
+        if (this.learningChips < other.learningChips) {
             return false;
         }
-        if (this.craftChips != other.craftChips) {
+        if (this.craftChips < other.craftChips) {
             return false;
         }
-        if (this.integrityChips != other.integrityChips) {
+        if (this.integrityChips < other.integrityChips) {
             return false;
         }
         return true;
