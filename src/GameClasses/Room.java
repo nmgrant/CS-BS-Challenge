@@ -1,6 +1,7 @@
 package GameClasses;
 
 import java.awt.Point;
+import java.util.Objects;
 
 public class Room {
 
@@ -54,6 +55,28 @@ public class Room {
          isSpaceAvailable[i] = true;
       }
    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Room other = (Room) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
 
    @Override
    public String toString() {
