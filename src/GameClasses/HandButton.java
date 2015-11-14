@@ -1,7 +1,7 @@
 
 package GameClasses;
 import CardClasses.Card;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,15 +10,17 @@ import javax.swing.Action;
 
 public class HandButton extends JButton {
     
-    private ArrayList<Card> handOfCards;
+    private LinkedList<Card> handOfCards;
     private Card currentCard;
     
-    public HandButton() {}
+    public HandButton() {
+        super();
+    }
     
-    public HandButton(ArrayList<Card> hand) {
-        super(hand.get(0).getImage());
+    public HandButton(LinkedList<Card> hand) {
+        super(hand.getFirst().getImage());
         handOfCards = hand;
-        currentCard = handOfCards.get(0);
+        currentCard = handOfCards.getFirst();
     }
     
     public Card getCurrentCard() {
