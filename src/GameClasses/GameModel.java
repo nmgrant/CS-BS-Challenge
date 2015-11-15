@@ -18,9 +18,11 @@ public class GameModel {
    private Player humanPlayer;
    private Player currentPlayer;
    private Deck deckOfCards;
+   private Deck discardDeck;
 
    public GameModel() {
       deckOfCards = new Deck();
+      discardDeck = new Deck();
       initializeRooms();
       initializePlayers();
    }
@@ -122,27 +124,30 @@ public class GameModel {
 
    private void initializePlayers() {
       players = new Player[3];
-      players[0] = new Player("Evan", new SkillPoints(2, 2, 4), rooms[17]);
-      players[1] = new Player("Nick", new SkillPoints(3, 1, 4), rooms[17]);
-      players[2] = new Player("BlAdam", new SkillPoints(0, 3, 4), rooms[17]);
+      players[0] = new Player("Evan", new SkillPoints(2, 2, 2), rooms[17]);
+      players[1] = new Player("Nick", new SkillPoints(3, 1, 2), rooms[17]);
+      players[2] = new Player("BlAdam", new SkillPoints(0, 3, 3), rooms[17]);
 
       for (int i = 0; i < 3; i++) {
          players[i].setSpace(players[i].getRoom().getRoomSpace(i));
       }
 
       for (int i = 0; i < 5; i++) {
-         players[0].pickUpCard(deckOfCards.getCard(i));
-         deckOfCards.removeCard(i);
+         Card drawnCard = deckOfCards.getCard(i);
+         players[0].pickUpCard(drawnCard);
+         deckOfCards.removeCard(drawnCard);
       }
 
       for (int i = 0; i < 5; i++) {
-         players[1].pickUpCard(deckOfCards.getCard(i));
-         deckOfCards.removeCard(i);
+         Card drawnCard = deckOfCards.getCard(i);
+         players[1].pickUpCard(drawnCard);
+         deckOfCards.removeCard(drawnCard);
       }
 
       for (int i = 0; i < 5; i++) {
-         players[2].pickUpCard(deckOfCards.getCard(i));
-         deckOfCards.removeCard(i);
+         Card drawnCard = deckOfCards.getCard(i);
+         players[2].pickUpCard(drawnCard);
+         deckOfCards.removeCard(drawnCard);
       }
 
       Random rand = new Random();
@@ -170,6 +175,10 @@ public class GameModel {
    public Deck getDeckOfCards() {
       return deckOfCards;
    }
+   
+   public Deck getDiscardDeck() {
+       return discardDeck;
+   }
 
    public Player getCurrentPlayer() {
       return currentPlayer;
@@ -178,4 +187,12 @@ public class GameModel {
    public void setCurrentPlayer(Player next) {
       currentPlayer = next;
    }
+   
+   public void removeCardFromDeck(Card card) {
+       deckOfCards.removeCard(card);
+   }
+   
+   public void addCardToDiscardDeck(Card card) {
+       discardDeck.addCard(card);
+    }
 }
