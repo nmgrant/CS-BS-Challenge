@@ -11,13 +11,13 @@ public class Player extends JLabel {
    private final int MAX_MOVES = 3;
    private String name;
    private SkillPoints skillPoints;
-   private SkillPoints[] skillRewardChoices;
    private int qualityPoints;
    private int numOfRemovedCards;
    private LinkedList<Card> handOfCards;
    private Room room;
    private boolean human, current;
-   private boolean handIsFull;
+   private boolean handIsFull, hasDiscardedCard;
+   private Card discardedCard;
    private int moves;
    private Point space;
 
@@ -30,6 +30,9 @@ public class Player extends JLabel {
       human = false;
       moves = MAX_MOVES;
       current = false;
+      hasDiscardedCard = false;
+      discardedCard = null;
+      handIsFull = false;
       handOfCards = new LinkedList<>();
    }
 
@@ -49,21 +52,17 @@ public class Player extends JLabel {
    public SkillPoints getSkillPoints() {
       return skillPoints;
    }
+   
+   public int getQualityPoints() {
+       return qualityPoints;
+   }
 
    public void setSkillPoints(SkillPoints skillPoints) {
       this.skillPoints = skillPoints;
    }
 
-   public void setQualityPoints(int qualityPoints) {
+   public void adjustQualityPoints(int qualityPoints) {
       this.qualityPoints += qualityPoints;
-   }
-
-   public SkillPoints[] getSkillPointsRewardChoices() {
-      return skillRewardChoices;
-   }
-
-   public void setSkillRewardChoices(SkillPoints[] skillRewardChoices) {
-      this.skillRewardChoices = skillRewardChoices;
    }
 
    public int getMoves() {
@@ -111,8 +110,18 @@ public class Player extends JLabel {
       }
    }
 
-   public void setDiscardCard(int numOfRemovedCards) {
-
+   public boolean hasDiscardedCard() {
+       return hasDiscardedCard;
+   }
+   
+   public Card getDiscardedCard() {
+       return discardedCard;
+   }
+   
+   public void discardCard(Card card) {
+       handOfCards.remove(card);
+       discardedCard = card;
+       hasDiscardedCard = true;
    }
 
    public LinkedList<Card> getHand() {
