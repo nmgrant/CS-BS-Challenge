@@ -1,10 +1,8 @@
 package GameClasses;
 
 import CardClasses.Card;
-import CardClasses.Deck;
 import java.awt.event.*;
 import java.util.Random;
-import java.util.ArrayList;
 import java.awt.Point;
 import javax.swing.JLabel;
 
@@ -54,8 +52,29 @@ public class GameController {
    }
 
    public void playCard() {
-      Card currentCard = frame.getCardButton().getCurrentCard();
-      currentCard.playCard(model.getCurrentPlayer());
+      Card chosenCard = frame.getCardButton().getCurrentCard();
+      boolean success = chosenCard.playCard(model.getCurrentPlayer());
+      
+      if (model.getCurrentPlayer().hasDiscardedCard()) {
+          Card discardedCard = model.getCurrentPlayer().getDiscardedCard();
+          model.addCardToDiscardDeck(discardedCard);
+      }
+      
+      String result = model.getCurrentPlayer().getName() + " played " +
+       chosenCard.getName();
+      
+      if (success) {
+          result += " and received " + chosenCard.getSkillReward()
+           + ", " + chosenCard.getQualityPointsReward() + " quality points ";
+          if (chosenCard.getCardReward() != 0)
+              result += ", and drew a card";
+          if (chosenCard.getRoomReward() != null)
+              result += ", and teleported to " + chosenCard.getRoomReward();
+      }
+      else {
+          result += " and failed.";
+      }
+      frame.updateBottomConsole(result);
    }
 
    public void movePlayer() {
@@ -93,7 +112,9 @@ public class GameController {
    public void drawCard() {
       Card drawnCard = model.getDeckOfCards().getTopCard();
       model.getCurrentPlayer().pickUpCard(drawnCard);
+      frame.getCardButton().drawCard();
       frame.updateCardButton();
+      model.removeCardFromDeck(drawnCard);
    }
 
    public void nextCard() {
