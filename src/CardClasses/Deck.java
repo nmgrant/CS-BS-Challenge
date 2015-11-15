@@ -67,13 +67,21 @@ public class Deck {
    public Card getCard(int index) {
       return deckOfCards.get(index);
    }
+   
+   public void addCard(Card card) {
+       deckOfCards.add(card);
+   }
 
-   public Card removeCard(int index) {
-      return deckOfCards.remove(index);
+   public void removeCard(Card card) {
+    deckOfCards.remove(card);
    }
 
    public Card getTopCard() {
       return deckOfCards.get(0);
+   }
+   
+   public int getNumberOfCards() {
+       return deckOfCards.size();
    }
 
    public void shuffleDeck(ArrayList<Card> deckOfCards, long randomSeed) {

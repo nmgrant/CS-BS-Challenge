@@ -3,6 +3,7 @@ package CardClasses;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import GameClasses.DiscardCardDialog;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -26,19 +27,25 @@ public class Card00 extends Card {
    }
 
    @Override
-   public void playCard(Player cPlayer) {
-      if (cPlayer.getRoom().equals(locations.get(0))) {
+   public boolean playCard(Player cPlayer) {
+       if (cPlayer.getRoom().equals(locations.get(0))) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            cPlayer.setQualityPoints(qualityPointsReward);
-            RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog(skillRewardChoices);
-            SkillPoints reward = rewardChoiceDialog.getChoice();
+            cPlayer.adjustQualityPoints(qualityPointsReward);
+            RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
+            SkillPoints reward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
             System.out.println(reward);
             cPlayer.setSkillPoints(reward);
+            skillReward = reward;
+            return true;
          } else {
-
+             DiscardCardDialog discardCardDialog = new DiscardCardDialog();
+             Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand());
+             cPlayer.discardCard(chosenCard);
+             return false;
          }
       } else {
-         cPlayer.setQualityPoints(ROOM_REQ_PENALTY);
+         cPlayer.adjustQualityPoints(ROOM_REQ_PENALTY);
+         return false;
       }
    }
 }

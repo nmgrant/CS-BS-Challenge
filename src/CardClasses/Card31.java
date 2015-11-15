@@ -31,7 +31,7 @@ public class Card31 extends Card {
     }
 
     @Override
-    public void playCard(Player cPlayer) {
-
+    public boolean playCard(Player cPlayer) {
+return true;
     }
 }

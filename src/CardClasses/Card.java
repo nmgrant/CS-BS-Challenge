@@ -22,11 +22,31 @@ public abstract class Card {
    protected int qualityPointsPenalty;
    protected int cardReward;
    protected int cardPenalty;
-   protected RewardChoiceDialog rewardChoiceDialog;
+   protected Room roomReward;
 
-   public abstract void playCard(Player cPlayer);
-
+   public abstract boolean playCard(Player cPlayer);
+   
    public ImageIcon getImage() {
       return image;
+   }
+   
+   public String getName() {
+       return name;
+   }
+   
+   public SkillPoints getSkillReward() {
+       return skillReward;
+   }
+   
+   public int getQualityPointsReward() {
+       return qualityPointsReward;
+   }
+   
+   public int getCardReward() {
+       return cardReward;
+   }
+   
+   public Room getRoomReward() {
+       return roomReward;
    }
 }

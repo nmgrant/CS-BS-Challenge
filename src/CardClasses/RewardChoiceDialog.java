@@ -3,13 +3,7 @@ package CardClasses;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
 import GameClasses.SkillPoints;
-import java.awt.BorderLayout;
-import javax.swing.SwingUtilities;
-import sun.awt.AWTAccessor;
 
 /**
  *
@@ -31,10 +25,11 @@ public class RewardChoiceDialog extends JDialog {
 
    private SkillPoints choice;
 
-   public RewardChoiceDialog(SkillPoints[] skillRewardChoices) {
+   public SkillPoints showRewardChoiceDialog(SkillPoints[] skillRewardChoices) {
       setTitle("Reward Choice");
+      setLocation(800, 400);
       initializeComponents();
-      enableButtons(skillRewardChoices);
+      disableButtons(skillRewardChoices);
 
       //<editor-fold defaultstate="collapsed" desc="Set dialog layout">
       javax.swing.GroupLayout rewardChoiceDialogLayout = new javax.swing.GroupLayout(this.getContentPane());
@@ -72,12 +67,14 @@ public class RewardChoiceDialog extends JDialog {
       setModal(true);
       pack();
       setVisible(true);
+      
+      return choice;
    }
 
-   private void enableButtons(SkillPoints[] skillRewardChoices) {
+   private void disableButtons(SkillPoints[] skillRewardChoices) {
       for (int i = 0; i < skillRewardChoices.length; i++) {
-         if (skillRewardChoices[i].equals(new SkillPoints(i))) {
-            buttons[i].setEnabled(true);
+         if (!skillRewardChoices[i].equals(new SkillPoints(i))) {
+            buttons[i].setEnabled(false);
          }
       }
    }
@@ -123,10 +120,6 @@ public class RewardChoiceDialog extends JDialog {
          }
       });
       chooseReward.setText("Choose your reward");
-
-      learningButton.setEnabled(false);
-      craftButton.setEnabled(false);
-      integrityButton.setEnabled(false);
 
       getContentPane().add(learningButton);
       getContentPane().add(craftButton);
