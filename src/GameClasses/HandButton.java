@@ -40,7 +40,12 @@ public class HandButton extends JButton {
       } else {
          next = current + 1;
       }
-      this.setIcon(handOfCards.get(next).getImage());
+      setIcon(handOfCards.get(next).getImage());
       currentCard = handOfCards.get(next);
+   }
+   
+   public void drawCard() {
+       currentCard = handOfCards.getFirst();
+       setIcon(currentCard.getImage());
    }
 }
