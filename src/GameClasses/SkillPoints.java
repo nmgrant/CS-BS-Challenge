@@ -85,5 +85,11 @@ public class SkillPoints {
       }
       return true;
    }
+   
+   @Override
+   public String toString() {
+       return " Learning Chips: " + learningChips + " Craft Chips: " + craftChips
+        + " Integrity Chips: " + integrityChips + "\n";
+   }
 
 }
