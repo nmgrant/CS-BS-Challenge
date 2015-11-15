@@ -25,6 +25,7 @@ public class GameView extends javax.swing.JFrame {
       initPlayerPosition(player2Label);
       initPlayerPosition(player3Label);
       snapToCurrentPlayer();
+      updateInformationPanel();
       //Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
       //backgroundMusic.loop();
    }
@@ -54,13 +55,14 @@ public class GameView extends javax.swing.JFrame {
         humanInfoScrollPane = new javax.swing.JScrollPane();
         playerInfo = new javax.swing.JTextArea();
         gameInfoScrollPane = new javax.swing.JScrollPane();
-        gameInfo = new javax.swing.JTextArea();
+        informationPanel = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         gamePanel.setBackground(new java.awt.Color(204, 204, 204));
 
         moveButton.setText("Move");
+        moveButton.setEnabled(false);
 
         boardWindow.setAutoscrolls(true);
 
@@ -86,6 +88,11 @@ public class GameView extends javax.swing.JFrame {
         player3Label.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/boardMap.png"))); // NOI18N
+
+        boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout boardWindowPanelLayout = new javax.swing.GroupLayout(boardWindowPanel);
         boardWindowPanel.setLayout(boardWindowPanelLayout);
@@ -123,14 +130,11 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(boardLabel)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         boardWindow.setViewportView(boardWindowPanel);
 
         playCardButton.setText("Play Card");
+        playCardButton.setEnabled(false);
 
         drawCardButton.setText("Draw Card");
 
@@ -150,22 +154,16 @@ public class GameView extends javax.swing.JFrame {
         moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         moveListWindow.setViewportView(moveList);
 
-        cardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButtonActionPerformed(evt);
-            }
-        });
-
         playerInfo.setEditable(false);
         playerInfo.setColumns(20);
         playerInfo.setRows(5);
-        playerInfo.setText(" You are " +model.getHumanPlayer().getName() +"\n");
+        playerInfo.setText(" Human player is " +model.getHumanPlayer().getName() +"\n");
         humanInfoScrollPane.setViewportView(playerInfo);
 
-        gameInfo.setEditable(false);
-        gameInfo.setColumns(20);
-        gameInfo.setRows(5);
-        gameInfoScrollPane.setViewportView(gameInfo);
+        informationPanel.setEditable(false);
+        informationPanel.setColumns(20);
+        informationPanel.setRows(5);
+        gameInfoScrollPane.setViewportView(informationPanel);
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
@@ -234,10 +232,6 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardButtonActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_cardButtonActionPerformed
-
    public void initPlayerPosition(JLabel player) {
       boardWindowPanel.remove(player);
       player.setLocation(((Player) player).getSpace());
@@ -292,13 +286,52 @@ public class GameView extends javax.swing.JFrame {
          });
       }
    }
-
+   
+   public void updateInformationPanel() {
+       Player player1 = model.getPlayers()[0];
+       Player player2 = model.getPlayers()[1];
+       Player player3 = model.getPlayers()[2];
+       String[] columnNames = {"Learning",
+           "Craft", "Integrity"};
+       Object[][] data = { 
+           {player1.getName(), player1.getSkillPoints().getLearningChips(),
+            player1.getSkillPoints().getCraftChips(), 
+            player1.getSkillPoints().getIntegrityChips(), 
+            player1.getQualityPoints()}, 
+           {player2.getName(), player1.getSkillPoints().getLearningChips(),
+            player2.getSkillPoints().getCraftChips(), 
+            player2.getSkillPoints().getIntegrityChips(),
+            player2.getQualityPoints()},
+           {player3.getName(), player1.getSkillPoints().getLearningChips(),
+            player3.getSkillPoints().getCraftChips(), 
+            player3.getSkillPoints().getIntegrityChips(),
+            player3.getQualityPoints()}
+       };
+       informationPanel.setText("\n\n\tLearning\tCraft\tIntegrity\tQuality Points\n");
+       for (int i = 0; i < data.length; i++) {
+           informationPanel.append(data[i][0] + " \t " + 
+            data[i][1] + " \t " + data[i][2] + " \t " + data[i][3] 
+            + " \t " + data[i][4] + "\n");
+       }
+       informationPanel.append("\n\n\n Cards in deck: " + 
+        model.getDeckOfCards().getNumberOfCards() + "\t Cards out of play: "
+        + model.getDiscardDeck().getNumberOfCards() + "\n");
+       
+       informationPanel.append("\n You are " + 
+        model.getCurrentPlayer().getName() + " and you are in " +
+        model.getCurrentPlayer().getRoom());
+     }
+   
    public void updateCardButton() {
-      gamePanel.updateUI();
+       moveButton.setEnabled(true);
+       playCardButton.setEnabled(true);
+       drawCardButton.setEnabled(false);
+       cardButton.setIcon(cardButton.getIcon());
+       gamePanel.updateUI();
    }
 
    public void updateBottomConsole(String message) {
-      playerInfo.append(message);
+      playerInfo.append(message + "\n");
       playerInfo.setCaretPosition(playerInfo.getDocument().getLength());
    }
 
@@ -359,10 +392,10 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JLayeredPane boardWindowPanel;
     private javax.swing.JButton cardButton;
     private javax.swing.JButton drawCardButton;
-    private javax.swing.JTextArea gameInfo;
     private javax.swing.JScrollPane gameInfoScrollPane;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JScrollPane humanInfoScrollPane;
+    private javax.swing.JTextArea informationPanel;
     private javax.swing.JButton moveButton;
     private javax.swing.JList moveList;
     private javax.swing.JScrollPane moveListWindow;
