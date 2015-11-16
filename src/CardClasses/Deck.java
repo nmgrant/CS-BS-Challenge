@@ -6,11 +6,10 @@ import java.util.Random;
 
 public class Deck {
 
-   private ArrayList<Card> deckOfCards = new ArrayList<>();
-   private ArrayList<Card> discardDeck = new ArrayList<>();
+   private ArrayList<Card> deckOfCards;
 
    public Deck() {
-      initializeCards();
+      deckOfCards = new ArrayList<>();
    }
 
    public void initializeCards() {
