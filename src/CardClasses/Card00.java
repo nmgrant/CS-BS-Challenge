@@ -1,9 +1,9 @@
 package CardClasses;
 
+import GameClasses.DiscardCardDialog;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
-import GameClasses.DiscardCardDialog;
 import javax.swing.ImageIcon;
 
 public class Card00 extends Card {

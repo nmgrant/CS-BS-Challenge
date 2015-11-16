@@ -34,6 +34,13 @@ public class Card07 extends Card {
 
     @Override
     public boolean playCard(Player cPlayer) {
-return true;
+        if (locations.contains(cPlayer.getRoom())) {
+            cPlayer.adjustQualityPoints(qualityPointsReward);
+            teleportRoom = new Room("Student Parking");
+            return false;
+        } else {
+            cPlayer.adjustQualityPoints(ROOM_REQ_PENALTY);
+            return false;
+        }
     }
 }

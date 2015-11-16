@@ -16,13 +16,6 @@ public abstract class Card {
     protected final int ROOM_REQ_PENALTY = -2;
     protected SkillPoints skillPointsPreReq;
     protected SkillPoints[] skillRewardChoices = new SkillPoints[3];
-    protected SkillPoints skillReward;
-    protected SkillPoints skillPenalty;
-    protected int qualityPointsReward;
-    protected int qualityPointsPenalty;
-    protected int cardReward;
-    protected int cardPenalty;
-    protected Room teleportRoom;
 
     public abstract boolean playCard(Player cPlayer);
 
@@ -34,22 +27,6 @@ public abstract class Card {
         return name;
     }
 
-    public SkillPoints getSkillReward() {
-        return skillReward;
-    }
-
-    public int getQualityPointsReward() {
-        return qualityPointsReward;
-    }
-
-    public int getCardReward() {
-        return cardReward;
-    }
-
-    public Room getTeleportRoom() {
-        return teleportRoom;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 5;

@@ -24,6 +24,17 @@ public class Card06 extends Card {
 
    @Override
    public boolean playCard(Player cPlayer) {
-return true;
+        if (locations.contains(cPlayer.getRoom())) {
+            if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
+                cPlayer.setSkillPoints(skillReward);
+                return true;
+            } else {
+                cPlayer.adjustQualityPoints(qualityPointsPenalty);
+                return false;
+            }
+        } else {
+            cPlayer.adjustQualityPoints(ROOM_REQ_PENALTY);
+            return false;
+        }
    }
 }
