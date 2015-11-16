@@ -5,6 +5,7 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JFrame;
 
 public abstract class Card {
@@ -49,4 +50,26 @@ public abstract class Card {
    public Room getRoomReward() {
        return roomReward;
    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.image);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Card other = (Card) obj;
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        return true;
+    }
 }

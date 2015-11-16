@@ -39,7 +39,7 @@ public class Card00 extends Card {
             return true;
          } else {
              DiscardCardDialog discardCardDialog = new DiscardCardDialog();
-             Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand());
+             Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
              cPlayer.discardCard(chosenCard);
              return false;
          }

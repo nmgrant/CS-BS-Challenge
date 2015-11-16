@@ -1,15 +1,11 @@
 package GameClasses;
 
 import CardClasses.Card;
-import CardClasses.Card;
 import CardClasses.CardButton;
-import CardClasses.CardButton;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import javax.swing.JDialog;
-import javax.swing.JButton;
 import java.util.LinkedList;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 
 public class DiscardCardDialog extends JDialog {
 
@@ -17,15 +13,18 @@ public class DiscardCardDialog extends JDialog {
     private LinkedList<Card> handOfCards;
 
     public Card choice;
+    public Card playedCard;
 
     public DiscardCardDialog() {
         super();
     }
 
-    public Card showDiscardCardDialog(LinkedList<Card> handOfCards) {
+    public Card showDiscardCardDialog(LinkedList<Card> handOfCards, Card playedCard) {
         this.handOfCards = handOfCards;
+        this.playedCard = playedCard;
         setTitle("Discard A Card");
-        setLocation(0, 400);
+        setLocation(275, 100);
+        setPreferredSize(new Dimension(630, 580));
         initializeComponents();
         
         setModal(true);
@@ -36,10 +35,13 @@ public class DiscardCardDialog extends JDialog {
     }
 
     public void initializeComponents() {
-        getContentPane().setLayout(new FlowLayout());
+        //JScrollPane scrollPane = new JScrollPane();
+        getContentPane().setLayout(new GridLayout(2, 4));
         cardButtons = new LinkedList<>();
         for (Card card : handOfCards) {
-            cardButtons.add(new CardButton(card));
+            if (!card.equals(playedCard)) {
+                cardButtons.add(new CardButton(card));
+            }
         }
 
         for (CardButton cardButton : cardButtons) {
@@ -53,5 +55,6 @@ public class DiscardCardDialog extends JDialog {
             });
             getContentPane().add(cardButton);
         }
+        //getContentPane().add(scrollPane);
     }
 }
