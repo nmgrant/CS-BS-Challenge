@@ -17,11 +17,11 @@ public class Card00 extends Card {
         skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
         skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft
         skillRewardChoices[2] = new SkillPoints(0, 0, 1); // Integrity
-        skillPenalty = new SkillPoints(0, 0, 0);
-        qualityPointsReward = 3;
-        qualityPointsPenalty = 0;
-        cardReward = 0;
-        cardPenalty = 1;
+//        skillPenalty = new SkillPoints(0, 0, 0);
+//        qualityPointsReward = 3;
+//        qualityPointsPenalty = 0;
+//        cardReward = 0;
+//        cardPenalty = 1;
 
     }
 
@@ -29,20 +29,19 @@ public class Card00 extends Card {
     public boolean playCard(Player cPlayer) {
         if (locations.contains(cPlayer.getRoom())) {
             if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-                cPlayer.adjustQualityPoints(qualityPointsReward);
                 RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
-                SkillPoints reward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
-                cPlayer.setSkillPoints(reward);
-                skillReward = reward;
+                SkillPoints choice = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
+                reward = new Reward(choice, 3, 0, null);
                 return true;
             } else {
                 DiscardCardDialog discardCardDialog = new DiscardCardDialog();
                 Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
                 cPlayer.discardCard(chosenCard);
+                penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
                 return false;
             }
         } else {
-            cPlayer.adjustQualityPoints(ROOM_REQ_PENALTY);
+            penalty = new Penalty();
             return false;
         }
     }

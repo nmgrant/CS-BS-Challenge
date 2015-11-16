@@ -9,7 +9,7 @@ public class Penalty {
 
    private SkillPoints skillPoints;
    private int qualityPoints;
-   private int card;
+   private Card[] card;
    private Room room;
 
    public Penalty() {
@@ -17,14 +17,14 @@ public class Penalty {
    }
    
    public Penalty(SkillPoints sPenalty, int qpPenalty,
-   int cPenalty, Room rPenalty) {
+   Card[] cPenalty, Room rPenalty) {
       this.skillPoints = sPenalty;
       this.qualityPoints = qpPenalty;
       this.card = cPenalty;
       this.room = rPenalty;
    }
 
-   public SkillPoints getPenalty() {
+   public SkillPoints getSkillPenalty() {
       return skillPoints;
    }
 
@@ -32,7 +32,7 @@ public class Penalty {
       return qualityPoints;
    }
 
-   public int getCardPenalty() {
+   public Card[] getCardPenalty() {
       return card;
    }
 

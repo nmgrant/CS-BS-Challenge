@@ -16,6 +16,8 @@ public abstract class Card {
     protected final int ROOM_REQ_PENALTY = -2;
     protected SkillPoints skillPointsPreReq;
     protected SkillPoints[] skillRewardChoices = new SkillPoints[3];
+    protected Reward reward;
+    protected Penalty penalty;
 
     public abstract boolean playCard(Player cPlayer);
 
@@ -25,6 +27,14 @@ public abstract class Card {
 
     public String getName() {
         return name;
+    }
+    
+    public Reward getReward() {
+        return reward;
+    }
+    
+    public Penalty getPenalty() {
+        return penalty;
     }
 
     @Override

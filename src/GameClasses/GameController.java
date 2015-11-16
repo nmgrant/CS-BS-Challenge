@@ -1,6 +1,8 @@
 package GameClasses;
 
 import CardClasses.Card;
+import CardClasses.Penalty;
+import CardClasses.Reward;
 import java.awt.event.*;
 import java.util.Random;
 import java.awt.Point;
@@ -65,25 +67,72 @@ public class GameController {
 
         String result = model.getCurrentPlayer().getName() + " played "
                 + chosenCard.getName();
-
+        
         if (success) {
-            result += " and received " + chosenCard.getSkillReward()
-                    + ", " + chosenCard.getQualityPointsReward() + " quality points ";
-            if (chosenCard.getCardReward() != 0) {
-                result += ", and received a card(s)";
-            }
-            for (int i = 0; i < chosenCard.getCardReward(); i++) {
-                model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
-            }
-            if (chosenCard.getTeleportRoom() != null) {
-                result += ", and teleported to " + chosenCard.getTeleportRoom();
-                teleportPlayer(chosenCard.getTeleportRoom());
-            }
-        } else {
-            result += " and failed.";
+            applyReward(chosenCard.getReward());
         }
+        else {
+            applyPenalty(chosenCard.getPenalty());
+        }
+
+//        if (success) {
+//            result += " and received " + chosenCard.getSkillReward()
+//                    + ", " + chosenCard.getQualityPointsReward() + " quality points ";
+//            if (chosenCard.getCardReward() != 0) {
+//                result += ", and received a card(s)";
+//            }
+//            for (int i = 0; i < chosenCard.getCardReward(); i++) {
+//                model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
+//            }
+//            if (chosenCard.getTeleportRoom() != null) {
+//                result += ", and teleported to " + chosenCard.getTeleportRoom();
+//                teleportPlayer(chosenCard.getTeleportRoom());
+//            }
+//        } else {
+//            result += " and failed.";
+//        }
         frame.updateBottomConsole(result);
         frame.updateInformationPanel();
+    }
+    
+    public void applyReward(Reward reward) {
+        int qualityPoints = reward.getQualityPointsReward();
+        SkillPoints skillPoints = reward.getSkillReward();
+        int cardsDrawn = reward.getCardReward();
+        Room room = reward.getRoomReward();
+        
+        if (qualityPoints > 0) {
+            model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+        }
+        if (skillPoints != null) {
+            model.getCurrentPlayer().setSkillPoints(skillPoints);
+        }
+        if (cardsDrawn > 0) {
+            model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
+        }
+        if (room != null) {
+            teleportPlayer(room);
+        }
+    }
+    
+    public void applyPenalty(Penalty penalty) {
+        int qualityPoints = penalty.getQualityPointsPenalty();
+        SkillPoints skillPoints = penalty.getSkillPenalty();
+        Card[] cardsDrawn = penalty.getCardPenalty();
+        Room room = penalty.getRoomPenalty();
+        
+        if (qualityPoints > 0) {
+            model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+        }
+        if (skillPoints != null) {
+            model.getCurrentPlayer().setSkillPoints(skillPoints);
+        }
+        if (cardsDrawn.length > 0) {
+            model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
+        }
+        if (room != null) {
+            teleportPlayer(room);
+        }
     }
 
     public void movePlayer() {
