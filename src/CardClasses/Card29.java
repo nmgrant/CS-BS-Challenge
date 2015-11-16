@@ -10,7 +10,7 @@ public class Card29 extends Card {
     public Card29() {
         image = new ImageIcon(("src/CardImagesYear1/ProfMurgoloCECS174.png"));
 
-        name = "Professor Murgolo's CECS 174 Class";
+        cardName = "Professor Murgolo's CECS 174 Class";
         locations.add(new Room("ECS 302"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices = null;

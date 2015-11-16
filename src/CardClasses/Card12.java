@@ -10,7 +10,7 @@ public class Card12 extends Card {
     public Card12() {
         image = new ImageIcon(("src/CardImagesYear1/GoodbyeProfessor.png"));
 
-        name = "Goodbye, Professor";
+        cardName = "Goodbye, Professor";
         locations.add(new Room("Room of Retirement"));
         skillPointsPreReq = new SkillPoints(6, 6, 6); // LCI
         skillRewardChoices = null;

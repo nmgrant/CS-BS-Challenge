@@ -10,7 +10,7 @@ public class Card05 extends Card {
     public Card05() {
         image = new ImageIcon(("src/CardImages/Year1/ChoosingAMajor.png"));
 
-        name = "Choosing a Major";
+        cardName = "Choosing a Major";
         locations.add(new Room("CECS Conference Room"));
         skillPointsPreReq = new SkillPoints(0, 0, 3); // LCI
         skillRewardChoices = null;

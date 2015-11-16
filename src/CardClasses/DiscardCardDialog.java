@@ -1,4 +1,4 @@
-package GameClasses;
+package CardClasses;
 
 import CardClasses.Card;
 import CardClasses.CardButton;

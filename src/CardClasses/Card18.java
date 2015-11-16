@@ -10,7 +10,7 @@ public class Card18 extends Card {
     public Card18() {
         image = new ImageIcon(("src/CardImagesYear1/LunchAtBratwurstHall.png"));
 
-        name = "Lunch at Bratwurst Hall";
+        cardName = "Lunch at Bratwurst Hall";
         locations.add(new Room("Bratwurst Hall"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices = null;

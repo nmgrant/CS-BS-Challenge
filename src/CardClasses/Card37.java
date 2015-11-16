@@ -10,7 +10,7 @@ public class Card37 extends Card {
     public Card37() {
         image = new ImageIcon(("src/CardImagesYear1/TheBigGame.png"));
 
-        name = "The Big Game";
+        cardName = "The Big Game";
         locations.add(new Room("Pyramid"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices = null;

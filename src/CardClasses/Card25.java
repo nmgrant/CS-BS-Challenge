@@ -10,7 +10,7 @@ public class Card25 extends Card {
     public Card25() {
         image = new ImageIcon(("src/CardImagesYear1/ParkingViolation.png"));
 
-        name = "Parking Violation";
+        cardName = "Parking Violation";
         locations.add(new Room("Forbidden Parking"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices = null;

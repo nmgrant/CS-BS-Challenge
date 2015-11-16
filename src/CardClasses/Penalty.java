@@ -4,7 +4,7 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 
 public class Penalty {
-   
+
    private final int ROOM_REQ_PENALTY = -2;
 
    private SkillPoints skillPoints;
@@ -15,9 +15,9 @@ public class Penalty {
    public Penalty() {
       qualityPoints = ROOM_REQ_PENALTY;
    }
-   
-   public Penalty(SkillPoints sPenalty, int qpPenalty,
-   Card[] cPenalty, Room rPenalty) {
+
+   public Penalty(SkillPoints sPenalty, int qpPenalty, Card[] cPenalty, 
+   Room rPenalty) {
       this.skillPoints = sPenalty;
       this.qualityPoints = qpPenalty;
       this.card = cPenalty;

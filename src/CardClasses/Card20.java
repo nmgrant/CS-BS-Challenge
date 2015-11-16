@@ -10,7 +10,7 @@ public class Card20 extends Card {
     public Card20() {
         image = new ImageIcon(("src/CardImagesYear1/MATH123.png"));
 
-        name = "Math 123";
+        cardName = "Math 123";
         locations.add(new Room("ECS 302"));
         locations.add(new Room("ECS 308"));
         skillPointsPreReq = new SkillPoints(5, 0, 0); // LCI

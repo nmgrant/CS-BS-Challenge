@@ -10,7 +10,7 @@ public class Card10 extends Card {
     public Card10() {
         image = new ImageIcon(("src/CardImagesYear1/FallInThePond.png"));
 
-        name = "Fall in the Pond";
+        cardName = "Fall in the Pond";
         locations.add(new Room("Japense Garden"));
         skillPointsPreReq = new SkillPoints(3, 0, 0); // LCI
         skillRewardChoices = null;

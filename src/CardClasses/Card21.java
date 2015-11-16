@@ -10,7 +10,7 @@ public class Card21 extends Card {
     public Card21() {
         image = new ImageIcon(("src/CardImagesYear1/MakeAFriend.png"));
 
-        name = "Make a Friend";
+        cardName = "Make a Friend";
         locations.add(new Room("North Hall"));
         locations.add(new Room("South Hall"));
         skillPointsPreReq = new SkillPoints(0, 0, 2); // LCI

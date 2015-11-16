@@ -10,7 +10,7 @@ public class Card38 extends Card {
     public Card38() {
         image = new ImageIcon(("src/CardImagesYear1/TheOutpost.png"));
 
-        name = "The Outpost";
+        cardName = "The Outpost";
         locations.add(new Room("George Allen Field"));
         locations.add(new Room("Japense Garden"));
         locations.add(new Room("The Pyramid"));

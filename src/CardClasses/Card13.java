@@ -10,7 +10,7 @@ public class Card13 extends Card {
     public Card13() {
         image = new ImageIcon(("src/CardImagesYear1/KIN253.png"));
 
-        name = "KIN 253";
+        cardName = "KIN 253";
         locations.add(new Room("Goerge Allen Field"));
         skillPointsPreReq = new SkillPoints(0, 0, 4); // LCI
         skillRewardChoices = null;

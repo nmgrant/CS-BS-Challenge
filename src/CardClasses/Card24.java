@@ -10,7 +10,7 @@ public class Card24 extends Card {
     public Card24() {
         image = new ImageIcon(("src/CardImagesYear1/OralCommunication.png"));
 
-        name = "Oral Communication";
+        cardName = "Oral Communication";
         locations.add(new Room("The Pyramid"));
         locations.add(new Room("Rec Center"));
         locations.add(new Room("Library"));

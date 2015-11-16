@@ -10,7 +10,7 @@ public class Card07 extends Card {
     public Card07() {
         image = new ImageIcon(("src/CardImagesYear1/EnjoyingNature.png"));
 
-        name = "Enjoying Nature";
+        cardName = "Enjoying Nature";
         locations.add(new Room("George Allen Field"));
         locations.add(new Room("Japense Garden"));
         locations.add(new Room("The Pyramid"));

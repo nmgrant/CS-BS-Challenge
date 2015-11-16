@@ -10,7 +10,7 @@ public class Card32 extends Card {
     public Card32() {
         image = new ImageIcon(("src/CardImagesYear1/ProgramCrashes.png"));
 
-        name = "Program Crashes";
+        cardName = "Program Crashes";
         locations.add(new Room("Lactation Lounge"));
         skillPointsPreReq = new SkillPoints(2, 0, 0); // LCI
         skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 

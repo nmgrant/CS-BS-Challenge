@@ -10,70 +10,69 @@ import javax.swing.JLabel;
 
 public class GameController {
 
-    private GameModel model;
-    private GameView frame;
+   private GameModel model;
+   private GameView frame;
 
-    public GameController(GameModel model, GameView frame) {
-        this.model = model;
-        this.frame = frame;
-        frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
-        frame.addMoveActionPerformed(new MoveActionPerformed());
-        frame.addCardButtonActionPerformed(new CardActionPerformed());
-        frame.addDrawCardButtonActionPerformed(new DrawCardButtonActionPerformed());
-    }
+   public GameController(GameModel model, GameView frame) {
+      this.model = model;
+      this.frame = frame;
+      frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
+      frame.addMoveActionPerformed(new MoveActionPerformed());
+      frame.addCardButtonActionPerformed(new CardActionPerformed());
+      frame.addDrawCardButtonActionPerformed(new DrawCardButtonActionPerformed());
+   }
 
-    public class PlayCardActionPerformed implements ActionListener {
+   public class PlayCardActionPerformed implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            playCard();
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+         playCard();
+      }
+   }
 
-    public class MoveActionPerformed implements ActionListener {
+   public class MoveActionPerformed implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            movePlayer();
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+         movePlayer();
+      }
+   }
 
-    public class DrawCardButtonActionPerformed implements ActionListener {
+   public class DrawCardButtonActionPerformed implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            drawCard();
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+         drawCard();
+      }
+   }
 
-    public class CardActionPerformed implements ActionListener {
+   public class CardActionPerformed implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            nextCard();
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+         nextCard();
+      }
+   }
 
-    public void playCard() {
-        Card chosenCard = frame.getCardButton().getCurrentCard();
-        boolean success = chosenCard.playCard(model.getCurrentPlayer());
+   public void playCard() {
+      Card chosenCard = frame.getCardButton().getCurrentCard();
+      boolean success = chosenCard.playCard(model.getCurrentPlayer());
 
-        if (model.getCurrentPlayer().hasDiscardedCard()) {
-            for (int i = 0; i < model.getCurrentPlayer().getDiscardedCard().size(); i++) {
-                Card discardedCard = model.getCurrentPlayer().getDiscardedCard().get(i);
-                model.addCardToDiscardDeck(discardedCard);
-            }
-        }
+      if (model.getCurrentPlayer().hasDiscardedCard()) {
+         for (int i = 0; i < model.getCurrentPlayer().getDiscardedCard().size(); i++) {
+            Card discardedCard = model.getCurrentPlayer().getDiscardedCard().get(i);
+            model.addCardToDiscardDeck(discardedCard);
+         }
+      }
 
-        String result = model.getCurrentPlayer().getName() + " played "
-                + chosenCard.getName();
-        
-        if (success) {
-            applyReward(chosenCard.getReward());
-        }
-        else {
-            applyPenalty(chosenCard.getPenalty());
-        }
+      String result = model.getCurrentPlayer().getName() + " played "
+      + chosenCard.getCardName();
+
+      if (success) {
+         applyReward(chosenCard.getReward());
+      } else {
+         applyPenalty(chosenCard.getPenalty());
+      }
 
 //        if (success) {
 //            result += " and received " + chosenCard.getSkillReward()
@@ -91,149 +90,149 @@ public class GameController {
 //        } else {
 //            result += " and failed.";
 //        }
-        frame.updateBottomConsole(result);
-        frame.updateInformationPanel();
-    }
-    
-    public void applyReward(Reward reward) {
-        int qualityPoints = reward.getQualityPointsReward();
-        SkillPoints skillPoints = reward.getSkillReward();
-        int cardsDrawn = reward.getCardReward();
-        Room room = reward.getRoomReward();
-        
-        if (qualityPoints > 0) {
-            model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
-        }
-        if (skillPoints != null) {
-            model.getCurrentPlayer().setSkillPoints(skillPoints);
-        }
-        if (cardsDrawn > 0) {
-            model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
-        }
-        if (room != null) {
-            teleportPlayer(room);
-        }
-    }
-    
-    public void applyPenalty(Penalty penalty) {
-        int qualityPoints = penalty.getQualityPointsPenalty();
-        SkillPoints skillPoints = penalty.getSkillPenalty();
-        Card[] cardsDrawn = penalty.getCardPenalty();
-        Room room = penalty.getRoomPenalty();
-        
-        if (qualityPoints > 0) {
-            model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
-        }
-        if (skillPoints != null) {
-            model.getCurrentPlayer().setSkillPoints(skillPoints);
-        }
-        if (cardsDrawn.length > 0) {
-            model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
-        }
-        if (room != null) {
-            teleportPlayer(room);
-        }
-    }
+      frame.updateBottomConsole(result);
+      frame.updateInformationPanel();
+   }
 
-    public void movePlayer() {
-        if (frame.getMoveList().getSelectedValue() == null) {
-            frame.updateBottomConsole(" Move not selected. \n");
-            return;
-        }
+   public void applyReward(Reward reward) {
+      int qualityPoints = reward.getQualityPointsReward();
+      SkillPoints skillPoints = reward.getSkillReward();
+      int cardsDrawn = reward.getCardReward();
+      Room room = reward.getRoomReward();
 
-        if (model.getCurrentPlayer().getMoves() > 0) {
+      if (qualityPoints > 0) {
+         model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+      }
+      if (skillPoints != null) {
+         model.getCurrentPlayer().setSkillPoints(skillPoints);
+      }
+      if (cardsDrawn > 0) {
+         model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
+      }
+      if (room != null) {
+         teleportPlayer(room);
+      }
+   }
 
-            Room currentPlayerRoom
-                    = model.getCurrentPlayer().getRoom();
-            Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
-            currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
+   public void applyPenalty(Penalty penalty) {
+      int qualityPoints = penalty.getQualityPointsPenalty();
+      SkillPoints skillPoints = penalty.getSkillPenalty();
+      Card[] cardsDrawn = penalty.getCardPenalty();
+      Room room = penalty.getRoomPenalty();
 
-            Room selectedRoom
-                    = (Room) frame.getMoveList().getSelectedValue();
+      if (qualityPoints > 0) {
+         model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+      }
+      if (skillPoints != null) {
+         model.getCurrentPlayer().setSkillPoints(skillPoints);
+      }
+      if (cardsDrawn.length > 0) {
+         model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
+      }
+      if (room != null) {
+         teleportPlayer(room);
+      }
+   }
 
-            model.getCurrentPlayer().setRoom(selectedRoom);
-            model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
-            model.getCurrentPlayer().decreaseMoves();
+   public void movePlayer() {
+      if (frame.getMoveList().getSelectedValue() == null) {
+         frame.updateBottomConsole(" Move not selected. \n");
+         return;
+      }
 
-            frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
-            frame.updateList();
+      if (model.getCurrentPlayer().getMoves() > 0) {
 
-            frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has moved to "
-                    + selectedRoom + "\n");
+         Room currentPlayerRoom
+         = model.getCurrentPlayer().getRoom();
+         Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
+         currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
 
-            if (model.getCurrentPlayer().getMoves() == 0) {
-                frame.getMove().setEnabled(false);
+         Room selectedRoom
+         = (Room) frame.getMoveList().getSelectedValue();
+
+         model.getCurrentPlayer().setRoom(selectedRoom);
+         model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
+         model.getCurrentPlayer().decreaseMoves();
+
+         frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
+         frame.updateList();
+
+         frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has moved to "
+         + selectedRoom + "\n");
+
+         if (model.getCurrentPlayer().getMoves() == 0) {
+            frame.getMove().setEnabled(false);
+         }
+      }
+      frame.updateInformationPanel();
+   }
+
+   public void teleportPlayer(Room room) {
+      Room currentPlayerRoom
+      = model.getCurrentPlayer().getRoom();
+      Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
+      currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
+
+      model.getCurrentPlayer().setRoom(room);
+      model.getCurrentPlayer().setSpace(room.findAvailableSpace());
+
+      frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
+      frame.updateList();
+
+      frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has teleported to "
+      + room + "\n");
+      frame.updateInformationPanel();
+   }
+
+   public void drawCard() {
+      Card drawnCard = model.getDeckOfCards().getTopCard();
+      model.getCurrentPlayer().pickUpCard(drawnCard);
+      frame.getCardButton().drawCard();
+      frame.updateCardButton();
+      model.removeCardFromDeck(drawnCard);
+      frame.updateInformationPanel();
+   }
+
+   public void nextCard() {
+      frame.getCardButton().nextCard();
+   }
+
+   public void nextPlayer() {
+      for (int i = 0; i < model.getPlayers().length; i++) {
+         if (model.getPlayers()[i].isCurrent()) {
+            model.getCurrentPlayer().changeCurrent();
+            if (i == 2) {
+               Player nextPlayer = (model.getPlayers())[i - 2];
+               model.setCurrentPlayer(nextPlayer);
+            } else {
+               Player nextPlayer = (model.getPlayers())[i + 1];
+               model.setCurrentPlayer(nextPlayer);
             }
-        }
-        frame.updateInformationPanel();
-    }
+         }
+      }
+      model.getCurrentPlayer().changeCurrent();
+      frame.updateList();
+      frame.updateBottomConsole(" Current player is "
+      + model.getCurrentPlayer().getName() + "\n");
 
-    public void teleportPlayer(Room room) {
-        Room currentPlayerRoom
-                = model.getCurrentPlayer().getRoom();
-        Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
-        currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
+      if (!(model.getCurrentPlayer().isHuman())) {
+         computerTurn();
+      }
 
-        model.getCurrentPlayer().setRoom(room);
-        model.getCurrentPlayer().setSpace(room.findAvailableSpace());
+      frame.snapToCurrentPlayer();
+   }
 
-        frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
-        frame.updateList();
+   public void computerTurn() {
+      Random rand = new Random();
+      int numberOfMoves = rand.nextInt(3) + 1;
 
-        frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has teleported to "
-                + room + "\n");
-        frame.updateInformationPanel();
-    }
+      for (int i = 0; i < numberOfMoves; i++) {
 
-    public void drawCard() {
-        Card drawnCard = model.getDeckOfCards().getTopCard();
-        model.getCurrentPlayer().pickUpCard(drawnCard);
-        frame.getCardButton().drawCard();
-        frame.updateCardButton();
-        model.removeCardFromDeck(drawnCard);
-        frame.updateInformationPanel();
-    }
+         int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
+         frame.getMoveList().setSelectedIndex(roomChoice);
+         movePlayer();
 
-    public void nextCard() {
-        frame.getCardButton().nextCard();
-    }
-
-    public void nextPlayer() {
-        for (int i = 0; i < model.getPlayers().length; i++) {
-            if (model.getPlayers()[i].isCurrent()) {
-                model.getCurrentPlayer().changeCurrent();
-                if (i == 2) {
-                    Player nextPlayer = (model.getPlayers())[i - 2];
-                    model.setCurrentPlayer(nextPlayer);
-                } else {
-                    Player nextPlayer = (model.getPlayers())[i + 1];
-                    model.setCurrentPlayer(nextPlayer);
-                }
-            }
-        }
-        model.getCurrentPlayer().changeCurrent();
-        frame.updateList();
-        frame.updateBottomConsole(" Current player is "
-                + model.getCurrentPlayer().getName() + "\n");
-
-        if (!(model.getCurrentPlayer().isHuman())) {
-            computerTurn();
-        }
-
-        frame.snapToCurrentPlayer();
-    }
-
-    public void computerTurn() {
-        Random rand = new Random();
-        int numberOfMoves = rand.nextInt(3) + 1;
-
-        for (int i = 0; i < numberOfMoves; i++) {
-
-            int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
-            frame.getMoveList().setSelectedIndex(roomChoice);
-            movePlayer();
-
-        }
-        playCard();
-    }
+      }
+      playCard();
+   }
 }

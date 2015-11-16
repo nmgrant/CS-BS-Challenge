@@ -10,7 +10,7 @@ public class Card14 extends Card {
     public Card14() {
         image = new ImageIcon(("src/CardImagesYear1/LateForClass.png"));
 
-        name = "Late for Class";
+        cardName = "Late for Class";
         locations.add(new Room("George Allen Field"));
         locations.add(new Room("Japense Garden"));
         locations.add(new Room("The Pyramid"));

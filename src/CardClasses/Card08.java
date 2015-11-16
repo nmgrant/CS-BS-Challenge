@@ -10,7 +10,7 @@ public class Card08 extends Card {
     public Card08() {
         image = new ImageIcon(("src/CardImagesYear1/EnjoyingThePeace.png"));
 
-        name = "Enjoying the Peace";
+        cardName = "Enjoying the Peace";
         locations.add(new Room("Japense Garden"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 

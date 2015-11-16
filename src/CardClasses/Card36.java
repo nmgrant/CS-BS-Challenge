@@ -10,7 +10,7 @@ public class Card36 extends Card {
     public Card36() {
         image = new ImageIcon(("src/CardImagesYear1/StudentParking.png"));
 
-        name = "Student Parking";
+        cardName = "Student Parking";
         locations.add(new Room("Student Parking"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
         skillRewardChoices = null;

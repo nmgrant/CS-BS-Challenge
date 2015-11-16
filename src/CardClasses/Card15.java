@@ -10,7 +10,7 @@ public class Card15 extends Card {
     public Card15() {
         image = new ImageIcon(("src/CardImagesYear1/LearningLinux.png"));
 
-        name = "Learning Linux";
+        cardName = "Learning Linux";
         locations.add(new Room("Computer Lab"));
         skillPointsPreReq = new SkillPoints(0, 2, 3); // LCI
         skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 

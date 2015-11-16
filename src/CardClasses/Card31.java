@@ -10,7 +10,7 @@ public class Card31 extends Card {
     public Card31() {
         image = new ImageIcon(("src/CardImagesYear1/ProfessorHoffman.png"));
 
-        name = "Professor Hoffman";
+        cardName = "Professor Hoffman";
         locations.add(new Room("Computer Lab"));
         locations.add(new Room("North Hall"));
         locations.add(new Room("Room of Retirement"));

@@ -10,7 +10,7 @@ public class Card22 extends Card {
     public Card22() {
         image = new ImageIcon(("src/CardImagesYear1/MakeDeanList.png"));
 
-        name = "Make the Dean's List";
+        cardName = "Make the Dean's List";
         locations.add(new Room("North Hall"));
         locations.add(new Room("South Hall"));
         skillPointsPreReq = new SkillPoints(6, 0, 0); // LCI

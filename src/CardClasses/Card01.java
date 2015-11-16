@@ -10,7 +10,7 @@ public class Card01 extends Card {
     public Card01() {
         image = new ImageIcon(("src/CardImagesYear1/BuddyUp.png"));
 
-        name = "Buddy Up";
+        cardName = "Buddy Up";
         locations.add(new Room("George Allen Field"));
         locations.add(new Room("EAT Club"));
         skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI

@@ -10,7 +10,7 @@ public class Card04 extends Card {
     public Card04() {
         image = new ImageIcon(("src/CardImagesYear1/CHEM111.png"));
 
-        name = "CHEM 111";
+        cardName = "CHEM 111";
         locations.add(new Room("The Pyramid"));
         locations.add(new Room("Rec Center"));
         locations.add(new Room("Library"));

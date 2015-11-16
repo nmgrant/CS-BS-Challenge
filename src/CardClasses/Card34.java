@@ -10,7 +10,7 @@ public class Card34 extends Card {
     public Card34() {
         image = new ImageIcon(("src/CardImagesYear1/ScoreAGoal.png"));
 
-        name = "Score a Goal!";
+        cardName = "Score a Goal!";
         locations.add(new Room("George Allen Field"));
         skillPointsPreReq = new SkillPoints(0, 3, 0); // LCI
         skillRewardChoices = null;
