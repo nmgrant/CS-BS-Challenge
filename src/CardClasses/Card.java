@@ -68,4 +68,9 @@ public abstract class Card {
       final Card other = (Card) obj;
       return Objects.equals(this.image, other.image);
    }
+   
+   @Override
+   public String toString() {
+       return cardName;
+   }
 }
