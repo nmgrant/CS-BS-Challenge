@@ -16,8 +16,7 @@ public class Player extends JLabel {
    private LinkedList<Card> handOfCards;
    private Room room;
    private boolean human, current;
-   private boolean handIsFull, hasDiscardedCard;
-   private ArrayList<Card> discardedCards;
+   private boolean handIsFull;
    private ArrayList<Room> possibleRooms;
    private int moves;
    private Point space;
@@ -31,8 +30,6 @@ public class Player extends JLabel {
       human = false;
       moves = MAX_MOVES;
       current = false;
-      hasDiscardedCard = false;
-      discardedCards = null;
       handIsFull = false;
       handOfCards = new LinkedList<>();
    }
@@ -119,18 +116,8 @@ public class Player extends JLabel {
       }
    }
 
-   public boolean hasDiscardedCard() {
-      return hasDiscardedCard;
-   }
-
-   public ArrayList<Card> getDiscardedCard() {
-      return discardedCards;
-   }
-
    public void discardCard(Card card) {
       handOfCards.remove(card);
-      discardedCards.add(card);
-      hasDiscardedCard = true;
    }
 
    public LinkedList<Card> getHand() {
