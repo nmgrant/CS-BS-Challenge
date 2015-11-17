@@ -61,7 +61,7 @@ public class GameController {
       Card chosenCard = frame.getCardButton().getCurrentCard();
       boolean success = chosenCard.playCard(model.getCurrentPlayer());
 
-      String result = "\n" +model.getCurrentPlayer().getName() + " played "
+      String result = "\n" + model.getCurrentPlayer().getName() + " played "
       + chosenCard.getCardName();
 
       if (success) {
@@ -206,7 +206,7 @@ public class GameController {
       frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
       frame.updateList();
 
-      frame.updateBottomConsole(model.getCurrentPlayer() + " has teleported to "
+      frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has teleported to "
       + room);
       frame.updateInformationPanel();
    }

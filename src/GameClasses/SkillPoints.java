@@ -94,7 +94,7 @@ public class SkillPoints {
 
    @Override
    public String toString() {
-      return " Learning Chips: " + learningChips + "Craft Chips: " + craftChips
+      return " Learning Chips: " + learningChips + " Craft Chips: " + craftChips
       + " Integrity Chips: " + integrityChips;
    }
 
