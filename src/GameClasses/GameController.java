@@ -6,6 +6,9 @@ import CardClasses.Reward;
 import java.awt.event.*;
 import java.util.Random;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import javax.swing.JLabel;
 
 public class GameController {
@@ -161,12 +164,12 @@ public class GameController {
 
          frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
          frame.updateList();
-         
+
          if (!currentPlayerRoom.getRoomCards().isEmpty()) {
             String pickedUpCard = currentPlayerRoom.getRoomCards().toString();
             model.getCurrentPlayer().pickUpRoomCard();
-            frame.updateBottomConsole(model.getCurrentPlayer().getName() 
-            + " picked up: " +pickedUpCard);
+            frame.updateBottomConsole(model.getCurrentPlayer().getName()
+               + " picked up: " + pickedUpCard);
          }
       }
       frame.updateInformationPanel();
@@ -228,16 +231,45 @@ public class GameController {
    }
 
    public void computerTurn() {
+      drawCard();
       Random rand = new Random();
-      int numberOfMoves = rand.nextInt(3) + 1;
+      Room desiredRoom = null;
+      Card desiredCard = null;
 
-      for (int i = 0; i < numberOfMoves; i++) {
+      HashSet<Room> possibleMoves = (model.getPossibleRooms(model.getCurrentPlayer().getRoom(), 3));
+      LinkedList<Card> cards = model.getCurrentPlayer().getHand();
 
-         int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
-         frame.getMoveList().setSelectedIndex(roomChoice);
-         movePlayer();
-
+      for (Room room : possibleMoves) {
+         for (Card card : cards) {
+            if (card.getLocations().contains(room)) {
+               desiredRoom = room;
+               desiredCard = card;
+            }
+         }
       }
+
+      ArrayList<Room> roomSequence;
+      if (desiredRoom != null && desiredCard != null) {
+         roomSequence = model.findPathToRoom(model.getCurrentPlayer().getRoom(), desiredRoom);
+
+         for (int i = 0; i < roomSequence.size(); i++) {
+            frame.selectSpecificRoom(roomSequence.get(i));
+            movePlayer();
+         }
+         frame.getCardButton().setCurrentCard(desiredCard);
+      } else {
+         int numberOfMoves = rand.nextInt(3) + 1;
+
+         for (int i = 0; i < numberOfMoves; i++) {
+            int roomChoice = rand.nextInt(frame.getMoveList().getModel().getSize());
+            frame.getMoveList().setSelectedIndex(roomChoice);
+            movePlayer();
+         }
+         int cardChoice = rand.nextInt(cards.size());
+         frame.getCardButton().setCurrentCard(cards.get(cardChoice));
+      }
+
       playCard();
+      nextPlayer();
    }
 }

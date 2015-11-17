@@ -253,15 +253,21 @@ public class GameView extends javax.swing.JFrame {
       currentPlayer = model.getCurrentPlayer();
 
       Room currentRoom = currentPlayer.getRoom();
-        ArrayList<Room> adjacentRooms = new ArrayList<>();
-        for (int roomNumber : currentRoom.getAdjacentRooms()) {
-            adjacentRooms.add(model.getRoom(roomNumber));
-        }
-        moveList.setModel(new javax.swing.AbstractListModel() {
-            Room[] rooms = adjacentRooms.toArray(new Room[adjacentRooms.size()]);
-            public int getSize() { return rooms.length; }
-            public Object getElementAt(int i) { return rooms[i]; }
-        });
+      ArrayList<Room> adjacentRooms = new ArrayList<>();
+      for (int roomNumber : currentRoom.getAdjacentRooms()) {
+         adjacentRooms.add(model.getRoom(roomNumber));
+      }
+      moveList.setModel(new javax.swing.AbstractListModel() {
+         Room[] rooms = adjacentRooms.toArray(new Room[adjacentRooms.size()]);
+
+         public int getSize() {
+            return rooms.length;
+         }
+
+         public Object getElementAt(int i) {
+            return rooms[i];
+         }
+      });
       if (currentPlayer.getMoves() > 0) {
          moveList.setModel(new javax.swing.AbstractListModel() {
             Room[] rooms = adjacentRooms.toArray(new Room[adjacentRooms.size()]);
@@ -292,48 +298,48 @@ public class GameView extends javax.swing.JFrame {
          });
       }
    }
-   
+
    public void updateInformationPanel() {
-       Player player1 = model.getPlayers()[0];
-       Player player2 = model.getPlayers()[1];
-       Player player3 = model.getPlayers()[2];
-       String[] columnNames = {"Learning",
-           "Craft", "Integrity"};
-       Object[][] data = { 
-           {player1.getName(), player1.getSkillPoints().getLearningChips(),
-            player1.getSkillPoints().getCraftChips(), 
-            player1.getSkillPoints().getIntegrityChips(), 
-            player1.getQualityPoints()}, 
-           {player2.getName(), player2.getSkillPoints().getLearningChips(),
-            player2.getSkillPoints().getCraftChips(), 
+      Player player1 = model.getPlayers()[0];
+      Player player2 = model.getPlayers()[1];
+      Player player3 = model.getPlayers()[2];
+      String[] columnNames = {"Learning",
+         "Craft", "Integrity"};
+      Object[][] data = {
+         {player1.getName(), player1.getSkillPoints().getLearningChips(),
+            player1.getSkillPoints().getCraftChips(),
+            player1.getSkillPoints().getIntegrityChips(),
+            player1.getQualityPoints()},
+         {player2.getName(), player2.getSkillPoints().getLearningChips(),
+            player2.getSkillPoints().getCraftChips(),
             player2.getSkillPoints().getIntegrityChips(),
             player2.getQualityPoints()},
-           {player3.getName(), player3.getSkillPoints().getLearningChips(),
-            player3.getSkillPoints().getCraftChips(), 
+         {player3.getName(), player3.getSkillPoints().getLearningChips(),
+            player3.getSkillPoints().getCraftChips(),
             player3.getSkillPoints().getIntegrityChips(),
             player3.getQualityPoints()}
-       };
-       informationPanel.setText("\n\n\tLearning\tCraft\tIntegrity\tQuality Points\n");
-       for (int i = 0; i < data.length; i++) {
-           informationPanel.append(data[i][0] + " \t " + 
-            data[i][1] + " \t " + data[i][2] + " \t " + data[i][3] 
+      };
+      informationPanel.setText("\n\n\tLearning\tCraft\tIntegrity\tQuality Points\n");
+      for (int i = 0; i < data.length; i++) {
+         informationPanel.append(data[i][0] + " \t "
+            + data[i][1] + " \t " + data[i][2] + " \t " + data[i][3]
             + " \t " + data[i][4] + "\n");
-       }
-       informationPanel.append("\n\n\n Cards in deck: " + 
-        model.getDeckOfCards().getNumberOfCards() + "\t Cards out of play: "
-        + model.getDiscardDeck().getNumberOfCards() + "\n");
-       
-       informationPanel.append("\n You are " + 
-        model.getCurrentPlayer().getName() + " and you are in " +
-        model.getCurrentPlayer().getRoom());
-     }
-   
+      }
+      informationPanel.append("\n\n\n Cards in deck: "
+         + model.getDeckOfCards().getNumberOfCards() + "\t Cards out of play: "
+         + model.getDiscardDeck().getNumberOfCards() + "\n");
+
+      informationPanel.append("\n You are "
+         + model.getCurrentPlayer().getName() + " and you are in "
+         + model.getCurrentPlayer().getRoom());
+   }
+
    public void updateCardButton() {
-       moveButton.setEnabled(true);
-       playCardButton.setEnabled(true);
-       drawCardButton.setEnabled(false);
-       cardButton.setIcon(cardButton.getIcon());
-       gamePanel.updateUI();
+      moveButton.setEnabled(true);
+      playCardButton.setEnabled(true);
+      drawCardButton.setEnabled(false);
+      cardButton.setIcon(cardButton.getIcon());
+      gamePanel.updateUI();
    }
 
    public void updateBottomConsole(String message) {
@@ -347,6 +353,14 @@ public class GameView extends javax.swing.JFrame {
 
    public void addPlayCardActionPerformed(ActionListener l) {
       playCardButton.addActionListener(l);
+   }
+
+   public void selectSpecificRoom(Room selectedRoom) {
+      for (int i = 0; i < moveList.getModel().getSize(); i++) {
+         if (selectedRoom.equals(moveList.getModel().getElementAt(i))) {
+            moveList.setSelectedIndex(i);
+         }
+      }
    }
 
    public void addMoveActionPerformed(ActionListener l) {

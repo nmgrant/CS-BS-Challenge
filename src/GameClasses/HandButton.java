@@ -27,6 +27,10 @@ public class HandButton extends JButton {
       return currentCard;
    }
 
+   public void setCurrentCard(Card card) {
+      currentCard = card;
+   }
+
    @Override
    public void addActionListener(ActionListener l) {
       super.addActionListener(l);
@@ -43,9 +47,9 @@ public class HandButton extends JButton {
       setIcon(handOfCards.get(next).getImage());
       currentCard = handOfCards.get(next);
    }
-   
+
    public void drawCard() {
-       currentCard = handOfCards.getFirst();
-       setIcon(currentCard.getImage());
+      currentCard = handOfCards.getFirst();
+      setIcon(currentCard.getImage());
    }
 }
