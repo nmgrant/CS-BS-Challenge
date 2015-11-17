@@ -27,6 +27,7 @@ public class DiscardCardDialog extends JDialog {
         setPreferredSize(new Dimension(630, 580));
         initializeComponents();
         
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setModal(true);
         pack();
         setVisible(true);
