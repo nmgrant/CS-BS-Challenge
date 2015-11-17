@@ -3,6 +3,7 @@ package CardClasses;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class Card19 extends Card {
@@ -26,10 +27,17 @@ public class Card19 extends Card {
 
    @Override
    public boolean playCard(Player cPlayer) {
+      Random rand = new Random();
       if (locations.contains(cPlayer.getRoom())) {
-         RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
-         SkillPoints choice = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
-         reward = new Reward(choice, 0, 0, null);
+         SkillPoints chosenReward;
+         if (cPlayer.isHuman()) {
+            RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
+            chosenReward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
+         } else {
+            int randomReward = rand.nextInt(skillRewardChoices.length);
+            chosenReward = new SkillPoints(randomReward);
+         }
+         reward = new Reward(chosenReward, 0, 0, null);
          return true;
       } else {
          penalty = new Penalty();
