@@ -161,6 +161,10 @@ public class GameController {
          model.getCurrentPlayer().setRoom(selectedRoom);
          model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
          model.getCurrentPlayer().decreaseMoves();
+         
+         if (model.getCurrentPlayer().getMoves() == 0) {
+             frame.getMove().setEnabled(false);
+         }
 
          frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
          frame.updateList();
@@ -206,7 +210,25 @@ public class GameController {
    }
 
    public void nextPlayer() {
-      for (int i = 0; i < model.getPlayers().length; i++) {
+      
+      chooseNextPlayer();
+      
+      model.getCurrentPlayer().changeCurrent();
+      frame.updateList();
+      
+      if (!(model.getCurrentPlayer().isHuman())) {
+         computerTurns();
+      }
+
+      frame.snapToCurrentPlayer();
+      frame.updateInformationPanel();
+      frame.getDrawCardButton().setEnabled(true);
+      frame.getPlayCard().setEnabled(false);
+      frame.getMove().setEnabled(false);
+   }
+   
+   public void chooseNextPlayer() {
+       for (int i = 0; i < model.getPlayers().length; i++) {
          if (model.getPlayers()[i].isCurrent()) {
             model.getCurrentPlayer().changeCurrent();
             if (i == 2) {
@@ -218,19 +240,9 @@ public class GameController {
             }
          }
       }
-      model.getCurrentPlayer().changeCurrent();
-      frame.updateList();
-      frame.updateBottomConsole(" Current player is "
-         + model.getCurrentPlayer().getName() + "\n");
-
-      if (!(model.getCurrentPlayer().isHuman())) {
-         computerTurn();
-      }
-
-      frame.snapToCurrentPlayer();
    }
 
-   public void computerTurn() {
+   public void computerTurns() {
       drawCard();
       Random rand = new Random();
       Room desiredRoom = null;
@@ -270,6 +282,5 @@ public class GameController {
       }
 
       playCard();
-      nextPlayer();
    }
 }
