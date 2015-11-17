@@ -53,9 +53,9 @@ public class Player extends JLabel {
    public SkillPoints getSkillPoints() {
       return skillPoints;
    }
-   
+
    public int getQualityPoints() {
-       return qualityPoints;
+      return qualityPoints;
    }
 
    public void setSkillPoints(SkillPoints skillPoints) {
@@ -111,18 +111,26 @@ public class Player extends JLabel {
       }
    }
 
+   public void pickUpRoomCard() {
+      if (handOfCards.size() >= 7) {
+         handIsFull = true;
+      } else {
+         handOfCards.addFirst(room.pickUpCardInRoom());
+      }
+   }
+
    public boolean hasDiscardedCard() {
-       return hasDiscardedCard;
+      return hasDiscardedCard;
    }
-   
+
    public ArrayList<Card> getDiscardedCard() {
-       return discardedCards;
+      return discardedCards;
    }
-   
+
    public void discardCard(Card card) {
-       handOfCards.remove(card);
-       discardedCards.add(card);
-       hasDiscardedCard = true;
+      handOfCards.remove(card);
+      discardedCards.add(card);
+      hasDiscardedCard = true;
    }
 
    public LinkedList<Card> getHand() {
