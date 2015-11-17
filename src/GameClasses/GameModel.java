@@ -58,9 +58,9 @@ public class GameModel {
 
    private void initializePlayers() {
       players = new Player[3];
-      players[0] = new Player("Evan", new SkillPoints(10, 10, 10), rooms[17]);
-      players[1] = new Player("Nick", new SkillPoints(10, 10, 10), rooms[17]);
-      players[2] = new Player("BlAdam", new SkillPoints(10, 10, 10), rooms[17]);
+      players[0] = new Player("Evan", new SkillPoints(5, 5, 5), rooms[17]);
+      players[1] = new Player("Nick", new SkillPoints(5, 5, 5), rooms[17]);
+      players[2] = new Player("BlAdam", new SkillPoints(5, 5, 5), rooms[17]);
 
       for (int i = 0; i < 3; i++) {
          players[i].setSpace(players[i].getRoom().getRoomSpace(i));
@@ -114,18 +114,16 @@ public class GameModel {
       return discardDeck;
    }
 
-   public void reshuffleDeck() {
+    public void reshuffleDeck() {
       if (deckOfCards.isDeckEmpty()) {
          for (int i = 0; i < discardDeck.getNumberOfCards(); i++) {
             deckOfCards.addCard(discardDeck.getCard(i));
-            discardDeck.removeCard(discardDeck.getCard(i));
          }
-         for (int j = 0; j < discardDeck.getNumberOfCards(); j++) {
-            discardDeck.removeCard(discardDeck.getCard(j));
-         }
+         discardDeck.getDeckOfCards().removeAll(discardDeck.getDeckOfCards());
          deckOfCards.shuffleDeck(System.nanoTime());
       }
    }
+
 
    public Player getCurrentPlayer() {
       return currentPlayer;
