@@ -2,11 +2,7 @@ package GameClasses;
 
 import CardClasses.Card;
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 
 public class GameView extends javax.swing.JFrame {
@@ -27,8 +23,8 @@ public class GameView extends javax.swing.JFrame {
       initPlayerPosition(player3Label);
       snapToCurrentPlayer();
       updateInformationPanel();
-      //Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
-      //backgroundMusic.loop();
+      Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
+      backgroundMusic.loop();
    }
 
    /**
