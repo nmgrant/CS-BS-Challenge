@@ -58,13 +58,6 @@ public class GameController {
       Card chosenCard = frame.getCardButton().getCurrentCard();
       boolean success = chosenCard.playCard(model.getCurrentPlayer());
 
-      if (model.getCurrentPlayer().hasDiscardedCard()) {
-         for (int i = 0; i < model.getCurrentPlayer().getDiscardedCard().size(); i++) {
-            Card discardedCard = model.getCurrentPlayer().getDiscardedCard().get(i);
-            model.addCardToDiscardDeck(discardedCard);
-         }
-      }
-
       String result = model.getCurrentPlayer().getName() + " played "
          + chosenCard.getCardName();
 
@@ -112,9 +105,11 @@ public class GameController {
    }
 
    public String applyPenalty(Penalty penalty) {
+      Card playedCard = frame.getCardButton().getCurrentCard();
       int qualityPoints = penalty.getQualityPointsPenalty();
       SkillPoints skillPoints = penalty.getSkillPenalty();
       Card[] cardsDiscarded = penalty.getCardPenalty();
+      boolean leaveCard = penalty.checkLeaveCard(playedCard);
       Room room = penalty.getRoomPenalty();
 
       String result = "";
@@ -138,6 +133,10 @@ public class GameController {
          teleportPlayer(room);
          result += " and has moved to: " + room;
       }
+      if (leaveCard) {
+         model.getCurrentPlayer().getRoom().placeCardInRoom(playedCard);
+         model.getCurrentPlayer().discardCard(playedCard);
+      }
 
       return result;
    }
@@ -150,13 +149,11 @@ public class GameController {
 
       if (model.getCurrentPlayer().getMoves() > 0) {
 
-         Room currentPlayerRoom
-            = model.getCurrentPlayer().getRoom();
+         Room currentPlayerRoom = model.getCurrentPlayer().getRoom();
          Point currentPlayerSpace = model.getCurrentPlayer().getSpace();
          currentPlayerRoom.setSpaceAvailability(currentPlayerSpace);
 
-         Room selectedRoom
-            = (Room) frame.getMoveList().getSelectedValue();
+         Room selectedRoom = (Room) frame.getMoveList().getSelectedValue();
 
          model.getCurrentPlayer().setRoom(selectedRoom);
          model.getCurrentPlayer().setSpace(selectedRoom.findAvailableSpace());
@@ -164,6 +161,13 @@ public class GameController {
 
          frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
          frame.updateList();
+         
+         if (!currentPlayerRoom.getRoomCards().isEmpty()) {
+            String pickedUpCard = currentPlayerRoom.getRoomCards().toString();
+            model.getCurrentPlayer().pickUpRoomCard();
+            frame.updateBottomConsole(model.getCurrentPlayer().getName() 
+            + " picked up: " +pickedUpCard);
+         }
       }
       frame.updateInformationPanel();
    }

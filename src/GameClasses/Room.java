@@ -38,6 +38,10 @@ public class Room {
        roomCards.add(playedCard);
     }
     
+    public Card pickUpCardInRoom() {
+       return roomCards.remove(0);
+    }
+    
     public int[] getAdjacentRooms() {
         return adjacentRooms;
     }
