@@ -18,6 +18,7 @@ public class Player extends JLabel {
    private boolean human, current;
    private boolean handIsFull, hasDiscardedCard;
    private ArrayList<Card> discardedCards;
+   private ArrayList<Room> possibleRooms;
    private int moves;
    private Point space;
 
