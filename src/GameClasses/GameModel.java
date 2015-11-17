@@ -114,6 +114,19 @@ public class GameModel {
       return discardDeck;
    }
 
+   public void reshuffleDeck() {
+      if (deckOfCards.isDeckEmpty()) {
+         for (int i = 0; i < discardDeck.getNumberOfCards(); i++) {
+            deckOfCards.addCard(discardDeck.getCard(i));
+            discardDeck.removeCard(discardDeck.getCard(i));
+         }
+         for (int j = 0; j < discardDeck.getNumberOfCards(); j++) {
+            discardDeck.removeCard(discardDeck.getCard(j));
+         }
+         deckOfCards.shuffleDeck(System.nanoTime());
+      }
+   }
+
    public Player getCurrentPlayer() {
       return currentPlayer;
    }

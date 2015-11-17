@@ -55,12 +55,16 @@ public class Deck {
 
       long seed = System.nanoTime();
 
-      shuffleDeck(deckOfCards, seed);
-      shuffleDeck(deckOfCards, seed);
+      shuffleDeck(seed);
+      shuffleDeck(seed);
    }
 
    public ArrayList<Card> getDeckOfCards() {
       return deckOfCards;
+   }
+   
+   public boolean isDeckEmpty() {
+      return deckOfCards.isEmpty();
    }
 
    public Card getCard(int index) {
@@ -83,7 +87,7 @@ public class Deck {
        return deckOfCards.size();
    }
 
-   public void shuffleDeck(ArrayList<Card> deckOfCards, long randomSeed) {
+   public void shuffleDeck(long randomSeed) {
       Collections.shuffle(deckOfCards, new Random(randomSeed));
    }
 }
