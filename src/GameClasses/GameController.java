@@ -206,7 +206,7 @@ public class GameController {
       frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
       frame.updateList();
 
-      frame.updateBottomConsole(" " + model.getCurrentPlayer() + " has teleported to "
+      frame.updateBottomConsole("\n" + model.getCurrentPlayer() + " has teleported to "
       + room);
       frame.updateInformationPanel();
    }

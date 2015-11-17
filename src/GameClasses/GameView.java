@@ -317,17 +317,17 @@ public class GameView extends javax.swing.JFrame {
       };
       informationPanel.setText("\tLearning\tCraft\tIntegrity\tQuality Points\n");
       for (int i = 0; i < data.length; i++) {
-         informationPanel.append(data[i][0] +" \t "
-         +data[i][1] + " \t " +data[i][2] +" \t " +data[i][3]
-         +" \t " +data[i][4] +"\n");
+         informationPanel.append(data[i][0] + " \t "
+         + data[i][1] + " \t " + data[i][2] + " \t " + data[i][3]
+         + " \t " + data[i][4] + "\n");
       }
       informationPanel.append("\n\n\n Cards in deck: "
-      +model.getDeckOfCards().getNumberOfCards() +"\t Discards out of play: "
-      +model.getDiscardDeck().getNumberOfCards() +"\n");
+      + model.getDeckOfCards().getNumberOfCards() + "\t Discards out of play: "
+      + model.getDiscardDeck().getNumberOfCards() + "\n");
 
       informationPanel.append("\n\n\n You are "
-      +model.getCurrentPlayer().getName() +" and you are in "
-      +model.getCurrentPlayer().getRoom());
+      + model.getCurrentPlayer().getName() + " and you are in "
+      + model.getCurrentPlayer().getRoom());
 
    }
 
