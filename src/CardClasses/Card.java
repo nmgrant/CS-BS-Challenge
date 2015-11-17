@@ -45,6 +45,10 @@ public abstract class Card {
    public ArrayList<Room> getLocations() {
       return locations;
    }
+   
+   public SkillPoints getskillPointsPreReq() {
+       return skillPointsPreReq;
+   }
 
    @Override
    public int hashCode() {
