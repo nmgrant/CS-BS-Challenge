@@ -55,11 +55,11 @@ public class SkillPoints {
    public void setIntegrityChips(int integrityChips) {
       this.integrityChips = integrityChips;
    }
-   
+
    public void adjustSkillPoints(SkillPoints skillPoints) {
-       learningChips += skillPoints.getLearningChips();
-       craftChips += skillPoints.getCraftChips();
-       integrityChips += skillPoints.getIntegrityChips();
+      learningChips += skillPoints.getLearningChips();
+      craftChips += skillPoints.getCraftChips();
+      integrityChips += skillPoints.getIntegrityChips();
    }
 
    @Override
@@ -91,11 +91,11 @@ public class SkillPoints {
       }
       return true;
    }
-   
+
    @Override
    public String toString() {
-       return " Learning Chips: " + learningChips + " Craft Chips: " + craftChips
-        + " Integrity Chips: " + integrityChips + "\n";
+      return " Learning Chips: " + learningChips + "Craft Chips: " + craftChips
+      + " Integrity Chips: " + integrityChips;
    }
 
 }

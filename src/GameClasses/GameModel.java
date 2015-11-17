@@ -4,12 +4,6 @@ import CardClasses.*;
 import CardClasses.Deck;
 import java.util.Random;
 import java.util.ArrayList;
-import java.awt.Rectangle;
-import javax.swing.JLabel;
-import java.awt.Point;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.Collections;
 import java.util.HashSet;
 
 public class GameModel {
@@ -95,6 +89,10 @@ public class GameModel {
 
    public Room getRoom(int room) {
       return rooms[room];
+   }
+   
+   public Room[] getRooms() {
+      return rooms;
    }
 
    public Player[] getPlayers() {
@@ -212,7 +210,6 @@ public class GameModel {
             }
          }
       }
-
       return roomSequence;
    }
 }
