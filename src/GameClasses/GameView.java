@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class GameView extends javax.swing.JFrame {
 
@@ -89,11 +90,6 @@ public class GameView extends javax.swing.JFrame {
 
         boardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/boardMap.png"))); // NOI18N
 
-        boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
-        boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout boardWindowPanelLayout = new javax.swing.GroupLayout(boardWindowPanel);
         boardWindowPanel.setLayout(boardWindowPanelLayout);
         boardWindowPanelLayout.setHorizontalGroup(
@@ -130,6 +126,10 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(boardLabel)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+        boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(player3Label, javax.swing.JLayeredPane.DRAG_LAYER);
+        boardWindowPanel.setLayer(boardLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         boardWindow.setViewportView(boardWindowPanel);
 
@@ -139,17 +139,14 @@ public class GameView extends javax.swing.JFrame {
         drawCardButton.setText("Draw Card");
 
         Room currentRoom = currentPlayer.getRoom();
+        ArrayList<Room> adjacentRooms = new ArrayList<>();
+        for (int roomNumber : currentRoom.getAdjacentRooms()) {
+            adjacentRooms.add(model.getRoom(roomNumber));
+        }
         moveList.setModel(new javax.swing.AbstractListModel() {
-            public Room[] initializeList() {
-                Room[] rooms = new Room[currentRoom.getAdjacentRooms().length];
-                for (int i = 0; i < rooms.length; i++) {
-                    rooms[i] = currentRoom.getAdjacentRooms()[i];
-                }
-                return rooms;
-            }
+            Room[] rooms = (adjacentRooms.toArray(new Room[adjacentRooms.size()]));
             public int getSize() { return rooms.length; }
             public Object getElementAt(int i) { return rooms[i]; }
-            Room[] rooms = initializeList();
         });
         moveList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         moveListWindow.setViewportView(moveList);
@@ -256,9 +253,18 @@ public class GameView extends javax.swing.JFrame {
       currentPlayer = model.getCurrentPlayer();
 
       Room currentRoom = currentPlayer.getRoom();
+        ArrayList<Room> adjacentRooms = new ArrayList<>();
+        for (int roomNumber : currentRoom.getAdjacentRooms()) {
+            adjacentRooms.add(model.getRoom(roomNumber));
+        }
+        moveList.setModel(new javax.swing.AbstractListModel() {
+            Room[] rooms = adjacentRooms.toArray(new Room[adjacentRooms.size()]);
+            public int getSize() { return rooms.length; }
+            public Object getElementAt(int i) { return rooms[i]; }
+        });
       if (currentPlayer.getMoves() > 0) {
          moveList.setModel(new javax.swing.AbstractListModel() {
-            Room[] rooms = currentRoom.getAdjacentRooms();
+            Room[] rooms = adjacentRooms.toArray(new Room[adjacentRooms.size()]);
 
             @Override
             public int getSize() {
