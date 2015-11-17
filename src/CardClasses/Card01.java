@@ -11,8 +11,8 @@ public class Card01 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/BuddyUp.png"));
 
       cardName = "Buddy Up";
-      locations.add(new Room("George Allen Field"));
-      locations.add(new Room("EAT Club"));
+      locations.add(new Room("George Allen Field", 0));
+      locations.add(new Room("EAT Club", 18));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

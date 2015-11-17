@@ -11,15 +11,15 @@ public class Card31 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ProfessorHoffman.png"));
 
       cardName = "Professor Hoffman";
-      locations.add(new Room("Computer Lab"));
-      locations.add(new Room("North Hall"));
-      locations.add(new Room("Room of Retirement"));
-      locations.add(new Room("ECS 302"));
-      locations.add(new Room("Elevators"));
-      locations.add(new Room("EAT Club"));
-      locations.add(new Room("South Hall"));
-      locations.add(new Room("ECS 308"));
-      locations.add(new Room("CECS Conference Room"));
+      locations.add(new Room("Computer Lab", 11));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("Room of Retirement", 13));
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("Elevators", 16));
+      locations.add(new Room("EAT Club", 17));
+      locations.add(new Room("South Hall", 15));
+      locations.add(new Room("ECS 308", 18));
+      locations.add(new Room("CECS Conference Room", 19));
       skillPointsPreReq = new SkillPoints(3, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);
@@ -37,7 +37,7 @@ public class Card31 extends Card {
             reward = new Reward(null, 5, 2, null);
             return true;
          } else {
-            penalty = new Penalty(null, -5, null, new Room("Lactation Lounge"));
+            penalty = new Penalty(null, -5, null, new Room("Lactation Lounge", 20));
             return false;
          }
       } else {

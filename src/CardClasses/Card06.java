@@ -11,7 +11,7 @@ public class Card06 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ElectiveClass.png"));
 
       cardName = "Elective Class";
-      locations.add(new Room("Library"));
+      locations.add(new Room("Library", 7));
       skillPointsPreReq = new SkillPoints(2, 0, 0); // LCI
       skillRewardChoices = null;
 //      skillReward = new SkillPoints(1, 0, 0);

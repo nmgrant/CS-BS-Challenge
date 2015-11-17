@@ -11,7 +11,7 @@ public class Card11 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/FindingTheLab.png"));
 
       cardName = "Finding the Lab";
-      locations.add(new Room("Elevators"));
+      locations.add(new Room("Elevators", 16));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 1);

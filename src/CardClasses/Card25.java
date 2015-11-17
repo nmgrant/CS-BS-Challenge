@@ -11,7 +11,7 @@ public class Card25 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ParkingViolation.png"));
 
       cardName = "Parking Violation";
-      locations.add(new Room("Forbidden Parking"));
+      locations.add(new Room("Forbidden Parking", 6));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);

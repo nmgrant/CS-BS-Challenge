@@ -11,7 +11,7 @@ public class Card26 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/PassSoccerClass.png"));
 
       cardName = "Pass Soccer Class";
-      locations.add(new Room("George Allen Field"));
+      locations.add(new Room("George Allen Field", 0));
       skillPointsPreReq = new SkillPoints(0, 5, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);

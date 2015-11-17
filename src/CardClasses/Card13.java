@@ -11,7 +11,7 @@ public class Card13 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/KIN253.png"));
 
       cardName = "KIN 253";
-      locations.add(new Room("Goerge Allen Field"));
+      locations.add(new Room("Goerge Allen Field", 0));
       skillPointsPreReq = new SkillPoints(0, 0, 4); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 2, 0);
@@ -29,7 +29,7 @@ public class Card13 extends Card {
             reward = new Reward(new SkillPoints(0, 2, 0), 0, 0, null);
             return true;
          } else {
-            penalty = new Penalty(null, 0, null, new Room("Room of Retirement"));
+            penalty = new Penalty(null, 0, null, new Room("Room of Retirement", 13));
             return false;
          }
       } else {

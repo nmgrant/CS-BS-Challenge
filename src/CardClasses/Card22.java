@@ -11,8 +11,8 @@ public class Card22 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/MakeDeanList.png"));
 
       cardName = "Make the Dean's List";
-      locations.add(new Room("North Hall"));
-      locations.add(new Room("South Hall"));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("South Hall", 15));
       skillPointsPreReq = new SkillPoints(6, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);
@@ -30,7 +30,7 @@ public class Card22 extends Card {
             reward = new Reward(null, 5, 0, null);
             return true;
          } else {
-            penalty = new Penalty(null, 0, null, new Room("Student Parking"));
+            penalty = new Penalty(null, 0, null, new Room("Student Parking", 2));
             return false;
          }
       } else {

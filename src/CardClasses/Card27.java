@@ -11,7 +11,7 @@ public class Card27 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/Physics151.png"));
 
       cardName = "Physics 151";
-      locations.add(new Room("ECS 308"));
+      locations.add(new Room("ECS 308", 17));
       skillPointsPreReq = new SkillPoints(0, 3, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);

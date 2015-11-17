@@ -11,7 +11,7 @@ public class Card35 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/SoccerGoalie.png"));
 
       cardName = "Soccer Goalie";
-      locations.add(new Room("George Allen Field"));
+      locations.add(new Room("George Allen Field", 0));
       skillPointsPreReq = new SkillPoints(3, 3, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);
@@ -29,7 +29,7 @@ public class Card35 extends Card {
             reward = new Reward(null, 5, 1, null);
             return true;
          } else {
-            penalty = new Penalty(null, 0, null, new Room("Student Parking"));
+            penalty = new Penalty(null, 0, null, new Room("Student Parking", 20));
             return false;
          }
       } else {

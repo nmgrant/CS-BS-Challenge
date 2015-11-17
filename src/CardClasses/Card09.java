@@ -11,7 +11,7 @@ public class Card09 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ExercisingMindAndBody.png"));
 
       cardName = "Exercising Mind and Body";
-      locations.add(new Room("Rec Center"));
+      locations.add(new Room("Rec Center", 5));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 1);

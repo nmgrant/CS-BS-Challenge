@@ -11,7 +11,7 @@ public class Card32 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ProgramCrashes.png"));
 
       cardName = "Program Crashes";
-      locations.add(new Room("Lactation Lounge"));
+      locations.add(new Room("Lactation Lounge", 20));
       skillPointsPreReq = new SkillPoints(2, 0, 0); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

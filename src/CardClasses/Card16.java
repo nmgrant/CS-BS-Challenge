@@ -11,7 +11,7 @@ public class Card16 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/LearningNetbeans.png"));
 
       cardName = "Learning Netbeans";
-      locations.add(new Room("Lactation Lounge"));
+      locations.add(new Room("Lactation Lounge", 20));
       skillPointsPreReq = new SkillPoints(3, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);

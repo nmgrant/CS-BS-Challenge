@@ -11,7 +11,7 @@ public class Card19 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/MATH122.png"));
 
       cardName = "Math 122";
-      locations.add(new Room("Library"));
+      locations.add(new Room("Library", 7));
       skillPointsPreReq = new SkillPoints(0, 0, 2); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 0, 0); // Craft

@@ -11,7 +11,7 @@ public class Card17 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/LoudBuzzing.png"));
 
       cardName = "Loud Buzzing";
-      locations.add(new Room("EAT Club"));
+      locations.add(new Room("EAT Club", 18));
       skillPointsPreReq = new SkillPoints(0, 3, 0); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

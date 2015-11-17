@@ -11,7 +11,7 @@ public class Card08 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/EnjoyingThePeace.png"));
 
       cardName = "Enjoying the Peace";
-      locations.add(new Room("Japense Garden"));
+      locations.add(new Room("Japanese Garden", 1));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 0, 0); // Craft

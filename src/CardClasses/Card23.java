@@ -11,8 +11,8 @@ public class Card23 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/MeetTheDean.png"));
 
       cardName = "Meet the Dean";
-      locations.add(new Room("North Hall"));
-      locations.add(new Room("South Hall"));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("South Hall", 15));
       skillPointsPreReq = new SkillPoints(3, 3, 3); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);

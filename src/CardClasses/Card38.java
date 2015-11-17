@@ -11,16 +11,16 @@ public class Card38 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/TheOutpost.png"));
 
       cardName = "The Outpost";
-      locations.add(new Room("George Allen Field"));
-      locations.add(new Room("Japense Garden"));
-      locations.add(new Room("The Pyramid"));
-      locations.add(new Room("Student Parking"));
-      locations.add(new Room("Rec Center"));
-      locations.add(new Room("West Walkway"));
-      locations.add(new Room("Library"));
-      locations.add(new Room("LA 5"));
-      locations.add(new Room("Bratwurst Hall"));
-      locations.add(new Room("Easy Walkway"));
+      locations.add(new Room("George Allen Field", 0));
+      locations.add(new Room("Japanese Garden", 1));
+      locations.add(new Room("The Pyramid", 3));
+      locations.add(new Room("Student Parking", 2));
+      locations.add(new Room("Rec Center", 5));
+      locations.add(new Room("West Walkway", 4));
+      locations.add(new Room("Library", 7));
+      locations.add(new Room("LA 5", 8));
+      locations.add(new Room("Bratwurst Hall", 9));
+      locations.add(new Room("East Walkway", 10));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

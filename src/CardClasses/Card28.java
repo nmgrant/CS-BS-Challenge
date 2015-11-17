@@ -11,7 +11,7 @@ public class Card28 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/PressTheRightFloor.png"));
 
       cardName = "Press the Right Floor";
-      locations.add(new Room("Elevators"));
+      locations.add(new Room("Elevators", 16));
       skillPointsPreReq = new SkillPoints(4, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 2, 0);

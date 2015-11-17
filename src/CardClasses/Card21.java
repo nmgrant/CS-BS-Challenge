@@ -11,8 +11,8 @@ public class Card21 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/MakeAFriend.png"));
 
       cardName = "Make a Friend";
-      locations.add(new Room("North Hall"));
-      locations.add(new Room("South Hall"));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("South Hall", 15));
       skillPointsPreReq = new SkillPoints(0, 0, 2); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

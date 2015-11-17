@@ -11,7 +11,7 @@ public class Card33 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ResearchCompilers.png"));
 
       cardName = "Research Compilers";
-      locations.add(new Room("Library"));
+      locations.add(new Room("Library", 7));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);

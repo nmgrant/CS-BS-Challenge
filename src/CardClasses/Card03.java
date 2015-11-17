@@ -11,8 +11,8 @@ public class Card03 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/CECS105.png"));
 
       cardName = "CECS 105";
-      locations.add(new Room("ECS 302"));
-      locations.add(new Room("ECS 308"));
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("ECS 308", 17));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);

@@ -11,7 +11,7 @@ public class Card30 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/ProfessorEnglert.png"));
 
       cardName = "Professor Englert";
-      locations.add(new Room("CECS Conference Room"));
+      locations.add(new Room("CECS Conference Room", 19));
       skillPointsPreReq = new SkillPoints(0, 0, 3); // LCI
       skillRewardChoices[0] = new SkillPoints(1, 0, 0); // Learning 
       skillRewardChoices[1] = new SkillPoints(0, 1, 0); // Craft

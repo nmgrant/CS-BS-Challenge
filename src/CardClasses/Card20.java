@@ -11,8 +11,8 @@ public class Card20 extends Card {
       image = new ImageIcon(("src/CardImagesYear1/MATH123.png"));
 
       cardName = "Math 123";
-      locations.add(new Room("ECS 302"));
-      locations.add(new Room("ECS 308"));
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("ECS 308", 17));
       skillPointsPreReq = new SkillPoints(5, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);
