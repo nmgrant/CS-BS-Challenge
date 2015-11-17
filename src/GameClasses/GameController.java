@@ -75,25 +75,11 @@ public class GameController {
             result += " and has failed. Penalties: ";
             result += applyPenalty(chosenCard.getPenalty());
         }
-
-//        if (success) {
-//            result += " and received " + chosenCard.getSkillReward()
-//                    + ", " + chosenCard.getQualityPointsReward() + " quality points ";
-//            if (chosenCard.getCardReward() != 0) {
-//                result += ", and received a card(s)";
-//            }
-//            for (int i = 0; i < chosenCard.getCardReward(); i++) {
-//                model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
-//            }
-//            if (chosenCard.getTeleportRoom() != null) {
-//                result += ", and teleported to " + chosenCard.getTeleportRoom();
-//                teleportPlayer(chosenCard.getTeleportRoom());
-//            }
-//        } else {
-//            result += " and failed.";
-//        }
+        
         frame.updateBottomConsole(result);
         frame.updateInformationPanel();
+        
+        nextPlayer();
     }
 
     public String applyReward(Reward reward) {
@@ -105,17 +91,17 @@ public class GameController {
         String result = "";
         if (qualityPoints > 0) {
             model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
-            result += " \tQuality Points: " + qualityPoints;
+            result += " Quality Points: " + qualityPoints;
         }
         if (skillPoints != null) {
             model.getCurrentPlayer().getSkillPoints().adjustSkillPoints(skillPoints);
-            result += "\t" + skillPoints;
+            result += skillPoints;
         }
         if (cardsDrawn > 0) {
             for (int i = 0; i < cardsDrawn; i++) {
                 model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
             }
-            result += " \tCards: " + cardsDrawn; 
+            result += " Cards: " + cardsDrawn; 
         }
         if (room != null) {
             teleportPlayer(room);
@@ -134,15 +120,15 @@ public class GameController {
         String result = "";
         if (qualityPoints > 0) {
             model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
-            result += " \tQuality Points: " + qualityPoints;
+            result += " Quality Points: " + qualityPoints;
         }
         if (skillPoints != null) {
             model.getCurrentPlayer().getSkillPoints().adjustSkillPoints(skillPoints);
-            result += "\t" + skillPoints;
+            result += skillPoints;
         }
         if (cardsDrawn.length > 0) {
             model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
-            result += " \tCards: " + cardsDrawn;
+            result += " Cards: " + cardsDrawn;
         }
         if (room != null) {
             teleportPlayer(room);

@@ -57,10 +57,9 @@ public class SkillPoints {
    }
    
    public void adjustSkillPoints(SkillPoints skillPoints) {
-       this.learningChips += skillPoints.getLearningChips();
-       this.craftChips += skillPoints.getCraftChips();
-       this.integrityChips += skillPoints.getIntegrityChips();
-       
+       learningChips += skillPoints.getLearningChips();
+       craftChips += skillPoints.getCraftChips();
+       integrityChips += skillPoints.getIntegrityChips();
    }
 
    @Override

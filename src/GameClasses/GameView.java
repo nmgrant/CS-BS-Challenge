@@ -304,11 +304,11 @@ public class GameView extends javax.swing.JFrame {
             player1.getSkillPoints().getCraftChips(), 
             player1.getSkillPoints().getIntegrityChips(), 
             player1.getQualityPoints()}, 
-           {player2.getName(), player1.getSkillPoints().getLearningChips(),
+           {player2.getName(), player2.getSkillPoints().getLearningChips(),
             player2.getSkillPoints().getCraftChips(), 
             player2.getSkillPoints().getIntegrityChips(),
             player2.getQualityPoints()},
-           {player3.getName(), player1.getSkillPoints().getLearningChips(),
+           {player3.getName(), player3.getSkillPoints().getLearningChips(),
             player3.getSkillPoints().getCraftChips(), 
             player3.getSkillPoints().getIntegrityChips(),
             player3.getQualityPoints()}
