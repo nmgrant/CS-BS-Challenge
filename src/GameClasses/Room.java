@@ -1,6 +1,8 @@
 package GameClasses;
 
+import CardClasses.Card;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Room {
@@ -11,10 +13,12 @@ public class Room {
     private int roomNumber;
     private Point[] roomSpaces;
     private boolean[] isSpaceAvailable = new boolean[3];
+    private ArrayList<Card> roomCards;
 
     public Room(String name, int roomNumber) {
         this.name = name;
         this.roomNumber = roomNumber;
+        roomCards = new ArrayList<>();
         initializeRoomProperties();
     }
 
@@ -26,6 +30,14 @@ public class Room {
         return roomNumber;
     }
 
+    public ArrayList<Card> getRoomCards() {
+       return roomCards;
+    }
+    
+    public void placeCardInRoom(Card playedCard) {
+       roomCards.add(playedCard);
+    }
+    
     public int[] getAdjacentRooms() {
         return adjacentRooms;
     }
