@@ -16,8 +16,8 @@ public class Penalty {
       qualityPoints = ROOM_REQ_PENALTY;
    }
 
-   public Penalty(SkillPoints sPenalty, int qpPenalty, Card[] cPenalty, 
-   Room rPenalty) {
+   public Penalty(SkillPoints sPenalty, int qpPenalty, Card[] cPenalty,
+      Room rPenalty) {
       this.skillPoints = sPenalty;
       this.qualityPoints = qpPenalty;
       this.card = cPenalty;
@@ -40,4 +40,7 @@ public class Penalty {
       return room;
    }
 
+   public boolean checkLeaveCard(Card playedCard) {
+      return playedCard.isLeaveCard();
+   }
 }

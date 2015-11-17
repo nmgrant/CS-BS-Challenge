@@ -33,6 +33,7 @@ public class Card12 extends Card {
             Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
             cPlayer.discardCard(chosenCard);
             penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
+            leaveCard = true;
             return false;
          }
       } else {

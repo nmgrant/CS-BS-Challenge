@@ -17,6 +17,8 @@ public abstract class Card {
    protected SkillPoints[] skillRewardChoices = new SkillPoints[3];
    protected Reward reward;
    protected Penalty penalty;
+   
+   protected boolean leaveCard = false;
 
    public abstract boolean playCard(Player cPlayer);
 
@@ -34,6 +36,10 @@ public abstract class Card {
 
    public Penalty getPenalty() {
       return penalty;
+   }
+   
+   public boolean isLeaveCard() {
+      return leaveCard;
    }
 
    @Override
