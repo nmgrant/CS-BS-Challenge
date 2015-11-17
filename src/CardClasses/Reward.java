@@ -9,6 +9,7 @@ public class Reward {
    private int qualityPoints;
    private int card;
    private Room room;
+   private Card tradeInCard;
 
    public Reward(SkillPoints sRewards, int qpRewards, int cRewards,
    Room rRewards) {
@@ -32,6 +33,14 @@ public class Reward {
 
    public Room getRoomReward() {
       return room;
+   }
+   
+   public Card getTradeInCard() {
+       return tradeInCard;
+   }
+   
+   public void setTradeInCard(Card card) {
+       tradeInCard = card;
    }
 
 }
