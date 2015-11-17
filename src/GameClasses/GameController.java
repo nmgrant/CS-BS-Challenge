@@ -107,6 +107,9 @@ public class GameController {
             }
             result += " Cards: " + cardsDrawn;
         }
+        if (cardsDrawn < 0) {
+            
+        }
         if (room != null) {
             teleportPlayer(room);
             result += " and has moved to: " + room;
