@@ -54,7 +54,6 @@ public class Card24 extends Card {
                     int randomCard = rand.nextInt(cPlayer.getHand().size());
                     chosenCard = cPlayer.getHand().get(randomCard);
                 }
-                cPlayer.discardCard(chosenCard);
                 penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
                 return false;
             }
