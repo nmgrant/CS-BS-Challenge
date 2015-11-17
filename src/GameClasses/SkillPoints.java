@@ -55,6 +55,13 @@ public class SkillPoints {
    public void setIntegrityChips(int integrityChips) {
       this.integrityChips = integrityChips;
    }
+   
+   public void adjustSkillPoints(SkillPoints skillPoints) {
+       this.learningChips += skillPoints.getLearningChips();
+       this.craftChips += skillPoints.getCraftChips();
+       this.integrityChips += skillPoints.getIntegrityChips();
+       
+   }
 
    @Override
    public int hashCode() {
