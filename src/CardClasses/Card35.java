@@ -7,23 +7,34 @@ import javax.swing.ImageIcon;
 
 public class Card35 extends Card {
 
-    public Card35() {
-        image = new ImageIcon(("src/CardImagesYear1/SoccerGoalie.png"));
+   public Card35() {
+      image = new ImageIcon(("src/CardImagesYear1/SoccerGoalie.png"));
 
-        cardName = "Soccer Goalie";
-        locations.add(new Room("George Allen Field"));
-        skillPointsPreReq = new SkillPoints(3, 3, 0); // LCI
-        skillRewardChoices = null;
-        skillReward = new SkillPoints(0, 0, 0);
-        skillPenalty = new SkillPoints(0, 0, 0);
-        qualityPointsReward = 5;
-        qualityPointsPenalty = 0;
-        cardReward = 1;
-        cardPenalty = 0;
-    }
+      cardName = "Soccer Goalie";
+      locations.add(new Room("George Allen Field"));
+      skillPointsPreReq = new SkillPoints(3, 3, 0); // LCI
+      skillRewardChoices = null;
+//        skillReward = new SkillPoints(0, 0, 0);
+//        skillPenalty = new SkillPoints(0, 0, 0);
+//        qualityPointsReward = 5;
+//        qualityPointsPenalty = 0;
+//        cardReward = 1;
+//        cardPenalty = 0;
+   }
 
-    @Override
-    public boolean playCard(Player cPlayer) {
-return true;
-    }
+   @Override
+   public boolean playCard(Player cPlayer) {
+      if (locations.contains(cPlayer.getRoom())) {
+         if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
+            reward = new Reward(null, 5, 1, null);
+            return true;
+         } else {
+            penalty = new Penalty(null, 0, null, new Room("Student Parking"));
+            return false;
+         }
+      } else {
+         penalty = new Penalty();
+         return false;
+      }
+   }
 }

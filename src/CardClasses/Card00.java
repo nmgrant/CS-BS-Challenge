@@ -21,7 +21,6 @@ public class Card00 extends Card {
 //        qualityPointsPenalty = 0;
 //        cardReward = 0;
 //        cardPenalty = 1;
-
    }
 
    @Override
