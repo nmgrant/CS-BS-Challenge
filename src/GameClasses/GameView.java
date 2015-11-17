@@ -332,6 +332,7 @@ public class GameView extends javax.swing.JFrame {
       informationPanel.append("\n You are "
          + model.getCurrentPlayer().getName() + " and you are in "
          + model.getCurrentPlayer().getRoom());
+      
    }
 
    public void updateCardButton() {
