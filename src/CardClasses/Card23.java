@@ -3,6 +3,7 @@ package CardClasses;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class Card23 extends Card {
@@ -30,9 +31,16 @@ public class Card23 extends Card {
             reward = new Reward(null, 5, 1, null);
             return true;
          } else {
-            DiscardCardDialog discardCardDialog = new DiscardCardDialog();
-            Card chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
-            cPlayer.discardCard(chosenCard);
+            Card chosenCard;
+                if (cPlayer.isHuman()) {
+                    DiscardCardDialog discardCardDialog = new DiscardCardDialog();
+                    chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
+                } else {
+                    Random rand = new Random();
+                    int randomCard = rand.nextInt(cPlayer.getHand().size());
+                    chosenCard = cPlayer.getHand().get(randomCard);
+                }
+                cPlayer.discardCard(chosenCard);
             penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
             return false;
          }
