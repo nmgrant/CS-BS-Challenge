@@ -47,8 +47,8 @@ public class Room {
    }
 
    boolean isAdjacentTo(Room room) {
-      for (int roomNumber : room.adjacentRooms) {
-         if (roomNumber == this.roomNumber) {
+      for (int number : room.adjacentRooms) {
+         if (number == this.roomNumber) {
             return true;
          }
       }
