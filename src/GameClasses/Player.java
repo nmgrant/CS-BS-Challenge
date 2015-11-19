@@ -2,11 +2,12 @@ package GameClasses;
 
 import CardClasses.Card;
 import java.awt.Point;
+import java.io.Serializable;
 import javax.swing.JLabel;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Player extends JLabel {
+public class Player extends JLabel implements Serializable {
 
    private final int MAX_MOVES = 3;
    private String name;

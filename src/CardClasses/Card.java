@@ -3,11 +3,12 @@ package CardClasses;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Card {
+public abstract class Card implements Serializable {
 
    protected ImageIcon image;
 

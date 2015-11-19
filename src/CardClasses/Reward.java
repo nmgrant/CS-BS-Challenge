@@ -2,8 +2,9 @@ package CardClasses;
 
 import GameClasses.SkillPoints;
 import GameClasses.Room;
+import java.io.Serializable;
 
-public class Reward {
+public class Reward implements Serializable {
 
    private SkillPoints skill;
    private int qualityPoints;

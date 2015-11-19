@@ -2,8 +2,9 @@ package CardClasses;
 
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import java.io.Serializable;
 
-public class Penalty {
+public class Penalty implements Serializable {
 
    private final int ROOM_REQ_PENALTY = -2;
 

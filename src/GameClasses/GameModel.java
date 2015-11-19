@@ -2,11 +2,12 @@ package GameClasses;
 
 import CardClasses.*;
 import CardClasses.Deck;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class GameModel {
+public class GameModel implements Serializable {
 
    private Room[] rooms;
    private Player[] players;

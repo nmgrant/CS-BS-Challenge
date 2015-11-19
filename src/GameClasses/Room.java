@@ -2,10 +2,11 @@ package GameClasses;
 
 import CardClasses.Card;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Room {
+public class Room implements Serializable {
 
    private final int PIXEL_HEIGHT_MULTIPLIER = 50;
    private String name;

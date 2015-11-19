@@ -1,6 +1,8 @@
 package GameClasses;
 
-public class SkillPoints {
+import java.io.Serializable;
+
+public class SkillPoints implements Serializable {
 
    private final int LEARNING_CHIP = 0;
    private final int CRAFT_CHIP = 1;
