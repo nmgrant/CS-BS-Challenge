@@ -23,17 +23,68 @@ public class GameController implements Serializable {
 
     private GameModel model;
     private GameView frame;
+    private File gameFile;
 
     public GameController(GameModel model, GameView frame) {
         this.model = model;
         this.frame = frame;
+        frame.setVisible(true);
+        gameFile = frame.getGameFile();
+        addListeners();
+
+    }
+
+    private void addListeners() {
         frame.addPlayCardActionPerformed(new PlayCardActionPerformed());
         frame.addMoveActionPerformed(new MoveActionPerformed());
         frame.addCardButtonActionPerformed(new CardActionPerformed());
         frame.addDrawCardButtonActionPerformed(new DrawCardButtonActionPerformed());
+        frame.addNewGameActionPerformed(new NewGameActionPerformed());
+        frame.addSaveGameActionPerformed(new SaveGameActionPerformed());
+        frame.addLoadGameActionPerformed(new LoadGameActionPerformed());
+        frame.addExitGameActionPerformed(new ExitGameActionPerformed());
     }
 
-    public class PlayCardActionPerformed implements ActionListener {
+    private class NewGameActionPerformed implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            model = new GameModel();
+            frame.dispose();
+            frame = new GameView(model, gameFile);
+            frame.setVisible(true);
+            addListeners();
+        }
+    }
+
+    private class SaveGameActionPerformed implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.saveGame(model, gameFile);
+        }
+    }
+
+    private class LoadGameActionPerformed implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            loadGame();
+            frame.dispose();
+            frame = new GameView(model, gameFile);
+            frame.setVisible(true);
+            addListeners();
+        }
+    }
+    
+    private class ExitGameActionPerformed implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        }
+    }
+
+    private class PlayCardActionPerformed implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
@@ -41,7 +92,7 @@ public class GameController implements Serializable {
         }
     }
 
-    public class MoveActionPerformed implements ActionListener {
+    private class MoveActionPerformed implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
@@ -49,7 +100,7 @@ public class GameController implements Serializable {
         }
     }
 
-    public class DrawCardButtonActionPerformed implements ActionListener {
+    private class DrawCardButtonActionPerformed implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
@@ -57,7 +108,7 @@ public class GameController implements Serializable {
         }
     }
 
-    public class CardActionPerformed implements ActionListener {
+    private class CardActionPerformed implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
@@ -184,7 +235,7 @@ public class GameController implements Serializable {
                 frame.getMove().setEnabled(false);
             }
 
-            frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
+            frame.updatePlayerPosition(model.getCurrentPlayer());
             frame.updateList();
 
             if (!currentPlayerRoom.getRoomCards().isEmpty()) {
@@ -211,7 +262,7 @@ public class GameController implements Serializable {
         model.getCurrentPlayer().setRoom(room);
         model.getCurrentPlayer().setSpace(room.findAvailableSpace());
 
-        frame.updatePlayerPosition((JLabel) model.getCurrentPlayer());
+        frame.updatePlayerPosition(model.getCurrentPlayer());
         frame.updateList();
 
         frame.updateBottomConsole("\n" + model.getCurrentPlayer() + " has teleported to "
@@ -312,4 +363,20 @@ public class GameController implements Serializable {
         playCard();
     }
 
+    public void loadGame() {
+        if (gameFile.exists()) {
+            try {
+                ObjectInputStream in = new ObjectInputStream(
+                        new FileInputStream(gameFile));
+
+                model = (GameModel) in.readObject();
+                in.close();
+                System.out.println("Game loaded.");
+            } catch (IOException e) {
+                System.out.println("Error processing file.");
+            } catch (ClassNotFoundException c) {
+                System.out.println("Class not found.");
+            }
+        }
+    }
 }

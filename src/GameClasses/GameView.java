@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameView extends javax.swing.JFrame {
 
@@ -18,22 +20,18 @@ public class GameView extends javax.swing.JFrame {
     private Player currentPlayer;
     private Card currentCard;
     private File gameFile;
-    private int saveGame;
 
     /**
      * Creates new form GameFrame
      */
     public GameView(GameModel model, File gameFile) {
         this.model = model;
-        currentPlayer = model.getCurrentPlayer();
-        saveGame = 1;
         this.gameFile = gameFile;
+        currentPlayer = model.getCurrentPlayer();
         initComponents();
         initPlayerPosition(player1Label);
         initPlayerPosition(player2Label);
         initPlayerPosition(player3Label);
-        snapToCurrentPlayer();
-        updateInformationPanel();
 //      Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
         //     backgroundMusic.loop();
     }
@@ -64,14 +62,19 @@ public class GameView extends javax.swing.JFrame {
         playerInfo = new javax.swing.JTextArea();
         gameInfoScrollPane = new javax.swing.JScrollPane();
         informationPanel = new javax.swing.JTextArea();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        newGame = new javax.swing.JMenuItem();
+        saveGame = new javax.swing.JMenuItem();
+        loadGame = new javax.swing.JMenuItem();
+        separator = new javax.swing.JPopupMenu.Separator();
+        exitGame = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 1024));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
-            }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
             }
         });
 
@@ -110,36 +113,29 @@ public class GameView extends javax.swing.JFrame {
         boardWindowPanelLayout.setHorizontalGroup(
             boardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(boardWindowPanelLayout.createSequentialGroup()
-                .addGap(506, 506, 506)
+                .addGap(5, 5, 5)
                 .addComponent(player1Label)
-                .addGap(34, 34, 34)
+                .addGap(5, 5, 5)
                 .addComponent(player2Label)
-                .addContainerGap(590, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardWindowPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addComponent(player3Label)
-                .addGap(669, 669, 669))
-            .addGroup(boardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(boardWindowPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(boardLabel)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(5, 5, 5)
+                .addComponent(boardLabel))
         );
         boardWindowPanelLayout.setVerticalGroup(
             boardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(boardWindowPanelLayout.createSequentialGroup()
-                .addContainerGap(1059, Short.MAX_VALUE)
-                .addComponent(player3Label)
-                .addGap(43, 43, 43)
-                .addGroup(boardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player2Label)
-                    .addComponent(player1Label))
-                .addGap(791, 791, 791))
-            .addGroup(boardWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(boardWindowPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(boardLabel)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(976, 976, 976)
+                .addComponent(player1Label))
+            .addGroup(boardWindowPanelLayout.createSequentialGroup()
+                .addGap(976, 976, 976)
+                .addComponent(player2Label))
+            .addGroup(boardWindowPanelLayout.createSequentialGroup()
+                .addGap(976, 976, 976)
+                .addComponent(player3Label))
+            .addGroup(boardWindowPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(boardLabel))
         );
         boardWindowPanel.setLayer(player1Label, javax.swing.JLayeredPane.DRAG_LAYER);
         boardWindowPanel.setLayer(player2Label, javax.swing.JLayeredPane.DRAG_LAYER);
@@ -167,7 +163,7 @@ public class GameView extends javax.swing.JFrame {
         moveListWindow.setViewportView(moveList);
 
         playerInfo.setEditable(false);
-        playerInfo.setColumns(75);
+        playerInfo.setColumns(70);
         playerInfo.setRows(5);
         playerInfo.setText("Human player is " +model.getHumanPlayer().getName());
         humanInfoScrollPane.setViewportView(playerInfo);
@@ -175,13 +171,14 @@ public class GameView extends javax.swing.JFrame {
         informationPanel.setEditable(false);
         informationPanel.setColumns(20);
         informationPanel.setRows(5);
+        updateInformationPanel();
         gameInfoScrollPane.setViewportView(informationPanel);
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(boardWindow)
+            .addComponent(boardWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,14 +191,14 @@ public class GameView extends javax.swing.JFrame {
                 .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(humanInfoScrollPane)
+                    .addComponent(humanInfoScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
                     .addComponent(gameInfoScrollPane))
                 .addContainerGap())
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gamePanelLayout.createSequentialGroup()
-                .addComponent(boardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 2003, Short.MAX_VALUE)
+                .addComponent(boardWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,49 +223,62 @@ public class GameView extends javax.swing.JFrame {
 
         boardWindow.getVerticalScrollBar().setUnitIncrement(25);
 
+        fileMenu.setText("File");
+
+        newGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newGame.setText("New Game");
+        newGame.setToolTipText("Starts a new game");
+        fileMenu.add(newGame);
+
+        saveGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveGame.setText("Save Game");
+        fileMenu.add(saveGame);
+
+        loadGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        loadGame.setText("Load Game");
+        fileMenu.add(loadGame);
+        fileMenu.add(separator);
+
+        exitGame.setText("Exit");
+        fileMenu.add(exitGame);
+
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1674, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2319, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        model = loadGame();
-        updateList();
-        updateInformationPanel();
-    }//GEN-LAST:event_formWindowOpened
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        saveGame(); // TODO add your handling code here:
+        if (chooseSave() == 0) {
+            saveGame(model, gameFile);
+        }
     }//GEN-LAST:event_formWindowClosing
 
-    public void initPlayerPosition(JLabel player) {
+    private void initPlayerPosition(JLabel player) {
         boardWindowPanel.remove(player);
         player.setLocation(((Player) player).getSpace());
         boardWindowPanel.add(player);
-        boardWindowPanel.repaint();
+        boardWindowPanel.updateUI();
 
         updateList();
+        snapToCurrentPlayer();
     }
 
-    public void updatePlayerPosition(JLabel player) {
-
-        boardWindowPanel.remove(player);
-        player.setLocation(model.getCurrentPlayer().getSpace());
-        boardWindowPanel.add(player);
-        boardWindowPanel.repaint();
+    public void updatePlayerPosition(Player player) {
+        player.setLocation(player.getSpace());
+        boardWindowPanel.updateUI();
 
         snapToCurrentPlayer();
         updateList();
@@ -401,8 +411,20 @@ public class GameView extends javax.swing.JFrame {
         drawCardButton.addActionListener(l);
     }
 
-    public int getSaveGame() {
-        return saveGame;
+    public void addNewGameActionPerformed(ActionListener l) {
+        newGame.addActionListener(l);
+    }
+
+    public void addSaveGameActionPerformed(ActionListener l) {
+        saveGame.addActionListener(l);
+    }
+
+    public void addLoadGameActionPerformed(ActionListener l) {
+        loadGame.addActionListener(l);
+    }
+
+    public void addExitGameActionPerformed(ActionListener l) {
+        exitGame.addActionListener(l);
     }
 
     public JButton getMove() {
@@ -437,34 +459,30 @@ public class GameView extends javax.swing.JFrame {
         currentPlayer = player;
     }
 
-    public void saveGame() {
+    public File getGameFile() {
+        return gameFile;
+    }
+
+    public JPanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public void setModel(GameModel model) {
+        this.model = model;
+    }
+
+    public int chooseSave() {
         Object[] options = {"Yes", "No"};
 
-        saveGame = JOptionPane.showOptionDialog(this, "Would you like to save your "
+        return JOptionPane.showOptionDialog(new JFrame(), "Would you like to save your "
                 + "game?", "Save Game", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-
-        if (saveGame == 0) {
-            save(model, gameFile);
-        }
     }
 
-    public GameModel loadGame() {
-        Object[] options = {"Yes", "No"};
-        int loadGame = JOptionPane.showOptionDialog(this, "Would you like to load your "
-                + "game?", "Load Game", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-
-        if (loadGame == 0) {
-            return load(model, gameFile);
-        }
-        return model;
-    }
-
-    public void save(GameModel model, File f) {
+    public void saveGame(GameModel model, File gameFile) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
-                    new FileOutputStream(f));
+                    new FileOutputStream(gameFile));
 
             out.writeObject(model);
             out.close();
@@ -475,42 +493,31 @@ public class GameView extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
-    public GameModel load(GameModel model, File f) {
-        if (f.exists()) {
-            try {
-                ObjectInputStream in = new ObjectInputStream(
-                        new FileInputStream(f));
-
-                model = (GameModel) in.readObject();
-                in.close();
-                System.out.println("Game loaded.");
-            } catch (IOException e) {
-                System.out.println("Error processing file.");
-            } catch (ClassNotFoundException c) {
-                System.out.println("Class not found.");
-            }
-        }
-        return model;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boardLabel;
     private javax.swing.JScrollPane boardWindow;
     private javax.swing.JLayeredPane boardWindowPanel;
     private javax.swing.JButton cardButton;
     private javax.swing.JButton drawCardButton;
+    private javax.swing.JMenuItem exitGame;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JScrollPane gameInfoScrollPane;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JScrollPane humanInfoScrollPane;
     private javax.swing.JTextArea informationPanel;
+    private javax.swing.JMenuItem loadGame;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton moveButton;
     private javax.swing.JList moveList;
     private javax.swing.JScrollPane moveListWindow;
+    private javax.swing.JMenuItem newGame;
     private javax.swing.JButton playCardButton;
     private javax.swing.JLabel player1Label;
     private javax.swing.JLabel player2Label;
     private javax.swing.JLabel player3Label;
     private javax.swing.JTextArea playerInfo;
+    private javax.swing.JMenuItem saveGame;
+    private javax.swing.JPopupMenu.Separator separator;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -13,20 +13,18 @@ public class Player extends JLabel implements Serializable {
    private String name;
    private SkillPoints skillPoints;
    private int qualityPoints;
-   private int numOfRemovedCards;
    private LinkedList<Card> handOfCards;
    private Room room;
    private boolean human, current;
    private boolean handIsFull;
-   private ArrayList<Room> possibleRooms;
    private int moves;
    private Point space;
+   
 
    public Player(String name, SkillPoints skillPoints, Room room) {
       this.name = name;
       this.skillPoints = skillPoints;
       qualityPoints = 0;
-      numOfRemovedCards = 0;
       this.room = room;
       human = false;
       moves = MAX_MOVES;
@@ -94,6 +92,11 @@ public class Player extends JLabel implements Serializable {
 
    public void setRoom(Room room) {
       this.room = room;
+   }
+   
+   @Override
+   public void setLocation(Point location) {
+       super.setLocation(location);
    }
 
    public void setSpace(Point space) {
