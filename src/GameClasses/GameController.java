@@ -31,6 +31,9 @@ public class GameController implements Serializable {
         frame.setVisible(true);
         gameFile = frame.getGameFile();
         addListeners();
+        
+        Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
+        backgroundMusic.loop();
 
     }
 

@@ -32,8 +32,6 @@ public class GameView extends javax.swing.JFrame {
         initPlayerPosition(player1Label);
         initPlayerPosition(player2Label);
         initPlayerPosition(player3Label);
-//      Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
-        //     backgroundMusic.loop();
     }
 
     /**
