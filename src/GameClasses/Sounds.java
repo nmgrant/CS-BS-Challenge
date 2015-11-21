@@ -2,17 +2,17 @@ package GameClasses;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import javax.sound.sampled.*;
 
-public class Sounds {
+public class Sounds implements Serializable{
 
    private Clip clip;
 
    public Sounds(String fileName) {
 
       try {
-
          AudioInputStream sound = AudioSystem.getAudioInputStream(getClass().getResource(fileName));
          clip = AudioSystem.getClip();
          clip.open(sound);
@@ -43,4 +43,5 @@ public class Sounds {
    public void stop() {
       clip.stop();
    }
+   
 }
