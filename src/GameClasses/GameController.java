@@ -179,6 +179,10 @@ public class GameController implements Serializable {
       String result = "";
       if (qualityPoints > 0) {
          model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+         model.updateTotalQualityPoints();
+         if (model.getTotalQualityPoints() >= 60) {
+             model.toSophomoreYear();
+         }
          result += " Quality Points: " + qualityPoints;
       }
       if (skillPoints != null) {
