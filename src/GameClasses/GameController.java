@@ -87,7 +87,18 @@ public class GameController implements Serializable {
 
       @Override
       public void actionPerformed(ActionEvent evt) {
+         backgroundMusic.pause();
+
+         playCardSound.play();
          playCard();
+
+         try {
+            Thread.sleep(150);
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+         }
+         
+         backgroundMusic.loop();
       }
    }
 
@@ -103,18 +114,20 @@ public class GameController implements Serializable {
 
       @Override
       public void actionPerformed(ActionEvent evt) {
-         backgroundMusic.stop();
+         playCardSound.stop();
+         backgroundMusic.pause();
 
          drawCardSound.play();
          drawCard();
 
          try {
-            Thread.sleep(500);
+            Thread.sleep(600);
          } catch (InterruptedException ex) {
             ex.printStackTrace();
          }
 
-         backgroundMusic.play();
+         drawCardSound.stop();
+         backgroundMusic.loop();
       }
    }
 
@@ -127,21 +140,11 @@ public class GameController implements Serializable {
    }
 
    public void playCard() {
-      backgroundMusic.stop();
-
-      playCardSound.play();
-
-      try {
-         Thread.sleep(50);
-      } catch (InterruptedException ex) {
-         ex.printStackTrace();
-      }
-      
       Card chosenCard = frame.getCardButton().getCurrentCard();
       boolean success = chosenCard.playCard(model.getCurrentPlayer());
 
       String result = "\n" + model.getCurrentPlayer().getName() + " played "
-         + chosenCard.getCardName();
+      + chosenCard.getCardName();
 
       if (success) {
          result += " and has received: ";
@@ -160,13 +163,6 @@ public class GameController implements Serializable {
       frame.updateBottomConsole(result);
       frame.updateInformationPanel();
 
-      try {
-         Thread.sleep(300);
-      } catch (InterruptedException ex) {
-         ex.printStackTrace();
-      }
-      backgroundMusic.play();
-
       nextPlayer();
    }
 
@@ -181,7 +177,7 @@ public class GameController implements Serializable {
          model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
          model.updateTotalQualityPoints();
          if (model.getTotalQualityPoints() >= 60) {
-             model.toSophomoreYear();
+            model.toSophomoreYear();
          }
          result += " Quality Points: " + qualityPoints;
       }
@@ -273,7 +269,7 @@ public class GameController implements Serializable {
             String pickedUpCard = currentPlayerRoom.getRoomCards().toString();
             model.getCurrentPlayer().pickUpRoomCard();
             frame.updateBottomConsole(model.getCurrentPlayer().getName()
-               + " picked up: " + pickedUpCard);
+            + " picked up: " + pickedUpCard);
          }
       }
       frame.updateInformationPanel();
@@ -297,7 +293,7 @@ public class GameController implements Serializable {
       frame.updateList();
 
       frame.updateBottomConsole("\n" + model.getCurrentPlayer() + " has teleported to "
-         + room);
+      + room);
       frame.updateInformationPanel();
    }
 
@@ -398,7 +394,7 @@ public class GameController implements Serializable {
       if (gameFile.exists()) {
          try {
             ObjectInputStream in = new ObjectInputStream(
-               new FileInputStream(gameFile));
+            new FileInputStream(gameFile));
 
             model = (GameModel) in.readObject();
             in.close();

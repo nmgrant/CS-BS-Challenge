@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.*;
 
-public class Sounds implements Serializable{
+public class Sounds implements Serializable {
 
    private Clip clip;
 
@@ -30,6 +32,7 @@ public class Sounds implements Serializable{
          throw new RuntimeException("Sound: Line Unavailable Exception Error: " + e);
 
       }
+      
    }
 
    public void loop() {
@@ -42,6 +45,12 @@ public class Sounds implements Serializable{
 
    public void stop() {
       clip.stop();
+      clip.flush();
+      clip.setFramePosition(0);
    }
    
+   public void pause() {
+      clip.stop();
+   }
+
 }
