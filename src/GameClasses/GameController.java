@@ -127,13 +127,13 @@ public class GameController implements Serializable {
       public void actionPerformed(ActionEvent evt) {
          nextCardSound.play();
          nextCard();
-         
+
          try {
             Thread.sleep(450);
          } catch (InterruptedException ex) {
             ex.printStackTrace();
          }
-         
+
          nextCardSound.stop();
       }
    }
@@ -261,9 +261,6 @@ public class GameController implements Serializable {
             frame.getMove().setEnabled(false);
          }
 
-         frame.updatePlayerPosition(model.getCurrentPlayer());
-         frame.updateList();
-
          if (!currentPlayerRoom.getRoomCards().isEmpty()) {
             String pickedUpCard = currentPlayerRoom.getRoomCards().toString();
             model.getCurrentPlayer().pickUpRoomCard();
@@ -272,6 +269,8 @@ public class GameController implements Serializable {
          }
       }
       frame.updateInformationPanel();
+      frame.updatePlayerPosition(model.getCurrentPlayer());
+      frame.updateList();
    }
 
    public void teleportPlayer(Room room) {
