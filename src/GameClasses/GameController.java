@@ -20,9 +20,10 @@ public class GameController implements Serializable {
    private GameModel model;
    private GameView frame;
    private File gameFile;
-   Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
+   // Sounds backgroundMusic = new Sounds("/Sounds/PokemonRoute1.wav");
    Sounds drawCardSound = new Sounds("/Sounds/PokeballCaught.wav");
    Sounds playCardSound = new Sounds("/Sounds/PokemonGo.wav");
+   Sounds backgroundMusic = new Sounds("/Sounds/PokemonTGCBackgroundMusic.wav");
 
    public GameController(GameModel model, GameView frame) {
       this.model = model;
@@ -87,6 +88,7 @@ public class GameController implements Serializable {
 
       @Override
       public void actionPerformed(ActionEvent evt) {
+         drawCardSound.stop();
          backgroundMusic.pause();
 
          playCardSound.play();
@@ -97,7 +99,7 @@ public class GameController implements Serializable {
          } catch (InterruptedException ex) {
             ex.printStackTrace();
          }
-         
+
          backgroundMusic.loop();
       }
    }
@@ -126,7 +128,6 @@ public class GameController implements Serializable {
             ex.printStackTrace();
          }
 
-         drawCardSound.stop();
          backgroundMusic.loop();
       }
    }
@@ -144,7 +145,7 @@ public class GameController implements Serializable {
       boolean success = chosenCard.playCard(model.getCurrentPlayer());
 
       String result = "\n" + model.getCurrentPlayer().getName() + " played "
-      + chosenCard.getCardName();
+         + chosenCard.getCardName();
 
       if (success) {
          result += " and has received: ";
@@ -269,7 +270,7 @@ public class GameController implements Serializable {
             String pickedUpCard = currentPlayerRoom.getRoomCards().toString();
             model.getCurrentPlayer().pickUpRoomCard();
             frame.updateBottomConsole(model.getCurrentPlayer().getName()
-            + " picked up: " + pickedUpCard);
+               + " picked up: " + pickedUpCard);
          }
       }
       frame.updateInformationPanel();
@@ -293,7 +294,7 @@ public class GameController implements Serializable {
       frame.updateList();
 
       frame.updateBottomConsole("\n" + model.getCurrentPlayer() + " has teleported to "
-      + room);
+         + room);
       frame.updateInformationPanel();
    }
 
@@ -394,7 +395,7 @@ public class GameController implements Serializable {
       if (gameFile.exists()) {
          try {
             ObjectInputStream in = new ObjectInputStream(
-            new FileInputStream(gameFile));
+               new FileInputStream(gameFile));
 
             model = (GameModel) in.readObject();
             in.close();
