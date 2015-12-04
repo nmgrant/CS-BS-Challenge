@@ -24,6 +24,7 @@ public class GameController implements Serializable {
    Sounds drawCardSound = new Sounds("/Sounds/PokeballCaught.wav");
    Sounds playCardSound = new Sounds("/Sounds/PokemonGo.wav");
    Sounds backgroundMusic = new Sounds("/Sounds/PokemonTGCBackgroundMusic.wav");
+   Sounds nextCardSound = new Sounds("/Sounds/PokeballExpand.wav");
 
    public GameController(GameModel model, GameView frame) {
       this.model = model;
@@ -94,12 +95,6 @@ public class GameController implements Serializable {
          playCardSound.play();
          playCard();
 
-         try {
-            Thread.sleep(150);
-         } catch (InterruptedException ex) {
-            ex.printStackTrace();
-         }
-
          backgroundMusic.loop();
       }
    }
@@ -122,12 +117,6 @@ public class GameController implements Serializable {
          drawCardSound.play();
          drawCard();
 
-         try {
-            Thread.sleep(600);
-         } catch (InterruptedException ex) {
-            ex.printStackTrace();
-         }
-
          backgroundMusic.loop();
       }
    }
@@ -136,7 +125,16 @@ public class GameController implements Serializable {
 
       @Override
       public void actionPerformed(ActionEvent evt) {
+         nextCardSound.play();
          nextCard();
+         
+         try {
+            Thread.sleep(450);
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+         }
+         
+         nextCardSound.stop();
       }
    }
 
