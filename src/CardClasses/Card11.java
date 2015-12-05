@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 public class Card11 extends Card {
 
    public Card11() {
-      image = new ImageIcon(("src/CardImagesYear1/ParkingTicket.png"));
+      image = new ImageIcon(("src/CardImagesYear2/ParkingTicket.png"));
 
       cardName = "Parking Ticket";
       locations.add(new Room("Computer Lab", 11));
