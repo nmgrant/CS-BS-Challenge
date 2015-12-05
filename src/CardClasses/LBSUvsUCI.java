@@ -6,13 +6,13 @@ import GameClasses.SkillPoints;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class Card14 extends Card {
+public class LBSUvsUCI extends Card {
 
-   public Card14() {
-      image = new ImageIcon(("src/CardImagesYear2/HaveASwim.png"));
+   public LBSUvsUCI() {
+      image = new ImageIcon(("src/CardImagesYear2/LBSUvsUCI.png"));
 
-      cardName = "HaveASwim";
-      locations.add(new Room("Rec Center", 5));
+      cardName = "LBSU vs UCI";
+      locations.add(new Room("The Pyramid", 3));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);

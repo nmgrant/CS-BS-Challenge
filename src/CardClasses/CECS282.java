@@ -6,9 +6,9 @@ import GameClasses.SkillPoints;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class Card13 extends Card {
+public class CECS282 extends Card {
 
-   public Card13() {
+   public CECS282() {
       image = new ImageIcon(("src/CardImagesYear2/CECS282.png"));
 
       cardName = "CECS 282";

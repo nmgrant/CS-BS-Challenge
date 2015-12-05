@@ -5,9 +5,9 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
 
-public class Card07 extends Card {
+public class PHIL270 extends Card {
 
-   public Card07() {
+   public PHIL270() {
       image = new ImageIcon(("src/CardImagesYear2/PHIL270.png"));
 
       cardName = "PHIL 270";

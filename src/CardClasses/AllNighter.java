@@ -5,9 +5,9 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
 
-public class Card12 extends Card {
+public class AllNighter extends Card {
 
-   public Card12() {
+   public AllNighter() {
       image = new ImageIcon(("src/CardImagesYear2/AllNighter.png"));
 
       cardName = "All Nighter";

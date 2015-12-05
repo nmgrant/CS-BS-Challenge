@@ -6,20 +6,21 @@ import GameClasses.SkillPoints;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class Card09 extends Card {
+public class CECS201 extends Card {
 
-   public Card09() {
-      image = new ImageIcon(("src/CardImagesYear2/Physics152.png"));
+   public CECS201() {
+      image = new ImageIcon(("src/CardImagesYear2/CECS201.png"));
 
-      cardName = "Physics 152";
-      locations.add(new Room("Library", 7));
-      locations.add(new Room("LA 5", 8));
-      skillPointsPreReq = new SkillPoints(0, 0, 7); // LCI
+      cardName = "CECS 201";
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("ECS 308", 17));
+      locations.add(new Room("Computer Lab", 11));
+      skillPointsPreReq = new SkillPoints(0, 8, 0); // LCI
       skillRewardChoices = null;
-//        skillReward = new SkillPoints(0, 0, 0);
+//        skillReward = new SkillPoints(1, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
-//        qualityPointsReward = 5;
-//        qualityPointsPenalty = -3;
+//        qualityPointsReward = 0;
+//        qualityPointsPenalty = 0;
 //        cardReward = 0;
 //        cardPenalty = 0;
    }
@@ -29,15 +30,7 @@ public class Card09 extends Card {
       Random rand = new Random();
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            SkillPoints chosenReward;
-            if (cPlayer.isHuman()) {
-               RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
-               chosenReward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
-            } else {
-               int randomReward = rand.nextInt(skillRewardChoices.length);
-               chosenReward = new SkillPoints(randomReward);
-            }
-            reward = new Reward(chosenReward, 5, 0, null);
+            reward = new Reward(new SkillPoints(1, 1, 1), 0, 0, null);
             return true;
          } else {
             Card chosenCard;
@@ -48,7 +41,7 @@ public class Card09 extends Card {
                int randomCard = rand.nextInt(cPlayer.getHand().size());
                chosenCard = cPlayer.getHand().get(randomCard);
             }
-            penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
+            penalty = new Penalty(null, -3, new Card[]{chosenCard}, null);
             return false;
          }
       } else {

@@ -5,18 +5,18 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
 
-public class Card06 extends Card {
+public class ENGL317 extends Card {
 
-   public Card06() {
-      image = new ImageIcon(("src/CardImagesYear2/GrabSomeLunch.png"));
+   public ENGL317() {
+      image = new ImageIcon(("src/CardImagesYear2/ENGL317.png"));
 
-      cardName = "Grab Some Lunch";
-      locations.add(new Room("EAT Club", 18));
-      skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
+      cardName = "ENGL 317";
+      locations.add(new Room("LA 5", 8));
+      skillPointsPreReq = new SkillPoints(0, 6, 0);
       skillRewardChoices = null;
-//        skillReward = new SkillPoints(1, 0, 0);
+//        skillReward = new SkillPoints(0, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
-//        qualityPointsReward = 0;
+//        qualityPointsReward = 5;
 //        qualityPointsPenalty = 0;
 //        cardReward = 0;
 //        cardPenalty = 0;
@@ -25,11 +25,11 @@ public class Card06 extends Card {
    @Override
    public boolean playCard(Player cPlayer) {
       if (locations.contains(cPlayer.getRoom())) {
-         if (cPlayer.getQualityPoints() == 30) {
-            reward = new Reward(new SkillPoints(1, 1, 1), 0, 0, null);
+         if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
+            reward = new Reward(null, 5, 0, null);
             return true;
          } else {
-            penalty = new Penalty(null, -5, null, new Room("Elevators", 16));
+            penalty = new Penalty(null, 0, null, new Room("Student Parking", 2));
             return false;
          }
       } else {

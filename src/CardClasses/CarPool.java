@@ -5,21 +5,20 @@ import GameClasses.Room;
 import GameClasses.SkillPoints;
 import javax.swing.ImageIcon;
 
-public class Card01 extends Card {
+public class CarPool extends Card {
 
-   public Card01() {
-      image = new ImageIcon(("src/CardImagesYear2/CECS274.png"));
+   public CarPool() {
+      image = new ImageIcon(("src/CardImagesYear2/CarPool.png"));
 
-      cardName = "CECS 274";
-      locations.add(new Room("ECS 302", 14));
-      locations.add(new Room("ECS 308", 17));
-      locations.add(new Room("Computer Lab", 11));
-      skillPointsPreReq = new SkillPoints(7, 0, 0); // LCI
+      cardName = "Car Pool";
+      locations.add(new Room("Student Parking", 2));
+      locations.add(new Room("Forbidden Parking", 6));
+      skillPointsPreReq = new SkillPoints(0, 0, 5); // LCI
       skillRewardChoices = null;
-//        skillReward = new SkillPoints(1, 0, 0);
+//        skillReward = new SkillPoints(0, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
-//        qualityPointsReward = 0;
-//        qualityPointsPenalty = 0;
+//        qualityPointsReward = 5;
+//        qualityPointsPenalty = -3;
 //        cardReward = 0;
 //        cardPenalty = 0;
    }
@@ -28,10 +27,10 @@ public class Card01 extends Card {
    public boolean playCard(Player cPlayer) {
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            reward = new Reward(null, 5, 1, null);
+            reward = new Reward(null, 3, 1, null);
             return true;
          } else {
-            penalty = new Penalty(null, -3, null, null);
+            penalty = new Penalty(null, -2, null, null);
             return false;
          }
       } else {
