@@ -25,6 +25,7 @@ public class GameModel implements Serializable {
         deckOfCards.initializeCards();
         initializeRooms();
         initializePlayers();
+        year = 1;
     }
 
     private void initializeRooms() {
@@ -62,6 +63,7 @@ public class GameModel implements Serializable {
         players[0].adjustQualityPoints(59);
         players[1].adjustQualityPoints(59);
         players[2].adjustQualityPoints(59);
+        totalQualityPoints = 60;
         for (int i = 0; i < 3; i++) {
             players[i].setSpace(players[i].getRoom().getRoomSpace(i));
         }
@@ -79,6 +81,9 @@ public class GameModel implements Serializable {
 
     public void toSophomoreYear() {
         System.out.println("soph yr");
+        
+        discardHands();
+        reshuffleDeck();
         deckOfCards.removeCard(new CECS100());
         deckOfCards.removeCard(new Math122());
         deckOfCards.removeCard(new ProfMurgoloCECS174());
@@ -90,8 +95,18 @@ public class GameModel implements Serializable {
         deckOfCards.removeCard(new ElectiveClass());
         deckOfCards.removeCard(new OralCommunication());
         deckOfCards.removeCard(new CHEM111());
+        discardDeck.removeCard(new CECS100());
+        discardDeck.removeCard(new Math122());
+        discardDeck.removeCard(new ProfMurgoloCECS174());
+        discardDeck.removeCard(new CECS105());
+        discardDeck.removeCard(new Math123());
+        discardDeck.removeCard(new Physics151());
+        discardDeck.removeCard(new KIN253());
+        discardDeck.removeCard(new PassSoccerClass());
+        discardDeck.removeCard(new ElectiveClass());
+        discardDeck.removeCard(new OralCommunication());
+        discardDeck.removeCard(new CHEM111());
         deckOfCards.shuffleDeck(System.nanoTime());
-        discardHands();
         deckOfCards.addCard(new CECS274());
         deckOfCards.addCard(new CECS201());
         deckOfCards.addCard(new CECS277());
@@ -111,8 +126,8 @@ public class GameModel implements Serializable {
 
     public void discardHands() {
         for (Player player : players) {
-            for (int i = 0; i < player.getHand().size(); i++) {
-                Card discardedCard = player.getHand().get(i);
+            while (player.getHand().size() > 0) {
+                Card discardedCard = player.getHand().getFirst();
                 player.discardCard(discardedCard);
                 addCardToDiscardDeck(discardedCard);
             }
@@ -145,12 +160,16 @@ public class GameModel implements Serializable {
     }
 
     public void reshuffleDeck() {
+        for (int i = 0; i < discardDeck.getNumberOfCards(); i++) {
+            deckOfCards.addCard(discardDeck.getCard(i));
+        }
+        discardDeck.getDeckOfCards().removeAll(discardDeck.getDeckOfCards());
+        deckOfCards.shuffleDeck(System.nanoTime());
+    }
+
+    public void checkToReshuffleDeck() {
         if (deckOfCards.isDeckEmpty()) {
-            for (int i = 0; i < discardDeck.getNumberOfCards(); i++) {
-                deckOfCards.addCard(discardDeck.getCard(i));
-            }
-            discardDeck.getDeckOfCards().removeAll(discardDeck.getDeckOfCards());
-            deckOfCards.shuffleDeck(System.nanoTime());
+            reshuffleDeck();
         }
     }
 
@@ -254,15 +273,16 @@ public class GameModel implements Serializable {
 
     public void checkGameStatus() {
         for (Player player : players) {
-            if (player.isWinner())
+            if (player.isWinner()) {
                 gameComplete = true;
+            }
         }
         if (totalQualityPoints >= 60 && year == 1) {
             year = 2;
             toSophomoreYear();
         }
     }
-    
+
     public boolean isGameComplete() {
         return gameComplete;
     }

@@ -67,7 +67,7 @@ public abstract class Card implements Serializable {
          return false;
       }
       final Card other = (Card) obj;
-      return Objects.equals(this.image, other.image);
+      return Objects.equals(this.cardName, other.cardName);
    }
    
    @Override

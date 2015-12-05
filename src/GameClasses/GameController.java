@@ -199,7 +199,7 @@ public class GameController implements Serializable {
         }
         if (cardsDrawn > 0) {
             for (int i = 0; i < cardsDrawn; i++) {
-                model.reshuffleDeck();
+                model.checkToReshuffleDeck();
                 model.getCurrentPlayer().pickUpCard(model.getDeckOfCards().getTopCard());
                 model.getDeckOfCards().removeCard(model.getDeckOfCards().getTopCard());
             }
@@ -310,7 +310,7 @@ public class GameController implements Serializable {
     }
 
     public void drawCard() {
-        model.reshuffleDeck();
+        model.checkToReshuffleDeck();
         Card drawnCard = model.getDeckOfCards().getTopCard();
         model.getCurrentPlayer().pickUpCard(drawnCard);
         frame.getCardButton().drawCard();
