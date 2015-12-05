@@ -12,8 +12,17 @@ public class Card03 extends Card {
       image = new ImageIcon(("src/CardImagesYear2/CECS277.png"));
 
       cardName = "CECS 277";
-      locations.add(new Room("ECS 308", 14));
-      skillPointsPreReq = new SkillPoints(5, 0, 0); // LCI
+      locations.add(new Room("Computer Lab", 11));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("Room of Retirement", 13));
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("Elevators", 16));
+      locations.add(new Room("EAT Club", 17));
+      locations.add(new Room("South Hall", 15));
+      locations.add(new Room("ECS 308", 18));
+      locations.add(new Room("CECS Conference Room", 19));
+      locations.add(new Room("Lactation Lounge", 20));
+      skillPointsPreReq = new SkillPoints(8, 8, 8); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
@@ -28,18 +37,18 @@ public class Card03 extends Card {
       Random rand = new Random();
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            SkillPoints chosenReward;
-            if (cPlayer.isHuman()) {
-               RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
-               chosenReward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
-            } else {
-               int randomReward = rand.nextInt(skillRewardChoices.length);
-               chosenReward = new SkillPoints(randomReward);
-            }
-            reward = new Reward(chosenReward, 3, 0, null);
+            reward = new Reward(null, 5, 0, null);
             return true;
          } else {
-            penalty = new Penalty(null, -5, null, new Room("Computer Lab", 11));
+            Card chosenCard;
+            if (cPlayer.isHuman()) {
+               DiscardCardDialog discardCardDialog = new DiscardCardDialog();
+               chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
+            } else {
+               int randomCard = rand.nextInt(cPlayer.getHand().size());
+               chosenCard = cPlayer.getHand().get(randomCard);
+            }
+            penalty = new Penalty(null, -2, new Card[]{chosenCard}, null);
             return false;
          }
       } else {

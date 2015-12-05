@@ -6,20 +6,28 @@ import GameClasses.SkillPoints;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
-public class Card09 extends Card {
+public class Card13 extends Card {
 
-   public Card09() {
-      image = new ImageIcon(("src/CardImagesYear2/Physics152.png"));
+   public Card13() {
+      image = new ImageIcon(("src/CardImagesYear2/CECS282.png"));
 
-      cardName = "Physics 152";
-      locations.add(new Room("Library", 7));
-      locations.add(new Room("LA 5", 8));
-      skillPointsPreReq = new SkillPoints(0, 0, 7); // LCI
+      cardName = "CECS 282";
+      locations.add(new Room("Computer Lab", 11));
+      locations.add(new Room("North Hall", 12));
+      locations.add(new Room("Room of Retirement", 13));
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("Elevators", 16));
+      locations.add(new Room("EAT Club", 17));
+      locations.add(new Room("South Hall", 15));
+      locations.add(new Room("ECS 308", 18));
+      locations.add(new Room("CECS Conference Room", 19));
+      locations.add(new Room("Lactation Lounge", 20));
+      skillPointsPreReq = new SkillPoints(8, 8, 8); // LCI
       skillRewardChoices = null;
-//        skillReward = new SkillPoints(0, 0, 0);
+//        skillReward = new SkillPoints(1, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
-//        qualityPointsReward = 5;
-//        qualityPointsPenalty = -3;
+//        qualityPointsReward = 0;
+//        qualityPointsPenalty = 0;
 //        cardReward = 0;
 //        cardPenalty = 0;
    }
@@ -29,15 +37,7 @@ public class Card09 extends Card {
       Random rand = new Random();
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            SkillPoints chosenReward;
-            if (cPlayer.isHuman()) {
-               RewardChoiceDialog rewardChoiceDialog = new RewardChoiceDialog();
-               chosenReward = rewardChoiceDialog.showRewardChoiceDialog(skillRewardChoices);
-            } else {
-               int randomReward = rand.nextInt(skillRewardChoices.length);
-               chosenReward = new SkillPoints(randomReward);
-            }
-            reward = new Reward(chosenReward, 5, 0, null);
+            reward = new Reward(null, 5, 0, null);
             return true;
          } else {
             Card chosenCard;
@@ -48,7 +48,7 @@ public class Card09 extends Card {
                int randomCard = rand.nextInt(cPlayer.getHand().size());
                chosenCard = cPlayer.getHand().get(randomCard);
             }
-            penalty = new Penalty(null, 0, new Card[]{chosenCard}, null);
+            penalty = new Penalty(null, -2, new Card[]{chosenCard}, null);
             return false;
          }
       } else {

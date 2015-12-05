@@ -12,7 +12,7 @@ public class Card08 extends Card {
 
       cardName = "ENGL 317";
       locations.add(new Room("LA 5", 8));
-      skillPointsPreReq = new SkillPoints(4, 0, 0);
+      skillPointsPreReq = new SkillPoints(0, 6, 0);
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(0, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
@@ -26,10 +26,10 @@ public class Card08 extends Card {
    public boolean playCard(Player cPlayer) {
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            reward = new Reward(new SkillPoints(0, 2, 0), 0, 0, null);
+            reward = new Reward(null, 5, 0, null);
             return true;
          } else {
-            penalty = new Penalty(null, 0, null, new Room("Japanese Garden", 1));
+            penalty = new Penalty(null, 0, null, new Room("Student Parking", 2));
             return false;
          }
       } else {

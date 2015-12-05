@@ -3,6 +3,7 @@ package CardClasses;
 import GameClasses.Player;
 import GameClasses.Room;
 import GameClasses.SkillPoints;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class Card04 extends Card {
@@ -11,8 +12,10 @@ public class Card04 extends Card {
       image = new ImageIcon(("src/CardImagesYear2/CECS228.png"));
 
       cardName = "CECS 228";
+      locations.add(new Room("ECS 302", 14));
+      locations.add(new Room("ECS 308", 17));
       locations.add(new Room("Computer Lab", 11));
-      skillPointsPreReq = new SkillPoints(3, 0, 3); // LCI
+      skillPointsPreReq = new SkillPoints(8, 8, 8); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
@@ -24,12 +27,21 @@ public class Card04 extends Card {
 
    @Override
    public boolean playCard(Player cPlayer) {
+      Random rand = new Random();
       if (locations.contains(cPlayer.getRoom())) {
          if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
-            reward = new Reward(new SkillPoints(0, 1, 0), 0, 1, null);
+            reward = new Reward(null, 5, 0, null);
             return true;
          } else {
-            penalty = new Penalty(new SkillPoints(-1, 0, -1), 5, null, null);
+            Card chosenCard;
+            if (cPlayer.isHuman()) {
+               DiscardCardDialog discardCardDialog = new DiscardCardDialog();
+               chosenCard = discardCardDialog.showDiscardCardDialog(cPlayer.getHand(), this);
+            } else {
+               int randomCard = rand.nextInt(cPlayer.getHand().size());
+               chosenCard = cPlayer.getHand().get(randomCard);
+            }
+            penalty = new Penalty(null, -2, new Card[]{chosenCard}, null);
             return false;
          }
       } else {

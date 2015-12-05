@@ -8,9 +8,9 @@ import javax.swing.ImageIcon;
 public class Card06 extends Card {
 
    public Card06() {
-      image = new ImageIcon(("src/CardImagesYear2/CECS282.png"));
+      image = new ImageIcon(("src/CardImagesYear2/GrabSomeLunch.png"));
 
-      cardName = "CECS 282";
+      cardName = "Grab Some Lunch";
       locations.add(new Room("EAT Club", 18));
       skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
       skillRewardChoices = null;

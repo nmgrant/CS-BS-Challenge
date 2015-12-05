@@ -13,7 +13,8 @@ public class Card01 extends Card {
       cardName = "CECS 274";
       locations.add(new Room("ECS 302", 14));
       locations.add(new Room("ECS 308", 17));
-      skillPointsPreReq = new SkillPoints(0, 0, 0); // LCI
+      locations.add(new Room("Computer Lab", 11));
+      skillPointsPreReq = new SkillPoints(7, 0, 0); // LCI
       skillRewardChoices = null;
 //        skillReward = new SkillPoints(1, 0, 0);
 //        skillPenalty = new SkillPoints(0, 0, 0);
@@ -26,8 +27,13 @@ public class Card01 extends Card {
    @Override
    public boolean playCard(Player cPlayer) {
       if (locations.contains(cPlayer.getRoom())) {
-         reward = new Reward(new SkillPoints(3, 0, 0), 0, 0, null);
-         return true;
+         if (cPlayer.getSkillPoints().equals(skillPointsPreReq)) {
+            reward = new Reward(null, 5, 1, null);
+            return true;
+         } else {
+            penalty = new Penalty(null, -3, null, null);
+            return false;
+         }
       } else {
          penalty = new Penalty();
          return false;
