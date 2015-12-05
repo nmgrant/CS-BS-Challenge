@@ -18,6 +18,7 @@ public class Player extends JLabel implements Serializable {
    private boolean human, current;
    private boolean handIsFull;
    private int moves;
+   private boolean winner;
    private Point space;
    
 
@@ -30,6 +31,7 @@ public class Player extends JLabel implements Serializable {
       moves = MAX_MOVES;
       current = false;
       handIsFull = false;
+      winner = false;
       handOfCards = new LinkedList<>();
    }
 
@@ -60,8 +62,15 @@ public class Player extends JLabel implements Serializable {
 
    public void adjustQualityPoints(int qualityPoints) {
       this.qualityPoints += qualityPoints;
+      if (this.qualityPoints >= 60) {
+          winner = true;
+      }
    }
-
+   
+   public boolean isWinner() {
+       return winner;
+   }
+   
    public int getMoves() {
       return moves;
    }

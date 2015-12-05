@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class GameController implements Serializable {
 
@@ -44,6 +46,19 @@ public class GameController implements Serializable {
         frame.addSaveGameActionPerformed(new SaveGameActionPerformed());
         frame.addLoadGameActionPerformed(new LoadGameActionPerformed());
         frame.addExitGameActionPerformed(new ExitGameActionPerformed());
+    }
+
+    private void completeGame() {
+        Player winner = null;
+        for (Player player : model.getPlayers()) {
+            if (player.isWinner()) {
+                winner = player;
+            }
+        }
+        JOptionPane.showMessageDialog(frame, winner + " has won!");
+        
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSED));
+        System.exit(0);
     }
 
     private class NewGameActionPerformed implements ActionListener {
@@ -212,6 +227,7 @@ public class GameController implements Serializable {
         String result = "";
         if (qualityPoints != 0) {
             model.getCurrentPlayer().adjustQualityPoints(qualityPoints);
+            model.updateTotalQualityPoints();
             result += " Quality Points: " + qualityPoints;
         }
         if (skillPoints != null) {
@@ -310,9 +326,11 @@ public class GameController implements Serializable {
     }
 
     public void nextPlayer() {
-        if (model.getTotalQualityPoints() >= 60) {
-            model.toSophomoreYear();
-        }
+        model.checkGameStatus();
+        
+        if(model.isGameComplete()) {
+            completeGame(); 
+       }
         
         chooseNextPlayer();
 
