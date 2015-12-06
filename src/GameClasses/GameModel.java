@@ -176,11 +176,10 @@ public class GameModel implements Serializable {
     }
 
     public void updateTotalQualityPoints() {
-        int sum = 0;
+        totalQualityPoints = 0;
         for (Player player : players) {
-            sum += player.getQualityPoints();
+            totalQualityPoints += player.getQualityPoints();
         }
-        totalQualityPoints = sum;
     }
 
     public Player getCurrentPlayer() {
