@@ -26,6 +26,7 @@ public class GameModel implements Serializable {
         initializeRooms();
         initializePlayers();
         year = 1;
+        totalQualityPoints = 0;
     }
 
     private void initializeRooms() {
@@ -60,10 +61,7 @@ public class GameModel implements Serializable {
         players[0] = new Player("Evan", new SkillPoints(2, 2, 2), rooms[17]);
         players[1] = new Player("Nick", new SkillPoints(3, 1, 2), rooms[17]);
         players[2] = new Player("BlAdam", new SkillPoints(0, 3, 3), rooms[17]);
-        players[0].adjustQualityPoints(59);
-        players[1].adjustQualityPoints(59);
-        players[2].adjustQualityPoints(59);
-        totalQualityPoints = 60;
+
         for (int i = 0; i < 3; i++) {
             players[i].setSpace(players[i].getRoom().getRoomSpace(i));
         }
@@ -178,9 +176,11 @@ public class GameModel implements Serializable {
     }
 
     public void updateTotalQualityPoints() {
+        int sum = 0;
         for (Player player : players) {
-            totalQualityPoints += player.getQualityPoints();
+            sum += player.getQualityPoints();
         }
+        totalQualityPoints = sum;
     }
 
     public Player getCurrentPlayer() {
