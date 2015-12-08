@@ -86,7 +86,6 @@ public class GameModel implements Serializable {
     }
 
     public void toSophomoreYear() {
-        System.out.println("soph yr");
         
         discardHands();
         reshuffleDeck();
