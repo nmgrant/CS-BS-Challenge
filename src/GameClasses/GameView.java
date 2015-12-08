@@ -349,6 +349,19 @@ public class GameView extends javax.swing.JFrame {
             player3.getSkillPoints().getIntegrityChips(),
             player3.getQualityPoints()}
       };
+      String year = "";
+      if (model.getYear() == 1) {
+          year = "Freshman";
+      }
+      else if (model.getYear() == 2) {
+          year = "Sophomore";
+      }
+      else if (model.getYear() == 3) {
+          year = "Junior";
+      }
+      else if (model.getYear() == 4) {
+          year = "Senior";
+      }
       informationPanel.setText("\tLearning\tCraft\tIntegrity\tQuality Points\n");
       for (int i = 0; i < data.length; i++) {
          informationPanel.append(data[i][0] + " \t "
@@ -357,7 +370,8 @@ public class GameView extends javax.swing.JFrame {
       }
       informationPanel.append("\n\n\n Cards in deck: "
          + model.getDeckOfCards().getNumberOfCards() + "\t Discards out of play: "
-         + model.getDiscardDeck().getNumberOfCards() + "\n");
+         + model.getDiscardDeck().getNumberOfCards() + "\t Year: "
+         + year + "\n");
 
       informationPanel.append("\n\n\n You are "
          + model.getCurrentPlayer().getName() + " and you are in "

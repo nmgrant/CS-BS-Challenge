@@ -61,10 +61,18 @@ public class GameModel implements Serializable {
         players[0] = new Player("Evan", new SkillPoints(2, 2, 2), rooms[17]);
         players[1] = new Player("Nick", new SkillPoints(3, 1, 2), rooms[17]);
         players[2] = new Player("BlAdam", new SkillPoints(0, 3, 3), rooms[17]);
-
+        
+        // Testing sophomore year
+        for (Player player : players) {
+            player.adjustQualityPoints(19);
+        }
+        updateTotalQualityPoints();
+        // end 
+        
         for (int i = 0; i < 3; i++) {
             players[i].setSpace(players[i].getRoom().getRoomSpace(i));
         }
+        
 
         dealCards();
 
@@ -155,6 +163,10 @@ public class GameModel implements Serializable {
 
     public Deck getDiscardDeck() {
         return discardDeck;
+    }
+    
+    public int getYear() {
+        return year;
     }
 
     public void reshuffleDeck() {
