@@ -17,3 +17,7 @@ Once the game reaches a total quality point amount of 60 between each player, th
 New cards are added to the deck and each player has their hand reshuffled.
 
 Lastly, the game completes once a player reaches 120 quality points.
+
+# Example
+
+<img src="https://cloud.githubusercontent.com/assets/10593907/11891823/1c084bba-a517-11e5-95f0-bb49e9011870.png" alt="Example" width="800" height="600">
